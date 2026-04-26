@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimRacing Vault - Tu Bóveda Personal</title>
+    <meta name="description" content="Guarda tus setups de SimRacing y ajustes de FFB para siempre.">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://unpkg.com/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+</head>
+<body>
+    <!-- Auth View -->
+    <section id="auth-view">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <i data-lucide="shield-check"></i>
+                <h1>SimRacing<br><span class="accent">Vault</span></h1>
+                <p>Tu bóveda personal de competición</p>
+            </div>
+            <div class="auth-btns">
+                <button class="google-btn" id="login-google">
+                    <i data-lucide="log-in"></i> Iniciar con Google
+                </button>
+                <button class="apple-btn" id="login-apple">
+                    <i data-lucide="log-in"></i> Iniciar con Apple
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main App App -->
+    <div id="app" class="hidden">
+        <input type="file" id="ocr-file-input" accept="image/*" style="display:none;">
+        <header class="header">
+            <div class="logo">
+                <i data-lucide="gauge"></i>
+                <h1>SR<span class="accent">Vault</span></h1>
+            </div>
+            <div class="user-profile">
+                <span id="user-name">Racer X</span>
+                <div class="user-avatar">RX</div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Dashboard -->
+            <section id="dashboard" class="view">
+                <div class="dashboard-header">
+                    <div class="header-row">
+                        <div>
+                            <p>Hola, Piloto</p>
+                            <h2 id="dashboard-title">Mis Setups</h2>
+                        </div>
+                        <div class="header-actions">
+                            <button id="export-btn" class="icon-btn" title="Exportar"><i data-lucide="download"></i></button>
+                            <button id="import-btn" class="icon-btn" title="Importar"><i data-lucide="upload"></i></button>
+                            <button id="compare-btn" class="icon-btn hidden" title="Comparar"><i data-lucide="columns"></i></button>
+                            <button id="telemetry-btn" class="icon-btn" title="Preview telemetry" style="border:1px solid var(--border);border-radius:10px;background:var(--bg-input);color:white;cursor:pointer;display:flex;align-items:center;gap:0.5rem;padding:0.5rem 0.75rem;font-size:0.8rem;"><i data-lucide="activity"></i></button>
+                            <button id="community-btn" class="icon-btn" title="Community Hub" style="border:1px solid var(--border);border-radius:10px;background:var(--bg-input);color:white;cursor:pointer;display:flex;align-items:center;gap:0.5rem;padding:0.5rem 0.75rem;font-size:0.8rem;"><i data-lucide="globe"></i></button>
+                            <button id="new-setup" class="new-setup-btn" title="Nuevo Setup"><i data-lucide="plus"></i></button>
+                        </div>
+                    </div>
+                    <div id="dashboard-stats" class="stats-bar"></div>
+                    <div class="filters-bar">
+                        <div class="search-wrapper">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" id="search-input" class="search-input" placeholder="Buscar setups...">
+                        </div>
+                        <select id="filter-game" class="filter-select">
+                            <option value="">Todos los juegos</option>
+                        </select>
+                        <select id="filter-weather" class="filter-select">
+                            <option value="">Cualquier clima</option>
+                            <option value="dry">Seco</option>
+                            <option value="wet">Lluvia</option>
+                            <option value="mixed">Mixto</option>
+                        </select>
+                        <label class="filter-check">
+                            <input type="checkbox" id="filter-favorite">
+                            <span>Favoritos</span>
+                        </label>
+                        <select id="sort-select" class="filter-select">
+                            <option value="updatedAt_desc">Recientes</option>
+                            <option value="createdAt_desc">Más nuevos</option>
+                            <option value="name_asc">Nombre A-Z</option>
+                            <option value="game_asc">Juego A-Z</option>
+                            <option value="favorite_first">Favoritos primero</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="telemetry-section" class="hidden" style="margin-bottom:2rem;"></div>
+
+                <div id="community-section" class="hidden" style="margin-bottom:2rem;"></div>
+
+                <div id="setups-grid" class="setups-grid"></div>
+            </section>
+
+            <!-- Create / Edit Setup -->
+            <section id="setup-editor" class="view hidden">
+                <div class="editor-header-nav" style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+                    <button id="back-btn" class="btn-icon" style="background:none; border:none; color:white; cursor:pointer;"><i data-lucide="arrow-left"></i></button>
+                    <h2 id="editor-title">Crear Setup</h2>
+                </div>
+
+                <div class="editor-section">
+                    <form id="setup-form">
+                        <div class="section-title">Información de Carrera</div>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>Nombre del Setup</label>
+                                <input type="text" id="setup-name" placeholder="Ej: Clasificación Spa Dry">
+                            </div>
+                            <div class="input-group">
+                                <label>Juego</label>
+                                <select id="game-select" required></select>
+                            </div>
+                            <div class="input-group">
+                                <label>Coche</label>
+                                <!-- Text input — shown for games without override select -->
+                                <input type="text" id="car-name" list="car-suggestions" placeholder="Ej: Ferrari 296 GT3">
+                                <datalist id="car-suggestions"></datalist>
+                                <!-- Select with optgroups — ACC -->
+                                <select id="car-select-acc" class="hidden"></select>
+                                <!-- Select with optgroups — F1 24 -->
+                                <select id="car-select-f1" class="hidden"></select>
+                                <!-- Select with optgroups — GT7 -->
+                                <select id="car-select-gt7" class="hidden"></select>
+                                <!-- Select with optgroups — iRacing -->
+                                <select id="car-select-iracing" class="hidden"></select>
+                                <span id="car-override-status" class="hidden"></span>
+                            </div>
+                            <div class="input-group">
+                                <label>Circuito</label>
+                                <div class="track-select-wrapper">
+                                    <select id="track-name" required>
+                                        <option value="" disabled selected>Selecciona circuito…</option>
+                                    </select>
+                                    <span class="select-arrow"><i data-lucide="chevron-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Clima</label>
+                                <select id="weather-select">
+                                    <option value="dry">Seco</option>
+                                    <option value="wet">Lluvia</option>
+                                    <option value="mixed">Mixto</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Sesión</label>
+                                <select id="session-select">
+                                    <option value="Custom">Custom</option>
+                                    <option value="Qualy">Clasificación</option>
+                                    <option value="Race">Carrera</option>
+                                    <option value="Practice">Práctica</option>
+                                    <option value="Hotlap">Hotlap</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Tags</label>
+                                <input type="text" id="setup-tags" placeholder="Opcional, separados por coma">
+                            </div>
+                            <div class="input-group">
+                                <label>Rating</label>
+                                <div id="rating-stars" class="rating-stars">
+                                    <span class="star" data-val="1">☆</span>
+                                    <span class="star" data-val="2">☆</span>
+                                    <span class="star" data-val="3">☆</span>
+                                    <span class="star" data-val="4">☆</span>
+                                    <span class="star" data-val="5">☆</span>
+                                </div>
+                                <input type="hidden" id="setup-rating" value="0">
+                            </div>
+                            <div class="input-group" style="display:flex;align-items:center;gap:0.5rem;">
+                                <input type="checkbox" id="setup-public" style="accent-color:var(--accent);width:16px;height:16px;">
+                                <label for="setup-public" style="color:var(--text-secondary);font-size:0.85rem;cursor:pointer;margin:0;">Público</label>
+                            </div>
+                            <div class="input-group">
+                                <label>Versión del Juego</label>
+                                <input type="text" id="setup-game-version" placeholder="Ej: 1.9.0" style="width:100%;background:var(--bg-input);border:1px solid var(--border);color:white;border-radius:8px;padding:10px;">
+                            </div>
+                            <div class="input-group">
+                                <label>Plataforma</label>
+                                <select id="setup-platform" style="width:100%;background:var(--bg-input);border:1px solid var(--border);color:white;border-radius:8px;padding:10px;">
+                                    <option value="">No especificada</option>
+                                    <option value="PC">PC</option>
+                                    <option value="PS5">PS5</option>
+                                    <option value="Xbox Series X">Xbox Series X</option>
+                                    <option value="Xbox Series S">Xbox Series S</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="dynamic-tabs" class="tabs-nav hidden">
+                            <!-- Tabs injected here -->
+                        </div>
+
+                        <div id="dynamic-params" class="params-grid">
+                            <!-- Params injected here -->
+                        </div>
+
+                        <div id="notes-section" class="hidden"></div>
+
+                        <div class="input-group" style="margin-top: 2rem;">
+                            <label>Resumen de Notas</label>
+                            <textarea id="setup-notes" style="width:100%; height:60px; background:var(--bg-input); border:1px solid var(--border); color:white; border-radius:8px; padding:10px;" readonly placeholder="Las notas por sección se combinan aquí al guardar. Editing manually no se сохраняет."></textarea>
+                        </div>
+
+                        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                            <button type="submit" class="primary-btn" style="flex:1;">Guardar en la Bóveda</button>
+                            <button type="button" id="export-pdf-btn" class="icon-btn" title="Exportar PDF" style="padding:0.75rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--bg-input);color:white;cursor:pointer;display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;">
+                                <i data-lucide="file-down"></i> PDF
+                            </button>
+                            <button type="button" id="share-qr-btn" class="icon-btn" title="Generar QR" style="padding:0.75rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--bg-input);color:white;cursor:pointer;display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;">
+                                <i data-lucide="qr-code"></i> QR
+                            </button>
+                            <button type="button" id="import-ocr-btn" class="icon-btn" title="Importar desde foto" style="padding:0.75rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--bg-input);color:white;cursor:pointer;display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;">
+                                <i data-lucide="scan"></i> OCR
+                            </button>
+                            <button type="button" id="voice-note-btn" class="icon-btn" title="Nota de voz" style="padding:0.75rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--bg-input);color:white;cursor:pointer;display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;">
+                                <i data-lucide="mic"></i>
+                            </button>
+                            <button type="button" id="version-history-btn" class="icon-btn hidden" title="Historial de versiones" style="padding:0.75rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--bg-input);color:white;cursor:pointer;display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;">
+                                <i data-lucide="history"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
