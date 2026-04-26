@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimRacing Vault — Data Verification Tool</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-main: #0f1117;
+            --bg-card: #1a1d27;
+            --bg-input: #252836;
+            --border: #353647;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            --accent: #6366f1;
+            --accent-hover: #818cf8;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+        body { font-family: system-ui, sans-serif; background: var(--bg-main); color: var(--text-primary); line-height: 1.5; padding: 2rem; }
+        h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.1rem; color: var(--text-secondary); font-weight: normal; margin-bottom: 2rem; }
+        .subtitle { color: var(--warning); font-size: 0.85rem; margin-bottom: 2rem; }
+        .game-selector { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .game-btn { padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); color: var(--text-primary); cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+        .game-btn:hover { border-color: var(--accent); }
+        .game-btn.active { background: var(--accent); border-color: var(--accent); }
+        .car-selector { margin-bottom: 2rem; }
+        .car-selector label { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
+        .car-selector select, .car-selector input { width: 100%; max-width: 400px; padding: 0.75rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-input); color: var(--text-primary); font-size: 1rem; }
+        .verified-badge { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; background: var(--success); color: white; margin-left: 0.5rem; }
+        .pending-badge { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; background: var(--warning); color: black; margin-left: 0.5rem; }
+        .params-grid { display: grid; gap: 1rem; }
+        .param-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
+        .param-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem; }
+        .param-name { font-weight: 600; font-size: 0.95rem; }
+        .param-type { font-size: 0.75rem; color: var(--text-secondary); background: var(--bg-input); padding: 0.2rem 0.5rem; border-radius: 4px; }
+        .param-values { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; }
+        .value-field { display: flex; flex-direction: column; gap: 0.25rem; }
+        .value-field label { font-size: 0.75rem; color: var(--text-secondary); }
+        .value-field input { padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-input); color: var(--text-primary); font-size: 0.9rem; width: 100%; }
+        .value-field input:focus { outline: none; border-color: var(--accent); }
+        .value-field input.verified { border-color: var(--success); }
+        .param-note { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem; font-style: italic; }
+        .section-title { font-size: 1rem; font-weight: 600; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+        .export-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .export-section h3 { margin-bottom: 1rem; }
+        .export-btn { padding: 1rem 2rem; background: var(--accent); border: none; border-radius: 10px; color: white; font-size: 1rem; cursor: pointer; font-weight: 600; margin-right: 1rem; margin-bottom: 1rem; }
+        .export-btn:hover { background: var(--accent-hover); }
+        .import-area { margin-top: 1rem; }
+        .import-area textarea { width: 100%; height: 150px; padding: 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-input); color: var(--text-primary); font-family: monospace; font-size: 0.85rem; resize: vertical; }
+        .import-btn { margin-top: 0.5rem; padding: 0.75rem 1.5rem; background: var(--bg-input); border: 1px solid var(--border); border-radius: 10px; color: var(--text-primary); cursor: pointer; }
+        .import-btn:hover { border-color: var(--accent); }
+        .stats { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; padding: 1rem; background: var(--bg-card); border-radius: 12px; }
+        .stat { text-align: center; }
+        .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .stat-label { font-size: 0.75rem; color: var(--text-secondary); }
+        .verified-count { color: var(--success); }
+        .pending-count { color: var(--warning); }
+        .hidden { display: none; }
+        .progress-bar { height: 4px; background: var(--bg-input); border-radius: 2px; overflow: hidden; margin-top: 0.5rem; }
+        .progress-fill { height: 100%; background: var(--success); transition: width 0.3s; }
+        .tooltip { position: relative; cursor: help; }
+        .tooltip::after { content: attr(data-tip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--bg-input); border: 1px solid var(--border); padding: 0.5rem; border-radius: 6px; font-size: 0.75rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 10; }
+        .tooltip:hover::after { opacity: 1; }
+        @media (max-width: 600px) { body { padding: 1rem; } .params-grid { gap: 0.75rem; } .param-values { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <h1>SimRacing Vault — Data Verification Tool</h1>
+    <h2>Documenta los valores reales de cada parámetro directamente desde el juego</h2>
+    <p class="subtitle">⚠ Esta herramienta es para uso offline. Rellena los valores que confirmes in-game y exporta cuando termines.</p>
+
+    <div class="stats">
+        <div class="stat"><div class="stat-value" id="total-params">0</div><div class="stat-label">Total Parámetros</div></div>
+        <div class="stat"><div class="stat-value verified-count" id="verified-count">0</div><div class="stat-label">Verificados ✓</div></div>
+        <div class="stat"><div class="stat-value pending-count" id="pending-count">0</div><div class="stat-label">Pendientes ⚠</div></div>
+        <div class="stat"><div class="stat-value" id="progress-pct">0%</div><div class="stat-label">Progreso</div></div>
+    </div>
+
+    <div class="game-selector">
+        <button class="game-btn active" data-game="acc">ACC</button>
+        <button class="game-btn" data-game="gt7">GT7</button>
+        <button class="game-btn" data-game="f1_24">F1 24</button>
+        <button class="game-btn" data-game="iracing">iRacing</button>
+    </div>
+
+    <div class="car-selector" id="car-section">
+        <label for="car-select">Selecciona el coche a verificar:</label>
+        <select id="car-select"><option value="">— Selecciona un coche —</option></select>
+    </div>
+
+    <div id="params-container"></div>
+
+    <div class="export-section">
+        <h3>Exportar / Importar Datos</h3>
+        <button class="export-btn" id="export-json">📥 Exportar JSON</button>
+        <button class="export-btn" id="export-csv">📊 Exportar CSV</button>
+        <button class="export-btn" id="clear-all">🗑️ Limpiar Todo</button>
+        <div class="import-area">
+            <label for="import-json">Importar datos previamente exportados:</label>
+            <textarea id="import-json" placeholder="Pega aquí el JSON exportado…"></textarea>
+            <button class="import-btn" id="import-json-btn">Importar JSON</button>
+        </div>
+    </div>
+
+    <script>
+    const VERIFICATION_DATA_KEY = 'simr_verification_data';
+
+    const GAMES_DATA = {
+        acc: {
+            name: 'Assetto Corsa Competizione',
+            cars: [
+                { id: 'porsche_992_gt3_r', name: 'Porsche 992 GT3 R (2023)' },
+                { id: 'ferrari_296_gt3', name: 'Ferrari 296 GT3' },
+                { id: 'bmw_m4_gt3', name: 'BMW M4 GT3' },
+                { id: 'mercedes_amg_gt3', name: 'Mercedes-AMG GT3' },
+                { id: 'lamborghini_huracan_gt3', name: 'Lamborghini Huracán GT3 EVO' },
+                { id: 'mclaren_720s_gt3', name: 'McLaren 720S GT3' },
+                { id: 'audi_r8_gt3', name: 'Audi R8 LMS GT3' },
+                { id: 'aston_martin_vantage_gt3', name: 'Aston Martin Vantage GT3' },
+                { id: 'honda_nsx_gt3', name: 'Honda NSX GT3' },
+                { id: 'lexus_rc_f_gt3', name: 'Lexus RC F GT3' },
+                { id: 'nissan_gt3', name: 'Nissan GT3 Nismo' },
+                { id: 'jaguar_g3', name: 'Jaguar G3' },
+                { id: 'chevrolet_camaro_gt3', name: 'Chevrolet Camaro GT3' },
+                { id: 'ford_gt_gt3', name: 'Ford GT GT3' },
+                { id: 'bentley_continental_gt3', name: 'Bentley Continental GT3' },
+                { id: 'porsche_991_gt3_r', name: 'Porsche 991 GT3 R' },
+                { id: 'ferrari_488_gt3', name: 'Ferrari 488 GT3' },
+                { id: 'bmw_m6_gt3', name: 'BMW M6 GT3' },
+                { id: 'nissan_gt3_v2', name: 'Nissan GT3 Nismo (旧)' },
+                { id: 'amr_v12_gt3', name: 'Aston Martin V12 Vantage GT3' },
+                { id: ' lambs_revell', name: 'Lamborghini Huracán GT3' },
+                { id: 'ktm_xbow_gt3', name: 'KTM X-Bow GT3' },
+                { id: 'ginetta_g55_gt3', name: 'Ginetta G55 GT3' },
+                { id: 'mclaren_570s_gt3', name: 'McLaren 570S GT3' },
+                { id: 'bmw_m2_cs_gt3', name: 'BMW M2 CS GT3' },
+                { id: 'ferrari_458_gt3', name: 'Ferrari 458 GT3' },
+                { id: 'mercedes_amg_gt4', name: 'Mercedes-AMG GT4' },
+                { id: 'bmw_m4_gt4', name: 'BMW M4 GT4' },
+                { id: 'chevrolet_camaro_gt4', name: 'Chevrolet Camaro GT4' },
+                { id: 'aston_martin_gt4', name: 'Aston Martin Vantage GT4' },
+                { id: 'porsche_718_gt4', name: 'Porsche 718 Cayman GT4' },
+                { id: 'mclaren_570s_gt4', name: 'McLaren 570S GT4' },
+                { id: 'nissan_370z_gt4', name: 'Nissan 370Z GT4' },
+                { id: 'ginetta_g56_gt4', name: 'Ginetta G56 GT4' }
+            ],
+            tabs: [
+                {
+                    id: 'susp', name: 'Suspensión', params: [
+                        { id: 'rh_f', l: 'Ride Height Front', type: 'step', min: 40, max: 100, step: 1, s: 'mm', note: 'Valor mínimo confirmado. Máximo pendiente.' },
+                        { id: 'rh_r', l: 'Ride Height Rear', type: 'step', min: 40, max: 110, step: 1, s: 'mm', note: '' },
+                        { id: 'wrate_f', l: 'Wheel Rate Front', type: 'step', min: 50, max: 300, step: 10, s: 'N/mm', note: '' },
+                        { id: 'wrate_r', l: 'Wheel Rate Rear', type: 'step', min: 50, max: 300, step: 10, s: 'N/mm', note: '' },
+                        { id: 'bump_rate_f', l: 'Bumpstop Rate Front', type: 'step', min: 50, max: 2000, step: 50, s: 'N/mm', note: 'Pendiente de confirmar el máximo real.' },
+                        { id: 'bump_rate_r', l: 'Bumpstop Rate Rear', type: 'step', min: 50, max: 2000, step: 50, s: 'N/mm', note: '' },
+                        { id: 'bump_range_f', l: 'Bumpstop Range Front', type: 'step', min: 0, max: 50, step: 1, s: 'mm', note: '' },
+                        { id: 'bump_range_r', l: 'Bumpstop Range Rear', type: 'step', min: 0, max: 50, step: 1, s: 'mm', note: '' },
+                        { id: 'bump_slow_f', l: 'Bump Slow Front', type: 'step', min: 0, max: 11, step: 1, note: 'Índice 0-10 u 0-11 según coche.' },
+                        { id: 'bump_slow_r', l: 'Bump Slow Rear', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'bump_fast_f', l: 'Bump Fast Front', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'bump_fast_r', l: 'Bump Fast Rear', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'reb_slow_f', l: 'Rebound Slow Front', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'reb_slow_r', l: 'Rebound Slow Rear', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'reb_fast_f', l: 'Rebound Fast Front', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'reb_fast_r', l: 'Rebound Fast Rear', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'camber_f', l: 'Camber Front', type: 'step', min: -5.0, max: -1.0, step: 0.05, s: '°', note: '' },
+                        { id: 'camber_r', l: 'Camber Rear', type: 'step', min: -5.0, max: -1.0, step: 0.05, s: '°', note: '' },
+                        { id: 'toe_f', l: 'Toe Front', type: 'step', min: -0.50, max: 0.50, step: 0.01, s: '°', note: '' },
+                        { id: 'toe_r', l: 'Toe Rear', type: 'step', min: -0.50, max: 0.50, step: 0.01, s: '°', note: '' },
+                        { id: 'caster', l: 'Caster', type: 'step', min: 3.0, max: 16.0, step: 0.1, s: '°', note: '' }
+                    ]
+                },
+                {
+                    id: 'arbs', name: 'ARBs', params: [
+                        { id: 'arb_f', l: 'Anti Roll Bar Front', type: 'step', min: 1, max: 14, step: 1, note: 'Índice de slider. Pendiente confirmar máximo real de cada coche.' },
+                        { id: 'arb_r', l: 'Anti Roll Bar Rear', type: 'step', min: 1, max: 14, step: 1, note: '' }
+                    ]
+                },
+                {
+                    id: 'brakes', name: 'Frenos', params: [
+                        { id: 'brake_power', l: 'Brake Power', type: 'step', min: 80, max: 100, step: 1, s: '%', note: '' },
+                        { id: 'brake_bias', l: 'Brake Bias', type: 'step', min: 46.0, max: 60.0, step: 0.2, s: '%', note: '' },
+                        { id: 'brake_duct_fl', l: 'Brake Duct FL', type: 'options', options: ['Off', 'On'], note: '' },
+                        { id: 'brake_duct_fr', l: 'Brake Duct FR', type: 'options', options: ['Off', 'On'], note: '' },
+                        { id: 'brake_duct_rl', l: 'Brake Duct RL', type: 'options', options: ['Off', 'On'], note: '' },
+                        { id: 'brake_duct_rr', l: 'Brake Duct RR', type: 'options', options: ['Off', 'On'], note: '' },
+                        { id: 'brake_pad', l: 'Brake Pad', type: 'options', options: ['Pad 1', 'Pad 2', 'Pad 3', 'Pad 4'], note: '' }
+                    ]
+                },
+                {
+                    id: 'elec', name: 'Electronics', params: [
+                        { id: 'tc1', l: 'Traction Control 1', type: 'step', min: 0, max: 12, step: 1, note: 'Pendiente confirmar máximo de cada coche.' },
+                        { id: 'tc2', l: 'Traction Control 2', type: 'step', min: 0, max: 12, step: 1, note: 'No todos los GT3 tienen TC2.' },
+                        { id: 'abs', l: 'ABS', type: 'step', min: 0, max: 12, step: 1, note: '' },
+                        { id: 'engine_map', l: 'Engine Map', type: 'step', min: 1, max: 8, step: 1, note: '' },
+                        { id: 'pit_limiter', l: 'Pit Limiter', type: 'options', options: ['Off', 'On'], note: '' },
+                        { id: 'fuel', l: 'Fuel', type: 'step', min: 0, max: 120, step: 1, s: 'L', note: 'Máximo = capacidad del tanque.' }
+                    ]
+                },
+                {
+                    id: 'drivetrain', name: 'Drivetrain', params: [
+                        { id: 'vmax', l: 'Max Velocity', type: 'step', min: 0, max: 400, step: 5, s: 'km/h', note: '' },
+                        { id: 'g1', l: 'Gear 1', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'g2', l: 'Gear 2', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'g3', l: 'Gear 3', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'g4', l: 'Gear 4', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'g5', l: 'Gear 5', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'g6', l: 'Gear 6', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'final_drive', l: 'Final Drive', type: 'step', min: 2.0, max: 5.0, step: 0.05, note: '' },
+                        { id: 'diff_preload', l: 'Diff Preload', type: 'step', min: 0, max: 200, step: 10, s: 'Nm', note: 'Pendiente confirmar máximo.' }
+                    ]
+                }
+            ]
+        },
+        gt7: {
+            name: 'Gran Turismo 7',
+            cars: [
+                { id: 'gr1', name: 'Gr.1 (Prototipos)' },
+                { id: 'gr2', name: 'Gr.2 (Turismos)' },
+                { id: 'gr3', name: 'Gr.3 (GT Light)' },
+                { id: 'gr4', name: 'Gr.4 (GT Street)' },
+                { id: 'grb', name: 'Gr.B (Rally)' },
+                { id: 'formula', name: 'Formula' },
+                { id: 'nurburgring', name: 'Nürburgring Special' },
+                { id: 'stuttgart', name: 'Stuttgart Special' },
+                { id: 'rome', name: 'Rome Special' }
+            ],
+            tabs: [
+                {
+                    id: 'body', name: 'Chasis', params: [
+                        { id: 'gt7_body_rig', l: 'Body Reinforcement', type: 'options', options: ['None', 'Light', 'Medium', 'Heavy'], note: '' },
+                        { id: 'gt7_power_lim', l: 'Power Limiter', type: 'step', min: 0, max: 100, step: 1, s: '%', note: '' },
+                        { id: 'gt7_ballast', l: 'Ballast', type: 'step', min: 0, max: 200, step: 1, s: 'kg', note: '' },
+                        { id: 'gt7_ballast_pos', l: 'Ballast Position', type: 'step', min: -50, max: 50, step: 1, note: 'Negativo = delante, positivo = detrás.' },
+                        { id: 'gt7_weight_dist', l: 'Weight Distribution', type: 'step', min: 40, max: 65, step: 0.5, s: '% (front)', note: 'Resultado de ballast position.' },
+                        { id: 'gt7_cg_height', l: 'CG Height', type: 'step', min: 0, max: 100, step: 1, s: 'mm', note: 'Referencia.' }
+                    ]
+                },
+                {
+                    id: 'trans', name: 'Transmisión', params: [
+                        { id: 'gt7_vmax', l: 'Top Speed', type: 'step', min: 0, max: 400, step: 5, s: 'km/h', note: '' },
+                        { id: 'gt7_g1', l: 'Gear 1', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'gt7_g2', l: 'Gear 2', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'gt7_g3', l: 'Gear 3', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'gt7_g4', l: 'Gear 4', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'gt7_g5', l: 'Gear 5', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'gt7_g6', l: 'Gear 6', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'gt7_g7', l: 'Gear 7', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'gt7_final_drive', l: 'Final Drive', type: 'step', min: 2.0, max: 6.0, step: 0.1, note: '' }
+                    ]
+                },
+                {
+                    id: 'susp', name: 'Suspensión', params: [
+                        { id: 'gt7_rh_f', l: 'Ride Height Front', type: 'step', min: 50, max: 150, step: 1, s: 'mm', note: '' },
+                        { id: 'gt7_rh_r', l: 'Ride Height Rear', type: 'step', min: 50, max: 150, step: 1, s: 'mm', note: '' },
+                        { id: 'gt7_spring_f', l: 'Spring Rate Front', type: 'step', min: 1, max: 20, step: 1, s: 'N/mm', note: 'Pendiente confirmar rango real.' },
+                        { id: 'gt7_spring_r', l: 'Spring Rate Rear', type: 'step', min: 1, max: 20, step: 1, s: 'N/mm', note: '' },
+                        { id: 'gt7_damp_ext_f', l: 'Damper Ext Front', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'gt7_damp_ext_r', l: 'Damper Ext Rear', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'gt7_damp_comp_f', l: 'Damper Comp Front', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'gt7_damp_comp_r', l: 'Damper Comp Rear', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'gt7_arb_f', l: 'ARB Front', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'gt7_arb_r', l: 'ARB Rear', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'gt7_bump_f', l: 'Bump Stop Front', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'gt7_bump_r', l: 'Bump Stop Rear', type: 'step', min: 0, max: 10, step: 1, note: '' }
+                    ]
+                },
+                {
+                    id: 'lsd', name: 'LSD', params: [
+                        { id: 'gt7_lsd_type', l: 'LSD Type', type: 'options', options: ['1-Way', '2-Way', 'Active'], note: '' },
+                        { id: 'gt7_lsd_init', l: 'Initial Torque', type: 'step', min: 0, max: 100, step: 1, s: '%', note: '' },
+                        { id: 'gt7_lsd_accel', l: 'Accel Sensitivity', type: 'step', min: 0, max: 100, step: 1, s: '%', note: '' },
+                        { id: 'gt7_lsd_decel', l: 'Decel Sensitivity', type: 'step', min: 0, max: 100, step: 1, s: '%', note: '' },
+                        { id: 'gt7_solid_f', l: 'Solid Axle Front', type: 'options', options: ['Off', 'On'], note: 'Solo algunos coches.' },
+                        { id: 'gt7_solid_r', l: 'Solid Axle Rear', type: 'options', options: ['Off', 'On'], note: '' }
+                    ]
+                },
+                {
+                    id: 'brakes', name: 'Frenos/Geom', params: [
+                        { id: 'gt7_bb', l: 'Brake Balance', type: 'step', min: -5, max: 5, step: 0.1, note: 'F: -5 a +5, R: +5 a -5.' },
+                        { id: 'gt7_brake_press', l: 'Brake Pressure', type: 'step', min: 80, max: 120, step: 1, s: '%', note: '' },
+                        { id: 'gt7_duct_f', l: 'Brake Duct Front', type: 'options', options: ['Closed', 'Open'], note: '' },
+                        { id: 'gt7_duct_r', l: 'Brake Duct Rear', type: 'options', options: ['Closed', 'Open'], note: '' },
+                        { id: 'gt7_camber_f', l: 'Camber Front', type: 'step', min: -5.0, max: 0.0, step: 0.05, s: '°', note: '' },
+                        { id: 'gt7_camber_r', l: 'Camber Rear', type: 'step', min: -5.0, max: 0.0, step: 0.05, s: '°', note: '' },
+                        { id: 'gt7_toe_f', l: 'Toe Front', type: 'step', min: -5.0, max: 5.0, step: 0.05, s: '°', note: '' },
+                        { id: 'gt7_toe_r', l: 'Toe Rear', type: 'step', min: -5.0, max: 5.0, step: 0.05, s: '°', note: '' },
+                        { id: 'gt7_caster', l: 'Caster', type: 'step', min: 0, max: 10, step: 0.1, s: '°', note: '' }
+                    ]
+                },
+                {
+                    id: 'aero', name: 'Aero', params: [
+                        { id: 'gt7_downforce_f', l: 'Downforce Front', type: 'step', min: 0, max: 100, step: 1, s: 'kg/100km/h', note: 'Pendiente confirmar unidad real.' },
+                        { id: 'gt7_downforce_r', l: 'Downforce Rear', type: 'step', min: 0, max: 100, step: 1, s: 'kg/100km/h', note: '' },
+                        { id: 'gt7_splitter', l: 'Splitter', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'gt7_spoiler', l: 'Spoiler Angle', type: 'step', min: 0, max: 30, step: 1, s: '°', note: '' },
+                        { id: 'gt7_min_rh', l: 'Min Ride Height', type: 'step', min: 30, max: 100, step: 1, s: 'mm', note: '' }
+                    ]
+                },
+                {
+                    id: 'tyres', name: 'Neumáticos', params: [
+                        { id: 'gt7_compound', l: 'Compound', type: 'options', options: ['Soft', 'Medium', 'Hard', 'Inter', 'Wet', 'Drag Radial'], note: '' },
+                        { id: 'gt7_psi_f', l: 'Pressure Front', type: 'step', min: 20.0, max: 35.0, step: 0.1, s: 'psi', note: '' },
+                        { id: 'gt7_psi_r', l: 'Pressure Rear', type: 'step', min: 20.0, max: 35.0, step: 0.1, s: 'psi', note: '' },
+                        { id: 'gt7_rim_size', l: 'Rim Size', type: 'step', min: 15, max: 22, step: 1, s: '"', note: '' },
+                        { id: 'gt7_friction', l: 'Friction', type: 'step', min: 0, max: 100, step: 1, s: '%', note: 'Referencia.' },
+                        { id: 'gt7_temp', l: 'Temp Target', type: 'step', min: 60, max: 130, step: 1, s: '°C', note: '' },
+                        { id: 'gt7_blankets', l: 'Tire Blankets', type: 'options', options: ['Off', 'On'], note: '' },
+                        { id: 'gt7_wear', l: 'Wear Target', type: 'step', min: 0, max: 100, step: 1, s: '%', note: '' }
+                    ]
+                },
+                {
+                    id: 'elec', name: 'Electronics', params: [
+                        { id: 'gt7_afm', l: 'AFM (Active Fuel Man.)', type: 'options', options: ['Off', 'On'], note: '' },
+                        { id: 'gt7_tc', l: 'Traction Control', type: 'step', min: 0, max: 5, step: 1, note: '' },
+                        { id: 'gt7_abs', l: 'ABS', type: 'options', options: ['Off', 'Weak', 'Strong', 'Racing'], note: '' },
+                        { id: 'gt7_steer_angle', l: 'Steering Angle', type: 'step', min: 360, max: 720, step: 10, s: '°', note: '' },
+                        { id: 'gt7_throttle_sens', l: 'Throttle Sensitivity', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'gt7_brake_sens', l: 'Brake Sensitivity', type: 'step', min: 0, max: 10, step: 1, note: '' }
+                    ]
+                }
+            ]
+        },
+        f1_24: {
+            name: 'F1 24',
+            cars: [
+                { id: 'rb20', name: 'Red Bull RB20' },
+                { id: 'sf24', name: 'Ferrari SF-24' },
+                { id: 'w15', name: 'Mercedes W15' },
+                { id: 'mcl38', name: 'McLaren MCL38' },
+                { id: 'amr24', name: 'Aston Martin AMR24' },
+                { id: 'a524', name: 'Alpine A524' },
+                { id: 'fw46', name: 'Williams FW46' },
+                { id: 'vcarb01', name: 'RB VCARB 01' },
+                { id: 'c44', name: 'Stake C44' },
+                { id: 'vf24', name: 'Haas VF-24' }
+            ],
+            tabs: [
+                {
+                    id: 'aero', name: 'Aero', params: [
+                        { id: 'f1_fw', l: 'Front Wing', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'f1_rw', l: 'Rear Wing', type: 'step', min: 0, max: 12, step: 1, note: '' },
+                        { id: 'f1_drs', l: 'DRS', type: 'options', options: ['Off', 'Manual', 'Auto'], note: '' },
+                        { id: 'f1_ers_mguk', l: 'ERS MGUK Mode', type: 'options', options: ['Off', 'Medium', 'Hotlap', 'Race'], note: '' },
+                        { id: 'f1_ers_deploy', l: 'ERS Deployment', type: 'options', options: ['None', 'Mode 1', 'Mode 2', 'Mode 3'], note: '' },
+                        { id: 'f1_ballast', l: 'Ballast', type: 'step', min: 0, max: 30, step: 1, s: 'kg', note: '' }
+                    ]
+                },
+                {
+                    id: 'brakes', name: 'Frenos', params: [
+                        { id: 'f1_brake_press', l: 'Brake Pressure', type: 'step', min: 85, max: 100, step: 1, s: '%', note: '' },
+                        { id: 'f1_bb', l: 'Brake Bias', type: 'step', min: 50, max: 60, step: 0.1, s: '%', note: '' },
+                        { id: 'f1_duct_f', l: 'Brake Duct Front', type: 'step', min: 0, max: 6, step: 1, note: '' },
+                        { id: 'f1_duct_r', l: 'Brake Duct Rear', type: 'step', min: 0, max: 6, step: 1, note: '' },
+                        { id: 'f1_throttle_sens', l: 'Throttle Pedal Map', type: 'step', min: 0, max: 10, step: 1, note: '' }
+                    ]
+                },
+                {
+                    id: 'susp', name: 'Suspensión', params: [
+                        { id: 'f1_rh_f', l: 'Ride Height Front', type: 'step', min: 1, max: 41, step: 1, note: 'Índice de slider.' },
+                        { id: 'f1_rh_r', l: 'Ride Height Rear', type: 'step', min: 1, max: 41, step: 1, note: '' },
+                        { id: 'f1_row_f', l: 'Row Height Front', type: 'step', min: 1, max: 41, step: 1, note: '' },
+                        { id: 'f1_row_r', l: 'Row Height Rear', type: 'step', min: 1, max: 41, step: 1, note: '' },
+                        { id: 'f1_suspf', l: 'Suspension Front', type: 'step', min: 1, max: 41, step: 1, note: '' },
+                        { id: 'f1_suspr', l: 'Suspension Rear', type: 'step', min: 1, max: 41, step: 1, note: '' },
+                        { id: 'f1_arb_f', l: 'ARB Front', type: 'step', min: 1, max: 21, step: 1, note: '' },
+                        { id: 'f1_arb_r', l: 'ARB Rear', type: 'step', min: 1, max: 21, step: 1, note: '' },
+                        { id: 'f1_bump_f', l: 'Bump Front', type: 'step', min: 1, max: 21, step: 1, note: '' },
+                        { id: 'f1_bump_r', l: 'Bump Rear', type: 'step', min: 1, max: 21, step: 1, note: '' },
+                        { id: 'f1_reb_f', l: 'Rebound Front', type: 'step', min: 1, max: 21, step: 1, note: '' },
+                        { id: 'f1_reb_r', l: 'Rebound Rear', type: 'step', min: 1, max: 21, step: 1, note: '' }
+                    ]
+                },
+                {
+                    id: 'align', name: 'Geometría', params: [
+                        { id: 'f1_camber_f', l: 'Camber Front', type: 'step', min: -5.0, max: 0.0, step: 0.05, s: '°', note: '' },
+                        { id: 'f1_camber_r', l: 'Camber Rear', type: 'step', min: -5.0, max: 0.0, step: 0.05, s: '°', note: '' },
+                        { id: 'f1_toe_f', l: 'Toe Front', type: 'step', min: -0.50, max: 0.50, step: 0.01, s: '°', note: '' },
+                        { id: 'f1_toe_r', l: 'Toe Rear', type: 'step', min: -0.50, max: 0.50, step: 0.01, s: '°', note: '' },
+                        { id: 'f1_caster', l: 'Caster', type: 'step', min: 0, max: 10, step: 0.1, s: '°', note: '' }
+                    ]
+                },
+                {
+                    id: 'trans', name: 'Transmisión', params: [
+                        { id: 'f1_diff_on', l: 'Differential On', type: 'step', min: 50, max: 100, step: 1, s: '%', note: '' },
+                        { id: 'f1_diff_off', l: 'Differential Off', type: 'step', min: 20, max: 80, step: 1, s: '%', note: '' },
+                        { id: 'f1_g1', l: 'Gear 1', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'f1_g2', l: 'Gear 2', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'f1_g3', l: 'Gear 3', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'f1_g4', l: 'Gear 4', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'f1_g5', l: 'Gear 5', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'f1_g6', l: 'Gear 6', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'f1_g7', l: 'Gear 7', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'f1_g8', l: 'Gear 8', type: 'step', min: 0, max: 100, step: 1, note: '' }
+                    ]
+                },
+                {
+                    id: 'tyres', name: 'Neumáticos', params: [
+                        { id: 'f1_psi_f', l: 'Tyre Pressure Front', type: 'step', min: 18.0, max: 26.0, step: 0.1, s: 'psi', note: '' },
+                        { id: 'f1_psi_r', l: 'Tyre Pressure Rear', type: 'step', min: 18.0, max: 26.0, step: 0.1, s: 'psi', note: '' },
+                        { id: 'f1_blankets', l: 'Tire Blankets', type: 'step', min: 0, max: 110, step: 5, s: '°C', note: '' }
+                    ]
+                },
+                {
+                    id: 'fuel', name: 'Combustible', params: [
+                        { id: 'f1_fuel_mix', l: 'Fuel Mixture', type: 'step', min: 0, max: 100, step: 1, s: '%', note: '' },
+                        { id: 'f1_fuel_load', l: 'Fuel Load', type: 'step', min: 0, max: 110, step: 1, s: 'kg', note: '' }
+                    ]
+                },
+                {
+                    id: 'ers', name: 'ERS/Híbrido', params: [
+                        { id: 'f1_ers_mode', l: 'ERS Mode', type: 'options', options: ['Off', 'Practice', 'Qualifying', 'Race'], note: '' },
+                        { id: 'f1_mguk', l: 'MGU-K Target', type: 'step', min: 0, max: 150, step: 1, s: 'kW', note: '' },
+                        { id: 'f1_mguh', l: 'MGU-H Target', type: 'step', min: 0, max: 150, step: 1, s: 'kW', note: '' },
+                        { id: 'f1_hybrid', l: 'Hybrid Balance', type: 'step', min: 0, max: 100, step: 1, s: '%', note: '' }
+                    ]
+                }
+            ]
+        },
+        iracing: {
+            name: 'iRacing',
+            cars: [
+                { id: 'ferrari_488_gt3', name: 'Ferrari 488 GT3' },
+                { id: 'bmw_m6_gt3', name: 'BMW M6 GT3' },
+                { id: 'porsche_991_gt3_r', name: 'Porsche 991 GT3 R' },
+                { id: 'mclaren_720s_gt3', name: 'McLaren 720S GT3' },
+                { id: 'mercedes_amg_gt3', name: 'Mercedes-AMG GT3' },
+                { id: 'audi_r8_gt3', name: 'Audi R8 LMS GT3' },
+                { id: 'ford_gt_gt3', name: 'Ford GT GT3' },
+                { id: 'dallara_p217', name: 'Dallara P217 (LMP2)' },
+                { id: 'bmw_z4_gt3', name: 'BMW Z4 GT3' },
+                { id: 'mazda_mx5', name: 'Mazda MX-5 Cup' }
+            ],
+            tabs: [
+                {
+                    id: 'align', name: 'Alignment', params: [
+                        { id: 'ira_camber_f', l: 'Camber Front', type: 'step', min: -5.0, max: -1.0, step: 0.05, s: '°', note: '' },
+                        { id: 'ira_camber_r', l: 'Camber Rear', type: 'step', min: -5.0, max: -1.0, step: 0.05, s: '°', note: '' },
+                        { id: 'ira_caster_f', l: 'Caster Front', type: 'step', min: 1.0, max: 10.0, step: 0.1, s: '°', note: '' },
+                        { id: 'ira_toe_f', l: 'Toe Front', type: 'step', min: -0.50, max: 0.50, step: 0.01, s: '°', note: '' },
+                        { id: 'ira_toe_r', l: 'Toe Rear', type: 'step', min: -0.50, max: 0.50, step: 0.01, s: '°', note: '' },
+                        { id: 'ira_caster_offset', l: 'Caster Offset', type: 'step', min: -10, max: 10, step: 0.5, s: 'mm', note: '' }
+                    ]
+                },
+                {
+                    id: 'springs', name: 'Springs', params: [
+                        { id: 'ira_spring_f', l: 'Spring Rate Front', type: 'step', min: 100, max: 2000, step: 10, s: 'N/mm', note: '' },
+                        { id: 'ira_spring_r', l: 'Spring Rate Rear', type: 'step', min: 100, max: 2000, step: 10, s: 'N/mm', note: '' },
+                        { id: 'ira_rh_f', l: 'Ride Height Front', type: 'step', min: 30, max: 150, step: 1, s: 'mm', note: '' },
+                        { id: 'ira_rh_r', l: 'Ride Height Rear', type: 'step', min: 30, max: 150, step: 1, s: 'mm', note: '' }
+                    ]
+                },
+                {
+                    id: 'shocks', name: 'Shocks', params: [
+                        { id: 'ira_bs_f', l: 'Bump Slow Front', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'ira_bs_r', l: 'Bump Slow Rear', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'ira_bf_f', l: 'Bump Fast Front', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'ira_bf_r', l: 'Bump Fast Rear', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'ira_rs_f', l: 'Rebound Slow Front', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'ira_rs_r', l: 'Rebound Slow Rear', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'ira_rf_f', l: 'Rebound Fast Front', type: 'step', min: 0, max: 11, step: 1, note: '' },
+                        { id: 'ira_rf_r', l: 'Rebound Fast Rear', type: 'step', min: 0, max: 11, step: 1, note: '' }
+                    ]
+                },
+                {
+                    id: 'arbs', name: 'ARBs', params: [
+                        { id: 'ira_arb_f', l: 'ARB Front', type: 'step', min: 1, max: 14, step: 1, note: '' },
+                        { id: 'ira_arb_r', l: 'ARB Rear', type: 'step', min: 1, max: 14, step: 1, note: '' }
+                    ]
+                },
+                {
+                    id: 'diffs', name: 'Differentials', params: [
+                        { id: 'ira_diff_r_preload', l: 'Rear Diff Preload', type: 'step', min: 0, max: 500, step: 10, s: 'Nm', note: '' },
+                        { id: 'ira_diff_r_accel', l: 'Rear Diff Accel Ramp', type: 'step', min: 0, max: 90, step: 1, s: '°', note: '' },
+                        { id: 'ira_diff_r_decel', l: 'Rear Diff Decel Ramp', type: 'step', min: 0, max: 90, step: 1, s: '°', note: '' },
+                        { id: 'ira_diff_f_preload', l: 'Front Diff Preload', type: 'step', min: 0, max: 500, step: 10, s: 'Nm', note: '' }
+                    ]
+                },
+                {
+                    id: 'trans', name: 'Transmission', params: [
+                        { id: 'ira_g1', l: 'Gear 1', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'ira_g2', l: 'Gear 2', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'ira_g3', l: 'Gear 3', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'ira_g4', l: 'Gear 4', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'ira_g5', l: 'Gear 5', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'ira_g6', l: 'Gear 6', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'ira_final', l: 'Final Drive', type: 'step', min: 1.5, max: 5.0, step: 0.05, note: '' }
+                    ]
+                },
+                {
+                    id: 'brakes', name: 'Brakes', params: [
+                        { id: 'ira_brake_power', l: 'Brake Power', type: 'step', min: 80, max: 100, step: 1, s: '%', note: '' },
+                        { id: 'ira_brake_bias', l: 'Brake Bias', type: 'step', min: 46, max: 60, step: 0.1, s: '%', note: '' },
+                        { id: 'ira_brake_duct_f', l: 'Brake Duct Front', type: 'options', options: ['Closed', 'Open'], note: '' },
+                        { id: 'ira_brake_duct_r', l: 'Brake Duct Rear', type: 'options', options: ['Closed', 'Open'], note: '' }
+                    ]
+                },
+                {
+                    id: 'aero', name: 'Aero', params: [
+                        { id: 'ira_df', l: 'Front Downforce', type: 'step', min: 0, max: 100, step: 1, note: 'Índice o porcentaje.' },
+                        { id: 'ira_dr', l: 'Rear Downforce', type: 'step', min: 0, max: 100, step: 1, note: '' },
+                        { id: 'ira_aero_h_f', l: 'Aero Height Front', type: 'step', min: 20, max: 100, step: 1, s: 'mm', note: '' },
+                        { id: 'ira_aero_h_r', l: 'Aero Height Rear', type: 'step', min: 20, max: 100, step: 1, s: 'mm', note: '' }
+                    ]
+                },
+                {
+                    id: 'elec', name: 'Electronics', params: [
+                        { id: 'ira_tc', l: 'Traction Control', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'ira_abs', l: 'ABS', type: 'step', min: 0, max: 10, step: 1, note: '' },
+                        { id: 'ira_map', l: 'Engine Map', type: 'step', min: 1, max: 10, step: 1, note: '' }
+                    ]
+                },
+                {
+                    id: 'fuel', name: 'Fuel & Tyres', params: [
+                        { id: 'ira_fuel', l: 'Fuel Level', type: 'step', min: 0, max: 150, step: 1, s: 'L', note: '' },
+                        { id: 'ira_psi_f', l: 'Tyre Pressure Front', type: 'step', min: 24.0, max: 35.0, step: 0.1, s: 'psi', note: '' },
+                        { id: 'ira_psi_r', l: 'Tyre Pressure Rear', type: 'step', min: 24.0, max: 35.0, step: 0.1, s: 'psi', note: '' }
+                    ]
+                }
+            ]
+        }
+    };
+
+    let currentGame = 'acc';
+    let currentCar = '';
+    let verificationData = {};
+
+    function loadSavedData() {
+        try {
+            const saved = localStorage.getItem(VERIFICATION_DATA_KEY);
+            if (saved) verificationData = JSON.parse(saved);
+        } catch(e) { verificationData = {}; }
+    }
+
+    function saveData() {
+        localStorage.setItem(VERIFICATION_DATA_KEY, JSON.stringify(verificationData));
+    }
+
+    function getKey(gameId, carId) {
+        return `${gameId}__${carId}`;
+    }
+
+    function countStats() {
+        let total = 0, verified = 0;
+        const game = GAMES_DATA[currentGame];
+        for (const tab of game.tabs) {
+            for (const param of tab.params) {
+                total++;
+                const key = getKey(currentGame, currentCar);
+                if (verificationData[key]?.[param.id]?.verified) verified++;
+            }
+        }
+        return { total, verified };
+    }
+
+    function updateStats() {
+        const { total, verified } = countStats();
+        const pending = total - verified;
+        const pct = total > 0 ? Math.round((verified / total) * 100) : 0;
+        document.getElementById('total-params').textContent = total;
+        document.getElementById('verified-count').textContent = verified;
+        document.getElementById('pending-count').textContent = pending;
+        document.getElementById('progress-pct').textContent = pct + '%';
+        document.getElementById('progress-pct').parentElement.querySelector('.progress-fill')?.style?.setProperty('width', pct + '%');
+    }
+
+    function renderParams() {
+        const container = document.getElementById('params-container');
+        const game = GAMES_DATA[currentGame];
+        const key = getKey(currentGame, currentCar);
+        if (!currentCar) { container.innerHTML = '<p style="color:var(--text-secondary)">Selecciona un coche para ver los parámetros.</p>'; return; }
+        let html = '';
+        for (const tab of game.tabs) {
+            html += `<div class="section-title">${tab.name}</div>`;
+            for (const param of tab.params) {
+                const saved = verificationData[key]?.[param.id] || {};
+                const hasSaved = Object.keys(saved).length > 0;
+                html += `<div class="param-card">
+                    <div class="param-header">
+                        <span class="param-name">${param.l}</span>
+                        <span class="param-type">${param.type}${param.s ? ' ' + param.s : ''}</span>
+                        ${hasSaved && saved.verified ? '<span class="verified-badge">✓ Verificado</span>' : ''}
+                    </div>`;
+                if (param.type === 'options') {
+                    html += `<div class="param-values">
+                        <div class="value-field">
+                            <label>Valor confirmado:</label>
+                            <select data-game="${currentGame}" data-car="${currentCar}" data-param="${param.id}">
+                                <option value="">— Selecciona —</option>`;
+                    for (const opt of (param.options || [])) {
+                        html += `<option value="${opt}" ${saved.value === opt ? 'selected' : ''}>${opt}</option>`;
+                    }
+                    html += `</select></div></div>`;
+                } else {
+                    html += `<div class="param-values">
+                        <div class="value-field">
+                            <label>Min confirmado:</label>
+                            <input type="number" step="${param.step || 1}" data-game="${currentGame}" data-car="${currentCar}" data-param="${param.id}" data-field="min" value="${saved.min ?? (param.min !== undefined ? param.min : '')}">
+                        </div>
+                        <div class="value-field">
+                            <label>Max confirmado:</label>
+                            <input type="number" step="${param.step || 1}" data-game="${currentGame}" data-car="${currentCar}" data-param="${param.id}" data-field="max" value="${saved.max ?? (param.max !== undefined ? param.max : '')}">
+                        </div>
+                        <div class="value-field">
+                            <label>Valor típico:</label>
+                            <input type="number" step="${param.step || 1}" data-game="${currentGame}" data-car="${currentCar}" data-param="${param.id}" data-field="typical" value="${saved.typical || ''}" placeholder="Ej: 27.5">
+                        </div>
+                    </div>`;
+                }
+                html += `<div class="param-note">Rango actual: ${param.min} ${param.s || ''} – ${param.max} ${param.s || ''}. ${param.note || ''}</div>
+                    <div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem;">
+                        <label style="font-size:0.75rem;cursor:pointer;">
+                            <input type="checkbox" class="verify-check" data-game="${currentGame}" data-car="${currentCar}" data-param="${param.id}" ${saved.verified ? 'checked' : ''}>
+                            Marcar como verificado in-game
+                        </label>
+                    </div>
+                </div>`;
+            }
+        }
+        container.innerHTML = html;
+        container.querySelectorAll('input, select').forEach(el => {
+            el.addEventListener('change', handleFieldChange);
+        });
+        container.querySelectorAll('.verify-check').forEach(el => {
+            el.addEventListener('change', handleVerifyCheck);
+        });
+        updateStats();
+    }
+
+    function handleFieldChange(e) {
+        const { game, car, param, field } = e.target.dataset;
+        const key = getKey(game, car);
+        if (!verificationData[key]) verificationData[key] = {};
+        if (!verificationData[key][param]) verificationData[key][param] = {};
+        const val = e.target.type === 'checkbox' ? e.target.checked : (e.target.value === '' ? null : parseFloat(e.target.value));
+        if (val === null) {
+            delete verificationData[key][param][field];
+        } else {
+            verificationData[key][param][field] = val;
+        }
+        saveData();
+        updateStats();
+    }
+
+    function handleVerifyCheck(e) {
+        const { game, car, param } = e.target.dataset;
+        const key = getKey(game, car);
+        if (!verificationData[key]) verificationData[key] = {};
+        if (!verificationData[key][param]) verificationData[key][param] = {};
+        verificationData[key][param].verified = e.target.checked;
+        saveData();
+        updateStats();
+    }
+
+    function populateCars() {
+        const game = GAMES_DATA[currentGame];
+        const select = document.getElementById('car-select');
+        select.innerHTML = '<option value="">— Selecciona un coche —</option>';
+        for (const car of game.cars) {
+            select.innerHTML += `<option value="${car.id}">${car.name}</option>`;
+        }
+        currentCar = '';
+    }
+
+    function setupGameButtons() {
+        document.querySelectorAll('.game-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.game-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentGame = btn.dataset.game;
+                populateCars();
+                document.getElementById('params-container').innerHTML = '';
+                updateStats();
+            });
+        });
+    }
+
+    function setupCarSelector() {
+        document.getElementById('car-select').addEventListener('change', e => {
+            currentCar = e.target.value;
+            renderParams();
+        });
+    }
+
+    function setupExport() {
+        document.getElementById('export-json').addEventListener('click', () => {
+            const blob = new Blob([JSON.stringify(verificationData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `simr_verification_${currentGame}_${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('export-csv').addEventListener('click', () => {
+            let csv = 'Game,Car,Parameter,Min,Max,Typical,Verified\n';
+            for (const [key, params] of Object.entries(verificationData)) {
+                const [game, car] = key.split('__');
+                for (const [paramId, data] of Object.entries(params)) {
+                    csv += `${game},${car},${paramId},${data.min || ''},${data.max || ''},${data.typical || ''},${data.verified || false}\n`;
+                }
+            }
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `simr_verification_${currentGame}_${Date.now()}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('import-json-btn').addEventListener('click', () => {
+            const textarea = document.getElementById('import-json');
+            try {
+                const data = JSON.parse(textarea.value);
+                verificationData = { ...verificationData, ...data };
+                saveData();
+                renderParams();
+                alert('Datos importados correctamente.');
+            } catch(e) {
+                alert('Error al importar: JSON inválido.');
+            }
+        });
+
+        document.getElementById('clear-all').addEventListener('click', () => {
+            if (confirm('¿Limpiar TODOS los datos verificados? Esta acción no se puede deshacer.')) {
+                verificationData = {};
+                saveData();
+                renderParams();
+                updateStats();
+            }
+        });
+    }
+
+    function init() {
+        loadSavedData();
+        setupGameButtons();
+        populateCars();
+        setupCarSelector();
+        setupExport();
+        updateStats();
+    }
+
+    init();
+    </script>
+</body>
+</html>
