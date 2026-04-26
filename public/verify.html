@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SimRacing Vault — Data Verification Tool</title>
+    <title>SimRacing Vault — GT7 Only (Testing Mode)</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -30,6 +30,36 @@
         .car-selector { margin-bottom: 2rem; }
         .car-selector label { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
         .car-selector select, .car-selector input { width: 100%; max-width: 400px; padding: 0.75rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-input); color: var(--text-primary); font-size: 1rem; }
+        .gt7-dropdown { position: relative; width: 100%; max-width: 500px; font-family: system-ui, sans-serif; }
+        .gt7-dropdown-trigger { width: 100%; padding: 0.875rem 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-input); color: var(--text-primary); font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; text-align: left; }
+        .gt7-dropdown-trigger:hover { border-color: var(--accent); }
+        .gt7-dropdown-trigger .selected-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .gt7-dropdown-trigger .arrow { transition: transform 0.2s; font-size: 0.75rem; margin-left: 0.5rem; }
+        .gt7-dropdown-trigger.open .arrow { transform: rotate(180deg); }
+        .gt7-dropdown-search { width: 100%; padding: 0.75rem; border: none; border-bottom: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); font-size: 0.95rem; outline: none; }
+        .gt7-dropdown-search::placeholder { color: var(--text-secondary); }
+        .gt7-dropdown-content { position: absolute; top: 100%; left: 0; right: 0; max-height: 400px; overflow-y: auto; background: var(--bg-card); border: 1px solid var(--border); border-top: none; border-radius: 0 0 10px 10px; z-index: 100; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .gt7-dropdown-content.open { display: block; }
+        .gt7-brand-group { border-bottom: 1px solid var(--border); }
+        .gt7-brand-group:last-child { border-bottom: none; }
+        .gt7-brand-header { padding: 0.75rem 1rem; background: var(--bg-input); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .gt7-brand-header:hover { background: var(--bg-main); }
+        .gt7-brand-name { font-weight: 600; font-size: 0.9rem; color: var(--accent); }
+        .gt7-brand-count { font-size: 0.75rem; color: var(--text-secondary); background: var(--bg-card); padding: 0.15rem 0.5rem; border-radius: 10px; }
+        .gt7-brand-cars { display: none; }
+        .gt7-brand-group.expanded .gt7-brand-cars { display: block; }
+        .gt7-brand-group.expanded .gt7-brand-header .arrow { transform: rotate(180deg); }
+        .gt7-brand-header .arrow { transition: transform 0.2s; font-size: 0.65rem; }
+        .gt7-car-item { padding: 0.6rem 1rem 0.6rem 1.5rem; cursor: pointer; font-size: 0.9rem; color: var(--text-primary); }
+        .gt7-car-item:hover { background: var(--accent); }
+        .gt7-car-item.hidden { display: none; }
+        .gt7-no-results { padding: 1rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
+        .gt7-dropdown-trigger .placeholder { color: var(--text-secondary); }
+        @media (max-width: 600px) {
+            .gt7-dropdown-content { max-height: 300px; }
+            .gt7-dropdown-trigger { padding: 1rem; }
+            .gt7-car-item { padding: 0.75rem 1rem 0.75rem 1.5rem; }
+        }
         .verified-badge { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; background: var(--success); color: white; margin-left: 0.5rem; }
         .pending-badge { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; background: var(--warning); color: black; margin-left: 0.5rem; }
         .params-grid { display: grid; gap: 1rem; }
@@ -81,15 +111,19 @@
     </div>
 
     <div class="game-selector">
-        <button class="game-btn active" data-game="acc">ACC</button>
-        <button class="game-btn" data-game="gt7">GT7</button>
-        <button class="game-btn" data-game="f1_24">F1 24</button>
-        <button class="game-btn" data-game="iracing">iRacing</button>
+        <button class="game-btn active" data-game="gt7" disabled>GT7 Only (Testing Mode)</button>
     </div>
 
     <div class="car-selector" id="car-section">
-        <label for="car-select">Selecciona el coche a verificar:</label>
-        <select id="car-select"><option value="">— Selecciona un coche —</option></select>
+        <label>Selecciona el coche a verificar:</label>
+        <div class="gt7-dropdown" id="gt7-car-dropdown">
+            <div class="gt7-dropdown-trigger" id="gt7-dropdown-trigger">
+                <span class="selected-text placeholder">— Selecciona un coche —</span>
+                <span class="arrow">▼</span>
+            </div>
+            <input type="text" class="gt7-dropdown-search" id="gt7-search" placeholder="Buscar por nombre o marca…">
+            <div class="gt7-dropdown-content" id="gt7-dropdown-content"></div>
+        </div>
     </div>
 
     <div id="params-container"></div>
@@ -796,9 +830,515 @@ acc: {
         }
     };
 
-    let currentGame = 'acc';
+    let currentGame = 'gt7';
     let currentCar = '';
     let verificationData = {};
+
+    const GT7_CARS_BY_BRAND = {
+  "Toyota": [
+    { id: 'gt7_supra', name: 'Toyota GR Supra' },
+    { id: 'gt7_gr86', name: 'Toyota GR86' },
+    { id: 'gt7_86', name: 'Toyota 86' },
+    { id: 'gt7_gr_yaris', name: 'Toyota GR Yaris' },
+    { id: 'gt7_yaris', name: 'Toyota Yaris' },
+    { id: 'gt7_celica', name: 'Toyota Celica GT-Four' },
+    { id: 'gt7_corolla', name: 'Toyota Corolla Sport' },
+    { id: 'gt7_ae86', name: 'Toyota Sprinter Trueno GT Apex' },
+    { id: 'gt7_mr2', name: 'Toyota MR2 GT-S' },
+    { id: 'gt7_landcruiser', name: 'Toyota Land Cruiser' },
+    { id: 'gt7_century', name: 'Toyota Century' },
+    { id: 'gt7_crown', name: 'Toyota Crown Athlete' },
+    { id: 'gt7_2000gt', name: 'Toyota 2000GT' },
+    { id: 'gt7_gt_one', name: 'Toyota GT-One' },
+    { id: 'gt7_ts030', name: 'Toyota TS030 Hybrid' },
+    { id: 'gt7_ts040', name: 'Toyota TS040 Hybrid' }
+  ],
+  "Nissan": [
+    { id: 'gt7_gt_r', name: 'Nissan GT-R' },
+    { id: 'gt7_gt_r_nismo', name: 'Nissan GT-R Nismo' },
+    { id: 'gt7_370z', name: 'Nissan 370Z' },
+    { id: 'gt7_350z', name: 'Nissan 350Z' },
+    { id: 'gt7_silvia', name: 'Nissan Silvia' },
+    { id: 'gt7_skyline', name: 'Nissan Skyline GT-R' },
+    { id: 'gt7_r32', name: 'Nissan Skyline GT-R V-Spec II' },
+    { id: 'gt7_r33', name: 'Nissan Skyline GT-R V-Spec II Nür' },
+    { id: 'gt7_r34', name: 'Nissan Skyline GT-R V-Spec II Nür' },
+    { id: 'gt7_z32', name: 'Nissan Fairlady Z' },
+    { id: 'gt7_fairlady_z', name: 'Nissan Fairlady Z' },
+    { id: 'gt7_leaf', name: 'Nissan Leaf' },
+    { id: 'gt7_juke', name: 'Nissan JUKE' }
+  ],
+  "Honda": [
+    { id: 'gt7_nsx', name: 'Honda NSX' },
+    { id: 'gt7_nsx_type_r', name: 'Honda NSX Type R' },
+    { id: 'gt7_civic_typer', name: 'Honda Civic Type R' },
+    { id: 'gt7_civic', name: 'Honda Civic' },
+    { id: 'gt7_s2000', name: 'Honda S2000' },
+    { id: 'gt7_accord', name: 'Honda Accord' },
+    { id: 'gt7_integra', name: 'Honda Integra Type R' },
+    { id: 'gt7_prelude', name: 'Honda Prelude' },
+    { id: 'gt7_fit', name: 'Honda Fit' },
+    { id: 'gt7_s660', name: 'Honda S660' }
+  ],
+  "Mazda": [
+    { id: 'gt7_rx7', name: 'Mazda RX-7' },
+    { id: 'gt7_rx7_spirit_r', name: 'Mazda RX-7 Spirit R' },
+    { id: 'gt7_rx8', name: 'Mazda RX-8' },
+    { id: 'gt7_rx_vision', name: 'Mazda RX-Vision' },
+    { id: 'gt7_mx5', name: 'Mazda MX-5' },
+    { id: 'gt7_mx5_miata', name: 'Mazda MX-5 Miata' },
+    { id: 'gt7_mx5_rf', name: 'Mazda MX-5 RF' },
+    { id: 'gt7_mazda2', name: 'Mazda Mazda2' },
+    { id: 'gt7_mazda3', name: 'Mazda Mazda3' },
+    { id: 'gt7_mazda6', name: 'Mazda Mazda6' },
+    { id: 'gt7_cx3', name: 'Mazda CX-3' },
+    { id: 'gt7_cx5', name: 'Mazda CX-5' },
+    { id: 'gt7_787b', name: 'Mazda 787B' }
+  ],
+  "Subaru": [
+    { id: 'gt7_wrx_sti', name: 'Subaru WRX STI' },
+    { id: 'gt7_brz', name: 'Subaru BRZ' },
+    { id: 'gt7_impreza', name: 'Subaru Impreza WRX STI' },
+    { id: 'gt7_forester', name: 'Subaru Forester XT' },
+    { id: 'gt7_legacy', name: 'Subaru Legacy B4' },
+    { id: 'gt7_outback', name: 'Subaru Outback' },
+    { id: 'gt7_xv', name: 'Subaru XV' }
+  ],
+  "Mitsubishi": [
+    { id: 'gt7_lancer_evo', name: 'Mitsubishi Lancer Evolution' },
+    { id: 'gt7_lancer_evo_9', name: 'Mitsubishi Lancer Evolution IX' },
+    { id: 'gt7_lancer_evo_x', name: 'Mitsubishi Lancer Evolution X' },
+    { id: 'gt7_gto', name: 'Mitsubishi GTO' },
+    { id: 'gt7_3000gt', name: 'Mitsubishi 3000GT' },
+    { id: 'gt7_eclipse', name: 'Mitsubishi Eclipse' },
+    { id: 'gt7_fto', name: 'Mitsubishi FTO' },
+    { id: 'gt7_galant', name: 'Mitsubishi Galant VR4' }
+  ],
+  "Ferrari": [
+    { id: 'gt7_458', name: 'Ferrari 458 Italia' },
+    { id: 'gt7_458_speciale', name: 'Ferrari 458 Speciale' },
+    { id: 'gt7_488_gtb', name: 'Ferrari 488 GTB' },
+    { id: 'gt7_488_pista', name: 'Ferrari 488 Pista' },
+    { id: 'gt7_812', name: 'Ferrari 812 Superfast' },
+    { id: 'gt7_portofino', name: 'Ferrari Portofino' },
+    { id: 'gt7_roma', name: 'Ferrari Roma' },
+    { id: 'gt7_sf90', name: 'Ferrari SF90 Stradale' },
+    { id: 'gt7_296_gtb', name: 'Ferrari 296 GTB' },
+    { id: 'gt7_enzo', name: 'Ferrari Enzo Ferrari' },
+    { id: 'gt7_f40', name: 'Ferrari F40' },
+    { id: 'gt7_f50', name: 'Ferrari F50' },
+    { id: 'gt7_laferrari', name: 'Ferrari LaFerrari' },
+    { id: 'gt7_testarossa', name: 'Ferrari Testarossa' },
+    { id: 'gt7_360', name: 'Ferrari 360 Modena' },
+    { id: 'gt7_430', name: 'Ferrari F430' },
+    { id: 'gt7_575m', name: 'Ferrari 575M' },
+    { id: 'gt7_599', name: 'Ferrari 599 GT' },
+    { id: 'gt7_f12', name: 'Ferrari F12' },
+    { id: 'gt7_ff', name: 'Ferrari FF' },
+    { id: 'gt7_gtc4', name: 'Ferrari GTC4Lusso' },
+    { id: 'gt7_250_gto', name: 'Ferrari 250 GTO' },
+    { id: 'gt7_250_cali', name: 'Ferrari 250 California' },
+    { id: 'gt7_dino_246', name: 'Ferrari Dino 246 GT' },
+    { id: 'gt7_288_gto', name: 'Ferrari 288 GTO' },
+    { id: 'gt7_308', name: 'Ferrari 308 GTB' },
+    { id: 'gt7_328', name: 'Ferrari 328 GTS' },
+    { id: 'gt7_348', name: 'Ferrari 348 TB' },
+    { id: 'gt7_355', name: 'Ferrari F355 GTS' },
+    { id: 'gt7_412', name: 'Ferrari 412' },
+    { id: 'gt7_512_bb', name: 'Ferrari 512 BB' },
+    { id: 'gt7_625', name: 'Ferrari 625 C' },
+    { id: 'gt7_fxx_k', name: 'Ferrari FXX-K' }
+  ],
+  "Lamborghini": [
+    { id: 'gt7_huracan', name: 'Lamborghini Huracán' },
+    { id: 'gt7_huracan_evo', name: 'Lamborghini Huracán EVO' },
+    { id: 'gt7_huracan_sto', name: 'Lamborghini Huracán STO' },
+    { id: 'gt7_huracan_tecnica', name: 'Lamborghini Huracán Tecnica' },
+    { id: 'gt7_aventador', name: 'Lamborghini Aventador' },
+    { id: 'gt7_aventador_sv', name: 'Lamborghini Aventador SV' },
+    { id: 'gt7_aventador_svj', name: 'Lamborghini Aventador SVJ' },
+    { id: 'gt7_gallardo', name: 'Lamborghini Gallardo' },
+    { id: 'gt7_murcielago', name: 'Lamborghini Murcielago' },
+    { id: 'gt7_murcielago_sv', name: 'Lamborghini Murcielago SV' },
+    { id: 'gt7_diablo', name: 'Lamborghini Diablo' },
+    { id: 'gt7_diablo_sv', name: 'Lamborghini Diablo SV' },
+    { id: 'gt7_countach', name: 'Lamborghini Countach' },
+    { id: 'gt7_miura', name: 'Lamborghini Miura' },
+    { id: 'gt7_veneno', name: 'Lamborghini Veneno' },
+    { id: 'gt7_centenario', name: 'Lamborghini Centenario' },
+    { id: 'gt7_sesto', name: 'Lamborghini Sesto Elemento' },
+    { id: 'gt7_reventon', name: 'Lamborghini Reventon' },
+    { id: 'gt7_egoista', name: 'Lamborghini Egoista' },
+    { id: 'gt7_ursus', name: 'Lamborghini Urus' },
+    { id: 'gt7_lm002', name: 'Lamborghini LM002' }
+  ],
+  "Porsche": [
+    { id: 'gt7_911_gt3', name: 'Porsche 911 GT3' },
+    { id: 'gt7_911_gt3_rs', name: 'Porsche 911 GT3 RS' },
+    { id: 'gt7_911_turbo', name: 'Porsche 911 Turbo' },
+    { id: 'gt7_911_turbo_s', name: 'Porsche 911 Turbo S' },
+    { id: 'gt7_911_gt2_rs', name: 'Porsche 911 GT2 RS' },
+    { id: 'gt7_911_rsr', name: 'Porsche 911 RSR' },
+    { id: 'gt7_911_carrera', name: 'Porsche 911 Carrera S' },
+    { id: 'gt7_918', name: 'Porsche 918 Spyder' },
+    { id: 'gt7_918_rsr', name: 'Porsche 918 RSR' },
+    { id: 'gt7_cayman_gt4', name: 'Porsche Cayman GT4' },
+    { id: 'gt7_boxster', name: 'Porsche Boxster' },
+    { id: 'gt7_boxster_s', name: 'Porsche Boxster S' },
+    { id: 'gt7_panamera', name: 'Porsche Panamera Turbo' },
+    { id: 'gt7_cayenne', name: 'Porsche Cayenne Turbo' },
+    { id: 'gt7_macan', name: 'Porsche Macan Turbo' },
+    { id: 'gt7_taycan', name: 'Porsche Taycan Turbo S' },
+    { id: 'gt7_carrera_gt', name: 'Porsche Carrera GT' },
+    { id: 'gt7_917', name: 'Porsche 917 K' },
+    { id: 'gt7_962c', name: 'Porsche 962 C' },
+    { id: 'gt7_935', name: 'Porsche 935' },
+    { id: 'gt7_936', name: 'Porsche 936' },
+    { id: 'gt7_rs_spyder', name: 'Porsche RS Spyder' },
+    { id: 'gt7_919', name: 'Porsche 919 Hybrid' }
+  ],
+  "McLaren": [
+    { id: 'gt7_720s', name: 'McLaren 720S' },
+    { id: 'gt7_720s_spider', name: 'McLaren 720S Spider' },
+    { id: 'gt7_765lt', name: 'McLaren 765LT' },
+    { id: 'gt7_570s', name: 'McLaren 570S' },
+    { id: 'gt7_540c', name: 'McLaren 540C' },
+    { id: 'gt7_600lt', name: 'McLaren 600LT' },
+    { id: 'gt7_mp4_12c', name: 'McLaren 12C' },
+    { id: 'gt7_mp4_650s', name: 'McLaren 650S' },
+    { id: 'gt7_mp4_675lt', name: 'McLaren 675LT' },
+    { id: 'gt7_f1', name: 'McLaren F1' },
+    { id: 'gt7_f1_gtr', name: 'McLaren F1 GTR' },
+    { id: 'gt7_p1', name: 'McLaren P1' },
+    { id: 'gt7_p1_gtr', name: 'McLaren P1 GTR' },
+    { id: 'gt7_senna', name: 'McLaren Senna' },
+    { id: 'gt7_senna_gtr', name: 'McLaren Senna GTR' },
+    { id: 'gt7_artura', name: 'McLaren Artura' },
+    { id: 'gt7_mp4_1991', name: 'McLaren MP4/4' },
+    { id: 'gt7_mp4_1992', name: 'McLaren MP4/5B' },
+    { id: 'gt7_mp4_1993', name: 'McLaren MP4/8' }
+  ],
+  "Mercedes-Benz": [
+    { id: 'gt7_amg_gt', name: 'Mercedes-AMG GT' },
+    { id: 'gt7_amg_gt3', name: 'Mercedes-AMG GT3' },
+    { id: 'gt7_amg_gt4', name: 'Mercedes-AMG GT4' },
+    { id: 'gt7_amg_a45', name: 'Mercedes-AMG A45' },
+    { id: 'gt7_amg_c63', name: 'Mercedes-AMG C63 S' },
+    { id: 'gt7_amg_e63', name: 'Mercedes-AMG E63 S' },
+    { id: 'gt7_amg_sls', name: 'Mercedes-AMG SLS GT' },
+    { id: 'gt7_g63', name: 'Mercedes-AMG G63' },
+    { id: 'gt7_eqs', name: 'Mercedes EQS' },
+    { id: 'gt7_eqg', name: 'Mercedes EQG' },
+    { id: 'gt7_cla45', name: 'Mercedes-AMG CLA45' },
+    { id: 'gt7_300sl', name: 'Mercedes-Benz 300 SL' },
+    { id: 'gt7_slk', name: 'Mercedes-AMG SLK' }
+  ],
+  "BMW": [
+    { id: 'gt7_m3', name: 'BMW M3' },
+    { id: 'gt7_m3_csl', name: 'BMW M3 CSL' },
+    { id: 'gt7_m4', name: 'BMW M4' },
+    { id: 'gt7_m4_gt3', name: 'BMW M4 GT3' },
+    { id: 'gt7_m5', name: 'BMW M5' },
+    { id: 'gt7_m6', name: 'BMW M6' },
+    { id: 'gt7_m8', name: 'BMW M8' },
+    { id: 'gt7_m2', name: 'BMW M2' },
+    { id: 'gt7_z4', name: 'BMW Z4 M40i' },
+    { id: 'gt7_i8', name: 'BMW i8' },
+    { id: 'gt7_335i', name: 'BMW 335i' },
+    { id: 'gt7_m1', name: 'BMW M1' },
+    { id: 'gt7_2002', name: 'BMW 2002' },
+    { id: 'gt7_3_0csl', name: 'BMW 3.0 CSL' },
+    { id: 'gt7_m235i', name: 'BMW M235i' },
+    { id: 'gt7_m440i', name: 'BMW M440i' }
+  ],
+  "Aston Martin": [
+    { id: 'gt7_vantage', name: 'Aston Martin Vantage' },
+    { id: 'gt7_vantage_gt3', name: 'Aston Martin Vantage GT3' },
+    { id: 'gt7_db11', name: 'Aston Martin DB11' },
+    { id: 'gt7_dbs', name: 'Aston Martin DBS Superleggera' },
+    { id: 'gt7_vanquish', name: 'Aston Martin Vanquish' },
+    { id: 'gt7_db9', name: 'Aston Martin DB9' },
+    { id: 'gt7_db5', name: 'Aston Martin DB5' },
+    { id: 'gt7_db6', name: 'Aston Martin DB6' },
+    { id: 'gt7_zagato', name: 'Aston Martin Zagato' },
+    { id: 'gt7_vulcan', name: 'Aston Martin Vulcan' },
+    { id: 'gt7_valkyrie', name: 'Aston Martin Valkyrie' },
+    { id: 'gt7_dbx', name: 'Aston Martin DBX' },
+    { id: 'gt7_v12_speedster', name: 'Aston Martin V12 Speedster' }
+  ],
+  "Audi": [
+    { id: 'gt7_r8', name: 'Audi R8' },
+    { id: 'gt7_rs6', name: 'Audi RS6' },
+    { id: 'gt7_rs3', name: 'Audi RS3' },
+    { id: 'gt7_rs_q8', name: 'Audi RS Q8' },
+    { id: 'gt7_tt', name: 'Audi TT' },
+    { id: 'gt7_quattro', name: 'Audi Quattro' },
+    { id: 'gt7_s3', name: 'Audi S3' },
+    { id: 'gt7_s4', name: 'Audi S4' },
+    { id: 'gt7_s5', name: 'Audi S5' },
+    { id: 'gt7_s6', name: 'Audi S6' },
+    { id: 'gt7_s7', name: 'Audi S7' },
+    { id: 'gt7_s8', name: 'Audi S8' },
+    { id: 'gt7_a45', name: 'Audi A45 AMG' },
+    { id: 'gt7_tts', name: 'Audi TTS' },
+    { id: 'gt7_r8_gt3', name: 'Audi R8 LMS GT3' },
+    { id: 'gt7_r8_gt4', name: 'Audi R8 LMS GT4' }
+  ],
+  "Ford": [
+    { id: 'gt7_mustang_gt', name: 'Ford Mustang GT' },
+    { id: 'gt7_mustang_boss', name: 'Ford Mustang Boss 302' },
+    { id: 'gt7_mustang_gt350', name: 'Ford Mustang GT350' },
+    { id: 'gt7_mustang_gt500', name: 'Ford Mustang GT500' },
+    { id: 'gt7_mustang_ecoboost', name: 'Ford Mustang EcoBoost' },
+    { id: 'gt7_gt40', name: 'Ford GT40' },
+    { id: 'gt7_gt', name: 'Ford GT' },
+    { id: 'gt7_focus_rs', name: 'Ford Focus RS' },
+    { id: 'gt7_fiesta_st', name: 'Ford Fiesta ST' },
+    { id: 'gt7_f150', name: 'Ford F-150 Raptor' },
+    { id: 'gt7_f150_lightning', name: 'Ford F-150 Lightning' },
+    { id: 'gt7_mustang_drag', name: 'Ford Mustang Cobra Jet' },
+    { id: 'gt7_ford_gt_gt3', name: 'Ford GT GT3' }
+  ],
+  "Chevrolet": [
+    { id: 'gt7_corvette', name: 'Chevrolet Corvette' },
+    { id: 'gt7_corvette_z06', name: 'Chevrolet Corvette Z06' },
+    { id: 'gt7_corvette_c8', name: 'Chevrolet Corvette C8' },
+    { id: 'gt7_corvette_c8_rt', name: 'Chevrolet Corvette C8 RWT' },
+    { id: 'gt7_camaro_ss', name: 'Chevrolet Camaro SS' },
+    { id: 'gt7_camaro_zl1', name: 'Chevrolet Camaro ZL1' },
+    { id: 'gt7_camaro_1le', name: 'Chevrolet Camaro 1LE' },
+    { id: 'gt7_corvette_c7', name: 'Chevrolet Corvette C7' },
+    { id: 'gt7_blazer', name: 'Chevrolet Blazer' },
+    { id: 'gt7_silverado', name: 'Chevrolet Silverado' }
+  ],
+  "Dodge": [
+    { id: 'gt7_challenger', name: 'Dodge Challenger SRT' },
+    { id: 'gt7_challenger_demon', name: 'Dodge Challenger Demon' },
+    { id: 'gt7_charger', name: 'Dodge Charger SRT' },
+    { id: 'gt7_viper', name: 'Dodge Viper ACR' },
+    { id: 'gt7_durango', name: 'Dodge Durango SRT' },
+    { id: 'gt7_challenger_hellcat', name: 'Dodge Challenger Hellcat' }
+  ],
+  "Lexus": [
+    { id: 'gt7_lfa', name: 'Lexus LFA' },
+    { id: 'gt7_lfa_nurb', name: 'Lexus LFA Nürburgring Edition' },
+    { id: 'gt7_lc500', name: 'Lexus LC 500' },
+    { id: 'gt7_rcf', name: 'Lexus RC F' },
+    { id: 'gt7_gsf', name: 'Lexus GS F' },
+    { id: 'gt7_isf', name: 'Lexus IS F' },
+    { id: 'gt7_ls', name: 'Lexus LS' },
+    { id: 'gt7_nx', name: 'Lexus NX' },
+    { id: 'gt7_rx', name: 'Lexus RX' },
+    { id: 'gt7_ux', name: 'Lexus UX' },
+    { id: 'gt7_ct', name: 'Lexus CT' }
+  ],
+  "Bentley": [
+    { id: 'gt7_continental', name: 'Bentley Continental GT' },
+    { id: 'gt7_continental_gt3', name: 'Bentley Continental GT3' },
+    { id: 'gt7_flying_sp', name: 'Bentley Flying Spur' },
+    { id: 'gt7_arnage', name: 'Bentley Arnage' },
+    { id: 'gt7_mulsanne', name: 'Bentley Mulsanne' },
+    { id: 'gt7_bentayga', name: 'Bentley Bentayga' }
+  ],
+  "Maserati": [
+    { id: 'gt7_granTurismo', name: 'Maserati GranTurismo' },
+    { id: 'gt7_granTurismo_mc', name: 'Maserati GranTurismo MC' },
+    { id: 'gt7_granCabrio', name: 'Maserati GranCabrio' },
+    { id: 'gt7_quattroporte', name: 'Maserati Quattroporte' },
+    { id: 'gt7_ghibli', name: 'Maserati Ghibli' },
+    { id: 'gt7_levante', name: 'Maserati Levante' },
+    { id: 'gt7_mc20', name: 'Maserati MC20' },
+    { id: 'gt7_mc12', name: 'Maserati MC12' },
+    { id: 'gt7_3200gt', name: 'Maserati 3200 GT' }
+  ],
+  "Renault": [
+    { id: 'gt7_megane_rs', name: 'Renault Mégane RS' },
+    { id: 'gt7_clio_rs', name: 'Renault Clio RS' },
+    { id: 'gt7_alpine_a110', name: 'Alpine A110' },
+    { id: 'gt7_alpine_gt', name: 'Alpine A110 GT' },
+    { id: 'gt7_zoe', name: 'Renault ZOE' }
+  ],
+  "Alpine": [
+    { id: 'gt7_alpine_a110', name: 'Alpine A110' },
+    { id: 'gt7_alpine_a110_s', name: 'Alpine A110 S' }
+  ],
+  "Alfa Romeo": [
+    { id: 'gt7_giulia', name: 'Alfa Romeo Giulia' },
+    { id: 'gt7_giulia_qf', name: 'Alfa Romeo Giulia Quadrifoglio' },
+    { id: 'gt7_stelvio', name: 'Alfa Romeo Stelvio' },
+    { id: 'gt7_stelvio_qf', name: 'Alfa Romeo Stelvio Quadrifoglio' },
+    { id: 'gt7_4c', name: 'Alfa Romeo 4C' },
+    { id: 'gt7_8c', name: 'Alfa Romeo 8C' },
+    { id: 'gt7_33', name: 'Alfa Romeo 33' },
+    { id: 'gt7_75', name: 'Alfa Romeo 75' }
+  ],
+  "Jaguar": [
+    { id: 'gt7_f_type', name: 'Jaguar F-Type' },
+    { id: 'gt7_f_type_r', name: 'Jaguar F-Type R' },
+    { id: 'gt7_xk', name: 'Jaguar XK' },
+    { id: 'gt7_xkr', name: 'Jaguar XKR' },
+    { id: 'gt7_xj', name: 'Jaguar XJ' },
+    { id: 'gt7_xf', name: 'Jaguar XF' }
+  ],
+  "Lotus": [
+    { id: 'gt7_evora', name: 'Lotus Evora' },
+    { id: 'gt7_evora_400', name: 'Lotus Evora 400' },
+    { id: 'gt7_exige', name: 'Lotus Exige' },
+    { id: 'gt7_exige_r', name: 'Lotus Exige R' },
+    { id: 'gt7_elise', name: 'Lotus Elise' },
+    { id: 'gt7_elise_sc', name: 'Lotus Elise SC' },
+    { id: 'gt7_3_ever', name: 'Lotus 3-Eleven' },
+    { id: 'gt7_emira', name: 'Lotus Emira' },
+    { id: 'gt7_esprit', name: 'Lotus Esprit' },
+    { id: 'gt7_eagle', name: 'Lotus Eagle' }
+  ],
+  "Volkswagen": [
+    { id: 'gt7_golf_gti', name: 'Volkswagen Golf GTI' },
+    { id: 'gt7_golf_r', name: 'Volkswagen Golf R' },
+    { id: 'gt7_golf_gti_tcr', name: 'Volkswagen Golf GTI TCR' },
+    { id: 'gt7_scirocco', name: 'Volkswagen Scirocco' },
+    { id: 'gt7_jetta', name: 'Volkswagen Jetta' },
+    { id: 'gt7_passat', name: 'Volkswagen Passat' },
+    { id: 'gt7_arteon', name: 'Volkswagen Arteon' },
+    { id: 'gt7_up_gti', name: 'Volkswagen up! GTI' },
+    { id: 'gt7_t_roc', name: 'Volkswagen T-Roc' },
+    { id: 'gt7_id4', name: 'Volkswagen ID.4' },
+    { id: 'gt7_id3', name: 'Volkswagen ID.3' }
+  ],
+  "Suzuki": [
+    { id: 'gt7_swift_sport', name: 'Suzuki Swift Sport' },
+    { id: 'gt7_swift', name: 'Suzuki Swift' },
+    { id: 'gt7_alto', name: 'Suzuki Alto' },
+    { id: 'gt7_wagon_r', name: 'Suzuki Wagon R' },
+    { id: 'gt7_jimny', name: 'Suzuki Jimny' },
+    { id: 'gt7_vitara', name: 'Suzuki Vitara' },
+    { id: 'gt7_kizashi', name: 'Suzuki Kizashi' },
+    { id: 'gt7_escudo', name: 'Suzuki Escudo' }
+  ],
+  "Kia": [
+    { id: 'gt7_stinger_gt', name: 'Kia Stinger GT' },
+    { id: 'gt7_stinger', name: 'Kia Stinger' },
+    { id: 'gt7_ev6', name: 'Kia EV6' },
+    { id: 'gt7_ev9', name: 'Kia EV9' },
+    { id: 'gt7_niro', name: 'Kia Niro' },
+    { id: 'gt7_seltos', name: 'Kia Seltos' }
+  ],
+  "Hyundai": [
+    { id: 'gt7_veloster', name: 'Hyundai Veloster' },
+    { id: 'gt7_veloster_n', name: 'Hyundai Veloster N' },
+    { id: 'gt7_i30n', name: 'Hyundai i30 N' },
+    { id: 'gt7_i20n', name: 'Hyundai i20 N' },
+    { id: 'gt7_kona_n', name: 'Hyundai Kona N' },
+    { id: 'gt7_sonata', name: 'Hyundai Sonata' },
+    { id: 'gt7_elantra', name: 'Hyundai Elantra' },
+    { id: 'gt7_ioniq5', name: 'Hyundai IONIQ 5' },
+    { id: 'gt7_ioniq6', name: 'Hyundai IONIQ 6' }
+  ],
+  "Genesis": [
+    { id: 'gt7_g70', name: 'Genesis G70' },
+    { id: 'gt7_g70_v6', name: 'Genesis G70 V6' },
+    { id: 'gt7_g80', name: 'Genesis G80' },
+    { id: 'gt7_g80_v6', name: 'Genesis G80 V6' },
+    { id: 'gt7_g90', name: 'Genesis G90' },
+    { id: 'gt7_gv60', name: 'Genesis GV60' },
+    { id: 'gt7_gv70', name: 'Genesis GV70' },
+    { id: 'gt7_gv80', name: 'Genesis GV80' }
+  ],
+  "Volvo": [
+    { id: 'gt7_v60', name: 'Volvo V60' },
+    { id: 'gt7_v60_r', name: 'Volvo V60 Polestar' },
+    { id: 'gt7_s60', name: 'Volvo S60' },
+    { id: 'gt7_s90', name: 'Volvo S90' },
+    { id: 'gt7_xc40', name: 'Volvo XC40' },
+    { id: 'gt7_xc60', name: 'Volvo XC60' },
+    { id: 'gt7_xc90', name: 'Volvo XC90' },
+    { id: 'gt7_polestar1', name: 'Polestar 1' },
+    { id: 'gt7_polestar2', name: 'Polestar 2' }
+  ],
+  "Cadillac": [
+    { id: 'gt7_ct4_v', name: 'Cadillac CT4-V' },
+    { id: 'gt7_ct5_v', name: 'Cadillac CT5-V' },
+    { id: 'gt7_ct6', name: 'Cadillac CT6' },
+    { id: 'gt7_xt5', name: 'Cadillac XT5' },
+    { id: 'gt7_xt6', name: 'Cadillac XT6' },
+    { id: 'gt7_escalade', name: 'Cadillac Escalade' },
+    { id: 'gt7_ct4_v_blackwing', name: 'Cadillac CT4-V Blackwing' },
+    { id: 'gt7_ct5_v_blackwing', name: 'Cadillac CT5-V Blackwing' }
+  ],
+  "Lincoln": [
+    { id: 'gt7_lincoln_continental', name: 'Lincoln Continental' },
+    { id: 'gt7_navigator', name: 'Lincoln Navigator' },
+    { id: 'gt7_aviator', name: 'Lincoln Aviator' },
+    { id: 'gt7_nautilus', name: 'Lincoln Nautilus' }
+  ],
+  "Jeep": [
+    { id: 'gt7_grand_cherokee', name: 'Jeep Grand Cherokee SRT' },
+    { id: 'gt7_wrangler', name: 'Jeep Wrangler' },
+    { id: 'gt7_wrangler_392', name: 'Jeep Wrangler 392' },
+    { id: 'gt7_cherokee', name: 'Jeep Cherokee' },
+    { id: 'gt7_compass', name: 'Jeep Compass' },
+    { id: 'gt7_renegade', name: 'Jeep Renegade' }
+  ],
+  "Buick": [
+    { id: 'gt7_regal', name: 'Buick Regal' },
+    { id: 'gt7_regal_gs', name: 'Buick Regal GS' },
+    { id: 'gt7_envision', name: 'Buick Envision' },
+    { id: 'gt7_encore', name: 'Buick Encore' }
+  ],
+  "Chrysler": [
+    { id: 'gt7_300c', name: 'Chrysler 300C' },
+    { id: 'gt7_300c_srt', name: 'Chrysler 300C SRT' },
+    { id: 'gt7_pacifica', name: 'Chrysler Pacifica' },
+    { id: 'gt7_charger_srt', name: 'Chrysler Charger SRT' }
+  ],
+  "Peugeot": [
+    { id: 'gt7_308_gti', name: 'Peugeot 308 GTi' },
+    { id: 'gt7_308_gt', name: 'Peugeot 308 GT' },
+    { id: 'gt7_508', name: 'Peugeot 508' },
+    { id: 'gt7_508_gt', name: 'Peugeot 508 GT' },
+    { id: 'gt7_rcz', name: 'Peugeot RCZ' },
+    { id: 'gt7_208_gti', name: 'Peugeot 208 GTi' }
+  ],
+  "Citroën": [
+    { id: 'gt7_ds3', name: 'Citroën DS3' },
+    { id: 'gt7_ds3_r', name: 'Citroën DS3 Racing' },
+    { id: 'gt7_ds4', name: 'Citroën DS4' },
+    { id: 'gt7_ds5', name: 'Citroën DS5' },
+    { id: 'gt7_c3', name: 'Citroën C3' },
+    { id: 'gt7_c4', name: 'Citroën C4' }
+  ],
+  "Pagani": [
+    { id: 'gt7_huayra', name: 'Pagani Huayra' },
+    { id: 'gt7_huayra_bc', name: 'Pagani Huayra BC' },
+    { id: 'gt7_huayra_roadster', name: 'Pagani Huayra Roadster' },
+    { id: 'gt7_zonda', name: 'Pagani Zonda' },
+    { id: 'gt7_zonda_r', name: 'Pagani Zonda R' },
+    { id: 'gt7_zonda_cinque', name: 'Pagani Zonda Cinque' },
+    { id: 'gt7_zonda_ecuria', name: 'Pagani Zonda Eucaria' }
+  ],
+  "Koenigsegg": [
+    { id: 'gt7_one_1', name: 'Koenigsegg One:1' },
+    { id: 'gt7_agera_r', name: 'Koenigsegg Agera R' },
+    { id: 'gt7_agera_rs', name: 'Koenigsegg Agera RS' },
+    { id: 'gt7_jesko', name: 'Koenigsegg Jesko' },
+    { id: 'gt7_gemera', name: 'Koenigsegg Gemera' },
+    { id: 'gt7_cc850', name: 'Koenigsegg CC850' },
+    { id: 'gt7_cc8s', name: 'Koenigsegg CC8S' }
+  ],
+  "RUF": [
+    { id: 'gt7_ruf_ct', name: 'RUF CTR' },
+    { id: 'gt7_ruf_ct2', name: 'RUF CTR2' },
+    { id: 'gt7_ruf_ct3', name: 'RUF CTR3' },
+    { id: 'gt7_ruf_btr', name: 'RUF BTR' },
+    { id: 'gt7_ruf_scr', name: 'RUF SCR' },
+    { id: 'gt7_ruf_36', name: 'RUF 36' }
+  ],
+  "Zenvo": [
+    { id: 'gt7_zenvo_st1', name: 'Zenvo ST1' },
+    { id: 'gt7_zenvo_ts1', name: 'Zenvo TS1' },
+    { id: 'gt7_zenvo_tsr', name: 'Zenvo TSR' }
+  ]
+};
 
     function loadSavedData() {
         try {
@@ -928,18 +1468,140 @@ acc: {
     }
 
     function populateCars() {
-        const game = GAMES_DATA[currentGame];
-        const select = document.getElementById('car-select');
-        select.innerHTML = '<option value="">— Selecciona un coche —</option>';
-        for (const car of game.cars) {
-            select.innerHTML += `<option value="${car.id}">${car.name}</option>`;
+        // For ACC, F1 24, iRacing - use simple select (unchanged behavior)
+        if (currentGame !== 'gt7') {
+            const game = GAMES_DATA[currentGame];
+            const select = document.getElementById('car-select');
+            select.innerHTML = '<option value="">— Selecciona un coche —</option>';
+            for (const car of game.cars) {
+                select.innerHTML += `<option value="${car.id}">${car.name}</option>`;
+            }
+            currentCar = '';
         }
-        currentCar = '';
+    }
+
+    function initGT7Dropdown() {
+        const dropdown = document.getElementById('gt7-car-dropdown');
+        const trigger = document.getElementById('gt7-dropdown-trigger');
+        const content = document.getElementById('gt7-dropdown-content');
+        const search = document.getElementById('gt7-search');
+
+        let selectedCarId = '';
+        let expandedBrands = new Set();
+
+        function renderDropdown() {
+            content.innerHTML = '';
+            const searchTerm = search.value.toLowerCase().trim();
+            let totalVisible = 0;
+            let hasVisibleCars = false;
+
+            for (const [brand, cars] of Object.entries(GT7_CARS_BY_BRAND)) {
+                const groupEl = document.createElement('div');
+                groupEl.className = 'gt7-brand-group';
+
+                const visibleCars = cars.filter(car =>
+                    car.name.toLowerCase().includes(searchTerm) ||
+                    brand.toLowerCase().includes(searchTerm)
+                );
+
+                if (visibleCars.length === 0) {
+                    groupEl.classList.add('hidden');
+                } else {
+                    hasVisibleCars = true;
+                    totalVisible += visibleCars.length;
+
+                    const header = document.createElement('div');
+                    header.className = 'gt7-brand-header';
+                    header.innerHTML = `
+                        <span class="gt7-brand-name">${brand}</span>
+                        <span class="gt7-brand-count">${visibleCars.length}</span>
+                        <span class="arrow">▼</span>
+                    `;
+
+                    const carsContainer = document.createElement('div');
+                    carsContainer.className = 'gt7-brand-cars';
+
+                    for (const car of visibleCars) {
+                        const carEl = document.createElement('div');
+                        carEl.className = 'gt7-car-item';
+                        carEl.dataset.id = car.id;
+                        carEl.textContent = car.name;
+                        if (car.id === selectedCarId) {
+                            carEl.style.background = 'var(--accent)';
+                        }
+                        carEl.addEventListener('click', () => selectCar(car));
+                        carsContainer.appendChild(carEl);
+                    }
+
+                    groupEl.appendChild(header);
+                    groupEl.appendChild(carsContainer);
+
+                    if (expandedBrands.has(brand) || searchTerm) {
+                        groupEl.classList.add('expanded');
+                    }
+
+                    header.addEventListener('click', () => {
+                        if (expandedBrands.has(brand)) {
+                            expandedBrands.delete(brand);
+                            groupEl.classList.remove('expanded');
+                        } else {
+                            expandedBrands.add(brand);
+                            groupEl.classList.add('expanded');
+                        }
+                    });
+                }
+
+                content.appendChild(groupEl);
+            }
+
+            if (!hasVisibleCars) {
+                const noResults = document.createElement('div');
+                noResults.className = 'gt7-no-results';
+                noResults.textContent = 'No se encontraron coches';
+                content.appendChild(noResults);
+            }
+        }
+
+        function selectCar(car) {
+            selectedCarId = car.id;
+            currentCar = car.id;
+            const triggerText = trigger.querySelector('.selected-text');
+            triggerText.textContent = car.name;
+            triggerText.classList.remove('placeholder');
+            closeDropdown();
+            renderParams();
+        }
+
+        function closeDropdown() {
+            content.classList.remove('open');
+            trigger.classList.remove('open');
+        }
+
+        trigger.addEventListener('click', () => {
+            if (content.classList.contains('open')) {
+                closeDropdown();
+            } else {
+                content.classList.add('open');
+                trigger.classList.add('open');
+                search.focus();
+            }
+        });
+
+        search.addEventListener('input', renderDropdown);
+
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                closeDropdown();
+            }
+        });
+
+        renderDropdown();
     }
 
     function setupGameButtons() {
         document.querySelectorAll('.game-btn').forEach(btn => {
             btn.addEventListener('click', () => {
+                if (btn.disabled) return;
                 document.querySelectorAll('.game-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentGame = btn.dataset.game;
@@ -951,10 +1613,13 @@ acc: {
     }
 
     function setupCarSelector() {
-        document.getElementById('car-select').addEventListener('change', e => {
-            currentCar = e.target.value;
-            renderParams();
-        });
+        // Only setup simple select for non-GT7 games
+        if (currentGame !== 'gt7') {
+            document.getElementById('car-select').addEventListener('change', e => {
+                currentCar = e.target.value;
+                renderParams();
+            });
+        }
     }
 
     function setupExport() {
@@ -1011,6 +1676,7 @@ acc: {
     function init() {
         loadSavedData();
         setupGameButtons();
+        initGT7Dropdown();
         populateCars();
         setupCarSelector();
         setupExport();
