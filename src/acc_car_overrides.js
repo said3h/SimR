@@ -1160,6 +1160,69 @@ const ACC_CAR_OVERRIDES = {
         fuelMax: 'PENDIENTE_DE_VERIFICACION',
     },
 
+    // ─────────────────────────────────────────────────────────────────────────
+    // GT3 ADICIONALES — Datos genéricos de clase GT3
+    // ─────────────────────────────────────────────────────────────────────────
+    aston_martin_vantage_gt3_2018: {
+        tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,
+        toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,
+        toeRearMin:  -0.40, toeRearMax:  0.40,
+        casterMin: 10.7, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        wheelRateFront: [115, 125, 135, 145, 155, 165, 175, 185],
+        wheelRateRear:  [105, 115, 125, 135, 145, 155, 165, 175, 185, 195],
+        brakeBiasMin: 57.0, brakeBiasStep: 0.2,
+        steeringRatioMin: 14,
+        rideHeightFrontMin: 55, rideHeightRearMin: 55, rideHeightStep: 1,
+        arbFrontMin: 1, arbRearMin: 1,
+        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        brakeDuctMin: 0, brakeDuctMax: 6,
+        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
+        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
+        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
+        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
+        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+    },
+
+    porsche_991_gt3_rs: {
+        tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,
+        toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,
+        toeRearMin:  -0.40, toeRearMax:  0.40,
+        casterMin: 6.5, casterMax: 12.4, casterSteps: 31,
+        wheelRateFront: [100.5, 110, 114, 119, 127, 137, 141.5, 146, 155, 173.5],
+        wheelRateRear:  [137, 149.5, 156, 162, 174.5, 187, 193, 199.5, 212, 237],
+        brakeBiasMin: 50.0, brakeBiasStep: 0.2,
+        steeringRatioMin: 11,
+        rideHeightFrontMin: 53, rideHeightRearMin: 55, rideHeightStep: 1,
+        arbFrontMin: 1, arbRearMin: 1,
+        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        brakeDuctMin: 0, brakeDuctMax: 6,
+        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
+        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
+        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
+        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
+        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+    },
+
+    porsche_991_gt3_cup: {
+        tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,
+        toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,
+        toeRearMin:  -0.40, toeRearMax:  0.40,
+        casterMin: 6.5, casterMax: 12.4, casterSteps: 31,
+        wheelRateFront: [100.5, 110, 114, 119, 127, 137, 141.5, 146, 155, 173.5],
+        wheelRateRear:  [137, 149.5, 156, 162, 174.5, 187, 193, 199.5, 212, 237],
+        brakeBiasMin: 50.0, brakeBiasStep: 0.2,
+        steeringRatioMin: 11,
+        rideHeightFrontMin: 53, rideHeightRearMin: 55, rideHeightStep: 1,
+        arbFrontMin: 1, arbRearMin: 1,
+        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        brakeDuctMin: 0, brakeDuctMax: 6,
+        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
+        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
+        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
+        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
+        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+    },
+
 };
 
 export function getCarOverride(carId) {
