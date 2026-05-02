@@ -7,14 +7,15 @@ import {
     Columns, X, FileDown, QrCode, Scan, History, Mic,
     Activity, Globe, UploadCloud, Share2
 } from 'lucide';
-import { SetupService, SORT_OPTIONS } from './src/setupService.js';
-import { GAME_TEMPLATES, GROUPS, FFB_TEMPLATE } from './src/templates.js';
-import { GAME_CARS } from './src/cars.js';
-import { GAME_CIRCUITS } from './src/circuits.js';
-import { getCarOverride as getAccCarOverride } from './src/acc_car_overrides.js';
-import { getF1CarOverride } from './src/f1_car_overrides.js';
-import { getGT7CarOverride } from './src/gt7_car_overrides.js';
-import { getIRacingCarOverride } from './src/iracing_car_overrides.js';
+import { SetupService, SORT_OPTIONS } from './src/web/setupService.js';
+import { normalizeImportedSetup } from './src/core/utils.js';
+import { GAME_TEMPLATES, GROUPS, FFB_TEMPLATE } from './src/core/templates.js';
+import { GAME_CARS } from './src/core/cars.js';
+import { GAME_CIRCUITS } from './src/core/circuits.js';
+import { getCarOverride as getAccCarOverride } from './src/core/overrides/acc_car_overrides.js';
+import { getF1CarOverride } from './src/core/overrides/f1_car_overrides.js';
+import { getGT7CarOverride } from './src/core/overrides/gt7_car_overrides.js';
+import { getIRacingCarOverride } from './src/core/overrides/iracing_car_overrides.js';
 
 // ── DOM helpers ───────────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
@@ -27,6 +28,16 @@ const dynamicParams = document.getElementById('dynamic-params');
 const setupsGrid    = document.getElementById('setups-grid');
 const dashboardView = document.getElementById('dashboard');
 const editorView    = document.getElementById('setup-editor');
+
+const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+}[char]));
+
+const escapeAttr = escapeHTML;
 
 // ── Module state ──────────────────────────────────────────────────────────────
 let isAuthenticated = false;
@@ -224,13 +235,13 @@ function populateAccCarSelect() {
     }
 
     const makeOptions = (carList) =>
-        carList.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+        carList.map(c => `<option value="${escapeAttr(c.id)}">${escapeHTML(c.name)}</option>`).join('');
 
     let html = `<option value="">— Selecciona coche —</option>`;
 
     for (const brand of ACC_BRAND_ORDER) {
         if (!byBrand[brand]) continue;
-        html += `<optgroup label="${brand}">${makeOptions(byBrand[brand])}</optgroup>`;
+        html += `<optgroup label="${escapeAttr(brand)}">${makeOptions(byBrand[brand])}</optgroup>`;
     }
 
     if (ungrouped.length > 0) {
@@ -246,9 +257,9 @@ function populateF1CarSelect() {
     if (!sel) return;
     const cars = GAME_CARS.f1_24 || [];
     const makeOptions = (carList) =>
-        carList.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+        carList.map(c => `<option value="${escapeAttr(c.id)}">${escapeHTML(c.name)}</option>`).join('');
     sel.innerHTML = `<option value="">— Selecciona monoplaza —</option>` +
-        cars.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+        cars.map(c => `<option value="${escapeAttr(c.id)}">${escapeHTML(c.name)}</option>`).join('');
 }
 
 function populateGT7CarSelect() {
@@ -265,7 +276,7 @@ function populateGT7CarSelect() {
     let html = `<option value="">— Selecciona coche —</option>`;
     for (const cls of classOrder) {
         if (!byClass[cls]) continue;
-        html += `<optgroup label="${cls}">${byClass[cls].map(c => `<option value="${c.id}">${c.name}</option>`).join('')}</optgroup>`;
+        html += `<optgroup label="${escapeAttr(cls)}">${byClass[cls].map(c => `<option value="${escapeAttr(c.id)}">${escapeHTML(c.name)}</option>`).join('')}</optgroup>`;
     }
     sel.innerHTML = html;
 }
@@ -280,11 +291,21 @@ function populateIRacingCarSelect() {
         if (!byClass[cls]) byClass[cls] = [];
         byClass[cls].push(car);
     }
-    const classOrder = ['GT3', 'GT4', 'Formula', 'NASCAR', 'LMDh', 'LMP2', 'Other'];
+    const preferredOrder = [
+        'GT3', 'GT4', 'GTE_GTP', 'Formula', 'Formula_4', 'Super_Formula',
+        'IndyCar', 'LMDh', 'LMP2', 'LMP2_LMP3', 'NASCAR', 'NASCAR_Cup',
+        'NASCAR_Xfinity', 'NASCAR_Truck', 'V8_Supercars', 'Road',
+        'Historic', 'Rallycross', 'Dirt_Oval', 'Dirt_Road',
+        'Australian_Prod', 'Global_MX5', 'Other'
+    ];
+    const remainingClasses = Object.keys(byClass)
+        .filter(cls => !preferredOrder.includes(cls))
+        .sort((a, b) => a.localeCompare(b));
+    const classOrder = [...preferredOrder, ...remainingClasses];
     let html = `<option value="">— Selecciona coche —</option>`;
     for (const cls of classOrder) {
         if (!byClass[cls]) continue;
-        html += `<optgroup label="${cls}">${byClass[cls].map(c => `<option value="${c.id}">${c.name}</option>`).join('')}</optgroup>`;
+        html += `<optgroup label="${escapeAttr(cls)}">${byClass[cls].map(c => `<option value="${escapeAttr(c.id)}">${escapeHTML(c.name)}</option>`).join('')}</optgroup>`;
     }
     sel.innerHTML = html;
 }
@@ -557,7 +578,7 @@ function createProgressModal(msg) {
     div.id = 'ocr-progress';
     div.style = 'position:fixed;inset:0;background:#000a;z-index:2000;display:flex;align-items:center;justify-content:center;';
     div.innerHTML = `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;min-width:280px;">
-        <p style="color:white;margin-bottom:1rem;" id="ocr-progress-msg">${msg}</p>
+        <p style="color:white;margin-bottom:1rem;" id="ocr-progress-msg">${escapeHTML(msg)}</p>
         <div style="width:100%;height:6px;background:var(--bg-input);border-radius:3px;overflow:hidden;">
             <div id="ocr-progress-bar" style="height:100%;background:var(--accent);width:0%;transition:width 0.3s;"></div>
         </div>
@@ -655,10 +676,10 @@ function showOCRResults(parsed) {
             <div style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem;">
                 ${entries.map(([k, v]) => `
                     <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0.8rem;background:var(--bg-input);border-radius:6px;">
-                        <label style="color:var(--text-secondary);font-size:0.8rem;">${k}</label>
+                        <label style="color:var(--text-secondary);font-size:0.8rem;">${escapeHTML(k)}</label>
                         <div style="display:flex;align-items:center;gap:0.5rem;">
-                            <input type="number" class="ocr-val-input" data-id="${k}" value="${v}" style="width:80px;background:var(--bg-main);border:1px solid var(--border);color:white;border-radius:6px;padding:0.4rem;text-align:center;">
-                            <input type="checkbox" class="ocr-val-check" data-id="${k}" checked style="accent-color:var(--accent);">
+                            <input type="number" class="ocr-val-input" data-id="${escapeAttr(k)}" value="${escapeAttr(v)}" style="width:80px;background:var(--bg-main);border:1px solid var(--border);color:white;border-radius:6px;padding:0.4rem;text-align:center;">
+                            <input type="checkbox" class="ocr-val-check" data-id="${escapeAttr(k)}" checked style="accent-color:var(--accent);">
                         </div>
                     </div>
                 `).join('')}
@@ -717,15 +738,15 @@ function renderCompareView(s1, s2) {
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
                 <div style="padding:1.5rem;border-right:1px solid var(--border);">
-                    <div class="compare-header">${s1.setupName || s1.carName || 'Setup A'}</div>
-                    <div class="compare-meta">${s1.carName || ''} · ${s1.track || ''}</div>
-                    <div class="compare-meta">${s1.gameName || ''} · ${s1.weatherType?.toUpperCase() || ''}</div>
+                    <div class="compare-header">${escapeHTML(s1.setupName || s1.carName || 'Setup A')}</div>
+                    <div class="compare-meta">${escapeHTML(s1.carName || '')} · ${escapeHTML(s1.track || '')}</div>
+                    <div class="compare-meta">${escapeHTML(s1.gameName || '')} · ${escapeHTML(s1.weatherType?.toUpperCase() || '')}</div>
                     <div class="compare-params">${renderCompareParams(s1, diff)}</div>
                 </div>
                 <div style="padding:1.5rem;">
-                    <div class="compare-header">${s2.setupName || s2.carName || 'Setup B'}</div>
-                    <div class="compare-meta">${s2.carName || ''} · ${s2.track || ''}</div>
-                    <div class="compare-meta">${s2.gameName || ''} · ${s2.weatherType?.toUpperCase() || ''}</div>
+                    <div class="compare-header">${escapeHTML(s2.setupName || s2.carName || 'Setup B')}</div>
+                    <div class="compare-meta">${escapeHTML(s2.carName || '')} · ${escapeHTML(s2.track || '')}</div>
+                    <div class="compare-meta">${escapeHTML(s2.gameName || '')} · ${escapeHTML(s2.weatherType?.toUpperCase() || '')}</div>
                     <div class="compare-params">${renderCompareParams(s2, diff)}</div>
                 </div>
             </div>
@@ -752,8 +773,8 @@ function renderCompareParams(s, diffSet) {
     return Object.entries(data).map(([k, v]) => {
         const isDiff = diffSet.has(k);
         return `<div class="compare-row${isDiff ? ' diff' : ''}">
-            <span class="compare-key">${k}</span>
-            <span class="compare-val">${v ?? '—'}</span>
+            <span class="compare-key">${escapeHTML(k)}</span>
+            <span class="compare-val">${escapeHTML(v ?? '—')}</span>
         </div>`;
     }).join('');
 }
@@ -808,11 +829,11 @@ function debounce(fn, ms) {
 }
 
 function populateGameSelect() {
-    gameSelect.innerHTML = GAME_TEMPLATES.map(g => `<option value="${g.id}">${g.name}</option>`).join('');
+    gameSelect.innerHTML = GAME_TEMPLATES.map(g => `<option value="${escapeAttr(g.id)}">${escapeHTML(g.name)}</option>`).join('');
     const filterGame = $('filter-game');
     if (filterGame) {
         filterGame.innerHTML = `<option value="">Todos los juegos</option>` +
-            GAME_TEMPLATES.map(g => `<option value="${g.id}">${g.name}</option>`).join('');
+            GAME_TEMPLATES.map(g => `<option value="${escapeAttr(g.id)}">${escapeHTML(g.name)}</option>`).join('');
     }
     // Apply correct car field for default-selected game
     updateCarField(gameSelect.value);
@@ -825,8 +846,8 @@ function updateCarSuggestions(gameId) {
     if (!list) return;
     const cars = GAME_CARS[gameId] || [];
     list.innerHTML = cars.map(car => {
-        if (typeof car === 'object') return `<option value="${car.name}">`;
-        return `<option value="${car}">`;
+        if (typeof car === 'object') return `<option value="${escapeAttr(car.name)}">`;
+        return `<option value="${escapeAttr(car)}">`;
     }).join('');
 }
 
@@ -967,7 +988,7 @@ function renderFields(gameId, savedParams = {}) {
     }
 
     dynamicTabs.innerHTML = allTabs.map(tab => `
-        <div class="tab-link ${tab.id === activeTabId ? 'active' : ''}" data-id="${tab.id}">${tab.name}</div>
+        <div class="tab-link ${tab.id === activeTabId ? 'active' : ''}" data-id="${escapeAttr(tab.id)}">${escapeHTML(tab.name)}</div>
     `).join('');
 
     dynamicTabs.querySelectorAll('.tab-link').forEach(link => {
@@ -1020,12 +1041,12 @@ function renderNotesSection(gameId, tabId, savedParams) {
 
     container.innerHTML = `
         <div class="notes-tab-section">
-            <label for="${noteConfig.id}" class="notes-section-label">${noteConfig.label}</label>
+            <label for="${escapeAttr(noteConfig.id)}" class="notes-section-label">${escapeHTML(noteConfig.label)}</label>
             <textarea
-                id="${noteConfig.id}"
-                placeholder="${noteConfig.placeholder}"
+                id="${escapeAttr(noteConfig.id)}"
+                placeholder="${escapeAttr(noteConfig.placeholder)}"
                 style="width:100%;min-height:80px;background:var(--bg-input);border:1px solid var(--border);color:white;border-radius:8px;padding:10px;resize:vertical;font-family:inherit;"
-            >${savedParams[noteConfig.id] || ''}</textarea>
+            >${escapeHTML(savedParams[noteConfig.id] || '')}</textarea>
         </div>
     `;
 }
@@ -1050,9 +1071,9 @@ function renderParamsHTML(params, tabData, override) {
             const arr = p.id === 'wrate_f' ? override.wheelRateFront : override.wheelRateRear;
             if (Array.isArray(arr) && arr.length > 0) {
                 return `<div class="param-item">
-                    <label>${p.l}</label>
-                    <select id="${p.id}" name="${p.id}" class="wrate-select">
-                        ${arr.map((v, i) => `<option value="${v}" ${val == v ? 'selected' : ''}>${v} N/mm</option>`).join('')}
+                    <label>${escapeHTML(p.l)}</label>
+                    <select id="${escapeAttr(p.id)}" name="${escapeAttr(p.id)}" class="wrate-select">
+                        ${arr.map((v, i) => `<option value="${escapeAttr(v)}" ${val == v ? 'selected' : ''}>${escapeHTML(v)} N/mm</option>`).join('')}
                     </select>
                 </div>`;
             }
@@ -1060,17 +1081,17 @@ function renderParamsHTML(params, tabData, override) {
 
         if (p.type === 'options') {
             return `<div class="param-item">
-                <label>${p.l}</label>
-                <select id="${p.id}" name="${p.id}" style="width:100%;border:none;background:transparent;color:white;font-weight:700;font-size:1.1rem;text-align:center;">
-                    ${p.options.map(opt => `<option value="${opt}" ${val == opt ? 'selected' : ''}>${opt}</option>`).join('')}
+                <label>${escapeHTML(p.l)}</label>
+                <select id="${escapeAttr(p.id)}" name="${escapeAttr(p.id)}" style="width:100%;border:none;background:transparent;color:white;font-weight:700;font-size:1.1rem;text-align:center;">
+                    ${p.options.map(opt => `<option value="${escapeAttr(opt)}" ${val == opt ? 'selected' : ''}>${escapeHTML(opt)}</option>`).join('')}
                 </select>
             </div>`;
         }
 
         if (p.type === 'toggle') {
             return `<div class="param-item">
-                <label>${p.l}</label>
-                <select id="${p.id}" name="${p.id}" style="width:100%;border:none;background:transparent;color:white;font-weight:700;font-size:1.1rem;text-align:center;">
+                <label>${escapeHTML(p.l)}</label>
+                <select id="${escapeAttr(p.id)}" name="${escapeAttr(p.id)}" style="width:100%;border:none;background:transparent;color:white;font-weight:700;font-size:1.1rem;text-align:center;">
                     <option value="Off" ${val === 'Off' ? 'selected' : ''}>OFF</option>
                     <option value="On" ${val === 'On' ? 'selected' : ''}>ON</option>
                 </select>
@@ -1079,25 +1100,25 @@ function renderParamsHTML(params, tabData, override) {
 
         if (p.type === 'percentage') {
             return `<div class="param-item">
-                <label>${p.l}</label>
+                <label>${escapeHTML(p.l)}</label>
                 <div style="display:flex;align-items:center;justify-content:center;">
-                    <input type="number" id="${p.id}" name="${p.id}" value="${val}" style="width:60px;background:transparent;border:none;color:white;font-size:1.2rem;font-weight:700;text-align:center;">
+                    <input type="number" id="${escapeAttr(p.id)}" name="${escapeAttr(p.id)}" value="${escapeAttr(val)}" style="width:60px;background:transparent;border:none;color:white;font-size:1.2rem;font-weight:700;text-align:center;">
                     <span style="font-size:0.8rem;color:var(--text-secondary);">%</span>
                 </div>
             </div>`;
         }
 
         return `<div class="param-item">
-            <label>${p.l}</label>
+            <label>${escapeHTML(p.l)}</label>
             <div style="display:flex;align-items:center;justify-content:center;">
-                <button type="button" class="step-btn" data-id="${p.id}" data-dir="down" style="background:none;border:none;color:var(--accent);font-size:1.5rem;cursor:pointer;padding:0 10px;">−</button>
-                <input type="number" name="${p.id}" id="${p.id}" value="${val}"
+                <button type="button" class="step-btn" data-id="${escapeAttr(p.id)}" data-dir="down" style="background:none;border:none;color:var(--accent);font-size:1.5rem;cursor:pointer;padding:0 10px;">−</button>
+                <input type="number" name="${escapeAttr(p.id)}" id="${escapeAttr(p.id)}" value="${escapeAttr(val)}"
                     min="${p.min !== undefined ? p.min : ''}"
                     max="${p.max !== undefined ? p.max : ''}"
-                    step="${p.step || 1}"
+                    step="${escapeAttr(p.step || 1)}"
                     style="width:80px;background:transparent;border:none;color:white;font-size:1.2rem;font-weight:700;text-align:center;">
-                <span style="font-size:0.7rem;color:var(--text-secondary);margin-left:-5px;">${p.s || ''}</span>
-                <button type="button" class="step-btn" data-id="${p.id}" data-dir="up" style="background:none;border:none;color:var(--accent);font-size:1.5rem;cursor:pointer;padding:0 10px;">+</button>
+                <span style="font-size:0.7rem;color:var(--text-secondary);margin-left:-5px;">${escapeHTML(p.s || '')}</span>
+                <button type="button" class="step-btn" data-id="${escapeAttr(p.id)}" data-dir="up" style="background:none;border:none;color:var(--accent);font-size:1.5rem;cursor:pointer;padding:0 10px;">+</button>
             </div>
         </div>`;
     }).join('');
@@ -1219,27 +1240,27 @@ async function renderDashboard() {
     }
 
     setupsGrid.innerHTML = setups.map(s => `
-        <div class="setup-card${_compareSetups.has(s.id) ? ' selected-for-compare' : ''}" data-id="${s.id}">
+        <div class="setup-card${_compareSetups.has(s.id) ? ' selected-for-compare' : ''}" data-id="${escapeAttr(s.id)}">
             <div class="card-header">
-                <input type="checkbox" class="compare-check" data-id="${s.id}" ${_compareSetups.has(s.id) ? 'checked' : ''}>
-                <button class="fav-btn" data-id="${s.id}" style="background:none;border:none;cursor:pointer;color:${s.isFavorite ? '#f5c518' : '#555'};">
+                <input type="checkbox" class="compare-check" data-id="${escapeAttr(s.id)}" ${_compareSetups.has(s.id) ? 'checked' : ''}>
+                <button class="fav-btn" data-id="${escapeAttr(s.id)}" style="background:none;border:none;cursor:pointer;color:${s.isFavorite ? '#f5c518' : '#555'};">
                     <i data-lucide="${s.isFavorite ? 'star' : 'star-off'}"></i>
                 </button>
                 <div class="card-badges">
-                    <span class="card-badge game-badge">${s.gameName || s.gameId}</span>
-                    <span class="card-badge">${s.weatherType?.toUpperCase() || 'DRY'}</span>
-                    <span class="card-badge session-badge">${s.sessionType || 'Custom'}</span>
+                    <span class="card-badge game-badge">${escapeHTML(s.gameName || s.gameId)}</span>
+                    <span class="card-badge">${escapeHTML(s.weatherType?.toUpperCase() || 'DRY')}</span>
+                    <span class="card-badge session-badge">${escapeHTML(s.sessionType || 'Custom')}</span>
                     <span class="card-rating">${'★'.repeat(s.rating || 0)}${'☆'.repeat(5 - (s.rating || 0))}</span>
                 </div>
             </div>
             <div class="card-info">
-                <h3>${s.setupName || s.carName || 'Sin nombre'}</h3>
-                <p class="card-meta">${s.carName || ''} • ${s.track || 'Sin pista'} • ${s.gameName || s.gameId}</p>
-                ${(s.tags || []).length > 0 ? `<div class="card-tags">${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+                <h3>${escapeHTML(s.setupName || s.carName || 'Sin nombre')}</h3>
+                <p class="card-meta">${escapeHTML(s.carName || '')} · ${escapeHTML(s.track || 'Sin pista')} · ${escapeHTML(s.gameName || s.gameId)}</p>
+                ${(s.tags || []).length > 0 ? `<div class="card-tags">${s.tags.map(t => `<span class="tag">${escapeHTML(t)}</span>`).join('')}</div>` : ''}
             </div>
             <div class="card-actions">
-                <button class="icon-btn duplicate-btn" data-id="${s.id}" title="Duplicar"><i data-lucide="copy"></i></button>
-                <button class="icon-btn delete-btn" data-id="${s.id}" title="Eliminar"><i data-lucide="trash-2"></i></button>
+                <button class="icon-btn duplicate-btn" data-id="${escapeAttr(s.id)}" title="Duplicar"><i data-lucide="copy"></i></button>
+                <button class="icon-btn delete-btn" data-id="${escapeAttr(s.id)}" title="Eliminar"><i data-lucide="trash-2"></i></button>
                 <i data-lucide="chevron-right" style="color:#555;"></i>
             </div>
         </div>
@@ -1394,8 +1415,8 @@ async function renderTelemetryPreview() {
             <h3 style="color:white;">Telemetry Preview <span style="color:var(--accent);font-size:0.8rem;">(datos simulados)</span></h3>
             <div style="display:flex;gap:0.5rem;">
                 ${accSetups.map(s => `
-                    <button class="teleprev-btn ${_telemetrySetupId === s.id ? 'active' : ''}" data-id="${s.id}" style="background:${_telemetrySetupId === s.id ? 'var(--accent)' : 'var(--bg-input)'};border:1px solid var(--border);color:white;padding:0.4rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.8rem;">
-                        ${s.setupName || s.carName || 'Setup'}
+                    <button class="teleprev-btn ${_telemetrySetupId === s.id ? 'active' : ''}" data-id="${escapeAttr(s.id)}" style="background:${_telemetrySetupId === s.id ? 'var(--accent)' : 'var(--bg-input)'};border:1px solid var(--border);color:white;padding:0.4rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.8rem;">
+                        ${escapeHTML(s.setupName || s.carName || 'Setup')}
                     </button>
                 `).join('')}
             </div>
@@ -1427,12 +1448,12 @@ function renderTelemetryChart(setupId) {
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
             ${data.map(group => `
                 <div>
-                    <div style="color:var(--text-secondary);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.75rem;">${group.label}</div>
+                    <div style="color:var(--text-secondary);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.75rem;">${escapeHTML(group.label)}</div>
                     ${group.bars.map(bar => `
                         <div style="margin-bottom:0.6rem;">
                             <div style="display:flex;justify-content:space-between;margin-bottom:0.2rem;">
-                                <span style="color:var(--text-secondary);font-size:0.75rem;">${bar.name}</span>
-                                <span style="color:white;font-size:0.75rem;font-weight:600;">${bar.val} ${bar.unit || ''}</span>
+                                <span style="color:var(--text-secondary);font-size:0.75rem;">${escapeHTML(bar.name)}</span>
+                                <span style="color:white;font-size:0.75rem;font-weight:600;">${escapeHTML(bar.val)} ${escapeHTML(bar.unit || '')}</span>
                             </div>
                             <div style="background:var(--bg-input);border-radius:3px;height:6px;overflow:hidden;">
                                 <div style="width:${bar.pct}%;height:100%;background:${bar.color};border-radius:3px;"></div>
@@ -1556,12 +1577,12 @@ async function renderCommunityHub() {
                         ${publicSetups.map(s => `
                             <div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;background:var(--bg-input);border-radius:8px;">
                                 <div>
-                                    <div style="color:white;font-weight:600;font-size:0.9rem;">${s.setupName || s.carName || 'Sin nombre'}</div>
-                                    <div style="color:var(--text-secondary);font-size:0.75rem;">${s.carName || ''} · ${s.track || ''} · ${s.gameName || ''}</div>
+                                    <div style="color:white;font-weight:600;font-size:0.9rem;">${escapeHTML(s.setupName || s.carName || 'Sin nombre')}</div>
+                                    <div style="color:var(--text-secondary);font-size:0.75rem;">${escapeHTML(s.carName || '')} · ${escapeHTML(s.track || '')} · ${escapeHTML(s.gameName || '')}</div>
                                 </div>
                                 <div style="display:flex;gap:0.5rem;align-items:center;">
-                                    <button class="copy-public-btn" data-id="${s.id}" style="background:none;border:1px solid var(--border);color:var(--text-secondary);padding:0.3rem 0.6rem;border-radius:6px;cursor:pointer;font-size:0.75rem;">Copiar JSON</button>
-                                    <button class="unpublish-btn" data-id="${s.id}" style="background:none;border:1px solid var(--border);color:#ff5252;padding:0.3rem 0.6rem;border-radius:6px;cursor:pointer;font-size:0.75rem;">Ocultar</button>
+                                    <button class="copy-public-btn" data-id="${escapeAttr(s.id)}" style="background:none;border:1px solid var(--border);color:var(--text-secondary);padding:0.3rem 0.6rem;border-radius:6px;cursor:pointer;font-size:0.75rem;">Copiar JSON</button>
+                                    <button class="unpublish-btn" data-id="${escapeAttr(s.id)}" style="background:none;border:1px solid var(--border);color:#ff5252;padding:0.3rem 0.6rem;border-radius:6px;cursor:pointer;font-size:0.75rem;">Ocultar</button>
                                 </div>
                             </div>
                         `).join('')}
@@ -1639,16 +1660,15 @@ async function importCommunitySetup(jsonString) {
     if (!parsed || !parsed.setupData) {
         return { success: false, message: 'No parece un setup válido.' };
     }
-    const now = new Date().toISOString();
-    const imported = {
+    const imported = normalizeImportedSetup({
         ...parsed,
-        id: generateId(),
+        id: undefined,
         setupName: parsed.setupName ? `${parsed.setupName} (importado)` : `${parsed.carName || 'Importado'} @ ${parsed.track || '?'}`,
         isPublic: false,
-        importedAt: now,
-        createdAt: now,
-        updatedAt: now,
-    };
+        importedAt: undefined,
+        createdAt: undefined,
+        updatedAt: undefined,
+    });
     try {
         await SetupService.create(imported);
         return { success: true, message: `✅ Setup "${imported.setupName}" importado correctamente.` };
@@ -1683,7 +1703,7 @@ async function showVersionHistory() {
                             <span style="color:var(--text-secondary);font-size:0.75rem;">${new Date(v.ts).toLocaleString()}</span>
                         </div>
                         <div style="color:var(--text-secondary);font-size:0.75rem;margin-bottom:0.5rem;">
-                            ${v.gameVersion ? `Juego: ${v.gameVersion}` : ''} ${v.platform ? `· ${v.platform}` : ''}
+                            ${v.gameVersion ? `Juego: ${escapeHTML(v.gameVersion)}` : ''} ${v.platform ? ` · ${escapeHTML(v.platform)}` : ''}
                         </div>
                         <div style="color:var(--text-secondary);font-size:0.75rem;margin-bottom:0.75rem;">
                             Params guardados: ${Object.keys(v.setupData || {}).length}

@@ -1,35 +1,8 @@
-/**
- * SetupRepository — Interfaz abstracta para el acceso a datos de setups.
- *
- * Patrón Adapter: toda la app habla con SetupRepository (interfaz).
- * LocalSetupRepository implementa localStorageHOY.
- * Mañana, FirebaseSetupRepository implementa la MISMA interfaz
- * y se sustituye sin tocar nada más.
- *
- * MÉTODOS OBLIGATORIOS QUE DEBE IMPLEMENTAR cualquier adaptador:
- *   getAll()             → Promise<Setup[]>
- *   getById(id)          → Promise<Setup|null>
- *   create(setup)        → Promise<Setup>
- *   update(id, patch)    → Promise<Setup>
- *   delete(id)           → Promise<void>
- *   bulkDelete(ids)      → Promise<void>
- *   importBatch(setups)  → Promise<{created, updated, rejected}>
- *   exportAll()          → Promise<Setup[]>
- */
-export class SetupRepository {
-    async getAll() { throw new Error('Not implemented'); }
-    async getById(id) { throw new Error('Not implemented'); }
-    async create(setup) { throw new Error('Not implemented'); }
-    async update(id, patch) { throw new Error('Not implemented'); }
-    async delete(id) { throw new Error('Not implemented'); }
-    async bulkDelete(ids) { throw new Error('Not implemented'); }
-    async importBatch(setups) { throw new Error('Not implemented'); }
-    async exportAll() { throw new Error('Not implemented'); }
-}
+import { SetupRepository } from '../core/repository.js';
 
 const STORAGE_KEY = 'sr_vault_setups_v2';
 
-export class LocalSetupRepository extends SetupRepository {
+export class LocalStorageSetupRepository extends SetupRepository {
     async _read() {
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
@@ -108,5 +81,4 @@ export class LocalSetupRepository extends SetupRepository {
     }
 }
 
-// Instancia por defecto (localStorage)
-export const setupRepository = new LocalSetupRepository();
+export const setupRepository = new LocalStorageSetupRepository();

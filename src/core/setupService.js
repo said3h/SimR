@@ -1,4 +1,3 @@
-import { setupRepository } from './repository.js';
 import { applySortAndFilter, sortSetups, SORT_OPTIONS } from './filters.js';
 import {
     generateId,
@@ -7,7 +6,7 @@ import {
     normalizeImportedSetup
 } from './utils.js';
 
-class SetupServiceClass {
+export class SetupServiceClass {
     constructor(repo) {
         this._repo = repo;
     }
@@ -161,26 +160,16 @@ class SetupServiceClass {
         return this._repo.update(id, { isFavorite: !setup.isFavorite });
     }
 
-    async exportSetups(filterCriteria = {}, filename = null) {
+    async createExportPayload(filterCriteria = {}) {
         const all = await this._repo.getAll();
         const filtered = applySortAndFilter(all, filterCriteria);
 
-        const payload = {
+        return {
             version: SETUP_TEMPLATE_VERSION,
             exportedAt: new Date().toISOString(),
             count: filtered.length,
             setups: filtered
         };
-
-        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename || `sr_vault_setups_${new Date().toISOString().split('T')[0]}.json`;
-        a.click();
-        URL.revokeObjectURL(url);
-
-        return { exported: filtered.length };
     }
 
     async importSetups(jsonString, strategy = 'skip') {
@@ -265,5 +254,4 @@ class SetupServiceClass {
     }
 }
 
-export const SetupService = new SetupServiceClass(setupRepository);
 export { SORT_OPTIONS };

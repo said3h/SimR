@@ -504,7 +504,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 400, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 500, aeroStep: 1,
     },
-    'ir_byKolles_lmp1': {
+    'ir_byKolles_lmp1_gte_gtp': {
         name: 'ByKolles LMP1', class: 'GTE_GTP',
         tyrePressureMin: 20.5, tyrePressureMax: 34, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -1.5, camberStep: 0.1,
@@ -529,7 +529,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 400, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 500, aeroStep: 1,
     },
-    'ir_brabham_bt19': {
+    'ir_brabham_bt19_gte_gtp': {
         name: 'Brabham BT19', class: 'GTE_GTP',
         tyrePressureMin: 20.5, tyrePressureMax: 34, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -1.5, camberStep: 0.1,
@@ -554,7 +554,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 400, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 500, aeroStep: 1,
     },
-    'ir_rebellion_r13': {
+    'ir_rebellion_r13_gte_gtp': {
         name: 'Rebellion R13', class: 'GTE_GTP',
         tyrePressureMin: 20.5, tyrePressureMax: 34, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -1.5, camberStep: 0.1,
@@ -579,7 +579,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 400, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 500, aeroStep: 1,
     },
-    'ir_oreca_05': {
+    'ir_oreca_05_gte_gtp': {
         name: 'Oreca 05', class: 'GTE_GTP',
         tyrePressureMin: 20.5, tyrePressureMax: 34, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -1.5, camberStep: 0.1,
@@ -604,7 +604,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 400, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 500, aeroStep: 1,
     },
-    'ir_oreca_03r': {
+    'ir_oreca_03r_gte_gtp': {
         name: 'Oreca 03R', class: 'GTE_GTP',
         tyrePressureMin: 20.5, tyrePressureMax: 34, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -1.5, camberStep: 0.1,
@@ -629,7 +629,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 400, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 500, aeroStep: 1,
     },
-    'ir_ligier_js_p2': {
+    'ir_ligier_js_p2_gte_gtp': {
         name: 'Ligier JSP2', class: 'GTE_GTP',
         tyrePressureMin: 20.5, tyrePressureMax: 34, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -1.5, camberStep: 0.1,
@@ -654,7 +654,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 400, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 500, aeroStep: 1,
     },
-    'ir_dallara_p2': {
+    'ir_dallara_p2_gte_gtp': {
         name: 'Dallara P2', class: 'GTE_GTP',
         tyrePressureMin: 20.5, tyrePressureMax: 34, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -1.5, camberStep: 0.1,
@@ -679,7 +679,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 400, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 500, aeroStep: 1,
     },
-    'ir_hpd_arx03': {
+    'ir_hpd_arx03_gte_gtp': {
         name: 'HPD ARX-03', class: 'GTE_GTP',
         tyrePressureMin: 20.5, tyrePressureMax: 34, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -1.5, camberStep: 0.1,
@@ -704,7 +704,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 400, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 500, aeroStep: 1,
     },
-    'ir_hpd_arx04c': {
+    'ir_hpd_arx04c_gte_gtp': {
         name: 'HPD ARX-04c', class: 'GTE_GTP',
         tyrePressureMin: 20.5, tyrePressureMax: 34, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -1.5, camberStep: 0.1,
@@ -5420,7 +5420,7 @@ diffPreloadMin: 20, diffPreloadMax: 200, diffPreloadStep: 5,
         aeroFrontMin: 0, aeroFrontMax: 100, aeroStep: 1,
         aeroRearMin: 0, aeroRearMax: 150, aeroStep: 1,
     },
-    'ir_nissan_z': {
+    'ir_nissan_z_road': {
         name: 'Nissan Z', class: 'Road',
         tyrePressureMin: 26, tyrePressureMax: 36, tyrePressureStep: 0.1,
         camberFrontMin: -4, camberFrontMax: -0.5, camberStep: 0.1,

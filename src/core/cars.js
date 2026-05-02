@@ -1,3 +1,5 @@
+import { getAllIRacingCars } from './overrides/iracing_car_overrides.js';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // CARS BY GAME
 // Fuentes: listados oficiales de cada juego + community wiki
@@ -98,30 +100,9 @@ export const GAME_CARS = {
         { id: 'rally_gr',    name: 'Rally - Toyota GR Yaris',      class: 'Rally' },
     ],
 
-    // ── iRacing ──────────────────────────────────────────────────────────
-    iracing: [
-        { id: 'gt3_ferrari_296',   name: 'Ferrari 296 GT3',           class: 'GT3' },
-        { id: 'gt3_porsche_911',    name: 'Porsche 911 GT3 R',         class: 'GT3' },
-        { id: 'gt3_bmw_m4',        name: 'BMW M4 GT3',                class: 'GT3' },
-        { id: 'gt3_mercedes',       name: 'Mercedes-AMG GT3',          class: 'GT3' },
-        { id: 'gt3_audi_r8',        name: 'Audi R8 LMS GT3',          class: 'GT3' },
-        { id: 'gt3_mclaren_720s',  name: 'McLaren 720S GT3',         class: 'GT3' },
-        { id: 'gt3_nissan_gt_r',  name: 'Nissan GT-R Nismo GT3',    class: 'GT3' },
-        { id: 'formula_f3',         name: 'Dallara F3',               class: 'Formula' },
-        { id: 'formula_sf23',       name: 'Super Formula SF23',        class: 'Formula' },
-        { id: 'formula_ir01',       name: 'IndyCar IR-01',            class: 'Formula' },
-        { id: 'nascar_c7',          name: 'NASCAR Chevrolet C7.R',     class: 'NASCAR' },
-        { id: 'nascar_nextgen',     name: 'NASCAR Next Gen Chevrolet',  class: 'NASCAR' },
-        { id: 'nascar_mustang',     name: 'NASCAR Ford Mustang',       class: 'NASCAR' },
-        { id: 'nascar_camaro',      name: 'NASCAR Chevrolet Camaro',   class: 'NASCAR' },
-        { id: 'lmdh_cadillac',      name: 'Cadillac V-Series.R',      class: 'LMDh' },
-        { id: 'lmdh_bmw',           name: 'BMW M Hybrid V8',          class: 'LMDh' },
-        { id: 'lmdh_porsche',        name: 'Porsche 963',               class: 'LMDh' },
-        { id: 'lmp2_oreca',         name: 'Oreca 07',                   class: 'LMP2' },
-        { id: 'lmp2_duo',           name: 'Dallara P217',              class: 'LMP2' },
-        { id: 'gt4_aston',          name: 'Aston Martin Vantage GT4',  class: 'GT4' },
-        { id: 'gt4_mclaren',        name: 'McLaren 570S GT4',         class: 'GT4' },
-    ],
+    // iRacing
+    // Single source of truth: generated from src/iracing_car_overrides.js.
+    iracing: getAllIRacingCars(),
 
     // ── ASSETTO CORSA ─────────────────────────────────────────────────────
     ac: [
