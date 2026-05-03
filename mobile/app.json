@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "SimRacing Vault",
-    "slug": "sim-racing-vault",
+    "slug": "simracing-vault",
     "version": "0.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
@@ -9,9 +9,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.said.simracingvault"
     },
     "android": {
+      "package": "com.said.simracingvault",
       "adaptiveIcon": {
         "backgroundColor": "#0f172a"
       }

@@ -1,0 +1,53 @@
+name: Mobile EAS Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: "Platform to build"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - android
+          - ios
+          - all
+
+jobs:
+  build:
+    name: Build ${{ github.event.inputs.platform }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies with npm ci
+        if: hashFiles('mobile/package-lock.json') != ''
+        run: npm ci
+
+      - name: Install dependencies with npm install
+        if: hashFiles('mobile/package-lock.json') == ''
+        run: npm install
+
+      - name: Build Android APK
+        if: ${{ github.event.inputs.platform == 'android' || github.event.inputs.platform == 'all' }}
+        run: eas build -p android --profile preview --non-interactive
+
+      - name: Build iOS IPA
+        if: ${{ github.event.inputs.platform == 'ios' || github.event.inputs.platform == 'all' }}
+        run: eas build -p ios --profile preview --non-interactive
