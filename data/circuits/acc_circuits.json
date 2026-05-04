@@ -1,0 +1,43 @@
+{
+  "game": "acc",
+  "gameName": "Assetto Corsa Competizione",
+  "totalCircuits": 32,
+  "circuits": [
+    {"id": "monza", "name": "Monza", "country": "Italy", "type": "Road Course", "length": "5793m"},
+    {"id": "spa_francorchamps", "name": "Spa-Francorchamps", "country": "Belgium", "type": "Road Course", "length": "7004m"},
+    {"id": "silverstone", "name": "Silverstone", "country": "United Kingdom", "type": "Road Course", "length": "5891m"},
+    {"id": "brands_hatch", "name": "Brands Hatch", "country": "United Kingdom", "type": "Road Course", "length": "3540m"},
+    {"id": "paul_ricard", "name": "Paul Ricard", "country": "France", "type": "Road Course", "length": "5409m"},
+    {"id": "hungaroring", "name": "Hungaroring", "country": "Hungary", "type": "Road Course", "length": "4381m"},
+    {"id": "zolder", "name": "Zolder", "country": "Belgium", "type": "Road Course", "length": "4011m"},
+    {"id": "red_bull_ring", "name": "Red Bull Ring", "country": "Austria", "type": "Road Course", "length": "4318m"},
+    {"id": "nurburgring", "name": "Nürburgring GP", "country": "Germany", "type": "Road Course", "length": "5137m"},
+    {"id": "laguna_seca", "name": "Laguna Seca", "country": "USA", "type": "Road Course", "length": "3602m"},
+    {"id": "watkins_glen", "name": "Watkins Glen", "country": "USA", "type": "Road Course", "length": "6106m"},
+    {"id": "suzuka", "name": "Suzuka", "country": "Japan", "type": "Road Course", "length": "5807m"},
+    {"id": "mount_panorama", "name": "Mount Panorama Bathurst", "country": "Australia", "type": "Road Course", "length": "6213m"},
+    {"id": "barcelona", "name": "Barcelona", "country": "Spain", "type": "Road Course", "length": "4657m"},
+    {"id": "imola", "name": "Imola", "country": "Italy", "type": "Road Course", "length": "4909m"},
+    {"id": "donington_park", "name": "Donington Park", "country": "United Kingdom", "type": "Road Course", "length": "3127m"},
+    {"id": "snetterton", "name": "Snetterton", "country": "United Kingdom", "type": "Road Course", "length": "4724m"},
+    {"id": "misano", "name": "Misano", "country": "Italy", "type": "Road Course", "length": "4226m"},
+    {"id": "mugello", "name": "Mugello", "country": "Italy", "type": "Road Course", "length": "5245m"},
+    {"id": "oschersleben", "name": "Oschersleben", "country": "Germany", "type": "Road Course", "length": "3696m"},
+    {"id": "assen", "name": "Assen", "country": "Netherlands", "type": "Road Course", "length": "6020m"},
+    {"id": "sachsenring", "name": "Sachsenring", "country": "Germany", "type": "Road Course", "length": "3645m"},
+    {"id": "dijon", "name": "Dijon", "country": "France", "type": "Road Course", "length": "3812m"},
+    {"id": "leblanc", "name": "Le Blanc", "country": "France", "type": "Road Course", "length": "5065m"},
+    {"id": "kyalami", "name": "Kyalami", "country": "South Africa", "type": "Road Course", "length": "4527m"},
+    {"id": "silverstone_historic", "name": "Silverstone Historic", "country": "United Kingdom", "type": "Road Course", "length": "3634m"},
+    {"id": "raidillon", "name": "Raidillon", "country": "Belgium", "type": "Road Course", "length": "5000m"},
+    {"id": "anderstorp", "name": "Anderstorp", "country": "Sweden", "type": "Road Course", "length": "4032m"},
+    {"id": "gp2_track", "name": "GP2 Track", "country": "Various", "type": "Generic", "length": "6000m"},
+    {"id": "trenton", "name": "Trenton", "country": "USA", "type": "Road Course", "length": "4000m"},
+    {"id": "pergusa", "name": "Pergusa", "country": "Italy", "type": "Road Course", "length": "4955m"},
+    {"id": "willow_springs", "name": "Willow Springs", "country": "USA", "type": "Road Course", "length": "4500m"}
+  ],
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "ACC Official Database"
+  }
+}

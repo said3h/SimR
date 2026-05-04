@@ -1,0 +1,76 @@
+{
+  "game": "dr2",
+  "gameName": "Dirt Rally 2.0",
+  "totalCars": 48,
+  "categories": {
+    "rally1": {
+      "name": "Rally1 (Modern WRC)",
+      "count": 4,
+      "cars": [
+        {"id": "toyota_gr_yaris_rally1", "name": "Toyota GR Yaris Rally1", "year": 2021},
+        {"id": "hyundai_i20_n_rally1", "name": "Hyundai i20 N Rally1", "year": 2021},
+        {"id": "ford_puma_rally1", "name": "Ford Puma Rally1", "year": 2021},
+        {"id": "citroen_c3_rally1", "name": "Citroën C3 Rally1", "year": 2021}
+      ]
+    },
+    "rally2": {
+      "name": "Rally2 (R5)",
+      "count": 3,
+      "cars": [
+        {"id": "skoda_fabia_r5_evo", "name": "Skoda Fabia R5 EVO", "year": 2018},
+        {"id": "ford_fiesta_r5_mk2", "name": "Ford Fiesta R5 Mk2", "year": 2017},
+        {"id": "peugeot_208_t16_r5", "name": "Peugeot 208 T16 R5", "year": 2017}
+      ]
+    },
+    "rally4": {
+      "name": "Rally4 (Junior)",
+      "count": 3,
+      "cars": [
+        {"id": "alpine_a110", "name": "Alpine A110", "year": 2018},
+        {"id": "peugeot_208_rally4", "name": "Peugeot 208 Rally4", "year": 2016},
+        {"id": "opel_corsa_rally4", "name": "Opel Corsa Rally4", "year": 2016}
+      ]
+    },
+    "rallycross": {
+      "name": "Rallycross Supercars",
+      "count": 3,
+      "cars": [
+        {"id": "audi_s1_eks_rx", "name": "Audi S1 EKS RX", "year": 2018},
+        {"id": "ford_fiesta_rx_mk8", "name": "Ford Fiesta RX Mk8", "year": 2018},
+        {"id": "vw_polo_rx", "name": "Volkswagen Polo RX", "year": 2018}
+      ]
+    },
+    "group_b": {
+      "name": "Group B (80s Legends)",
+      "count": 4,
+      "cars": [
+        {"id": "audi_s1_e2", "name": "Audi S1 E2", "year": 1987},
+        {"id": "ford_rs200", "name": "Ford RS200", "year": 1986},
+        {"id": "lancia_delta_s4", "name": "Lancia Delta S4", "year": 1985},
+        {"id": "peugeot_205_t16_evo2", "name": "Peugeot 205 T16 EVO2", "year": 1987}
+      ]
+    },
+    "group_a": {
+      "name": "Group A (90s WRC)",
+      "count": 3,
+      "cars": [
+        {"id": "ford_escort_rs_cosworth", "name": "Ford Escort RS Cosworth", "year": 1992},
+        {"id": "lancia_delta_hf_evo", "name": "Lancia Delta HF EVO", "year": 1991},
+        {"id": "mitsubishi_galant_vr4", "name": "Mitsubishi Galant VR4", "year": 1992}
+      ]
+    },
+    "historic": {
+      "name": "Historic",
+      "count": 3,
+      "cars": [
+        {"id": "lancia_stratos", "name": "Lancia Stratos", "year": 1974},
+        {"id": "ford_sierra_rs500", "name": "Ford Sierra RS500 EVO", "year": 1987},
+        {"id": "alpine_a110_classic", "name": "Alpine A110 1600 SX", "year": 1972}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "DR2 Official Database"
+  }
+}

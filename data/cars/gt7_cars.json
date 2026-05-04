@@ -1,0 +1,29 @@
+{
+  "game": "gt7",
+  "gameName": "Gran Turismo 7",
+  "totalCars": 22,
+  "categories": {
+    "modern": {
+      "name": "Modern Cars",
+      "cars": [
+        {"id": "mercedes_amg_gt_black_series", "name": "Mercedes-AMG GT Black Series", "year": 2020},
+        {"id": "porsche_911_turbo_s", "name": "Porsche 911 Turbo S", "year": 2020},
+        {"id": "ferrari_sf90_stradale", "name": "Ferrari SF90 Stradale", "year": 2019},
+        {"id": "lamborghini_aventador_svj", "name": "Lamborghini Aventador SVJ", "year": 2018},
+        {"id": "bmw_m5_competition", "name": "BMW M5 Competition", "year": 2020}
+      ]
+    },
+    "classic": {
+      "name": "Classic Cars",
+      "cars": [
+        {"id": "ferrari_250_gto", "name": "Ferrari 250 GTO", "year": 1962},
+        {"id": "jaguar_e_type", "name": "Jaguar E-Type", "year": 1961},
+        {"id": "porsche_carrera_rs", "name": "Porsche Carrera RS", "year": 1973}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "GT7 Official Database"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "ac": {
+    "game": "ac",
+    "gameName": "Assetto Corsa",
+    "status": "pending",
+    "totalCars": 0,
+    "categories": {},
+    "note": "To be completed - original Assetto Corsa simulation"
+  },
+  "forza": {
+    "game": "forza",
+    "gameName": "Forza Motorsport",
+    "status": "pending",
+    "totalCars": 0,
+    "categories": {},
+    "note": "To be completed - Xbox Forza racing series"
+  },
+  "rf2": {
+    "game": "rf2",
+    "gameName": "rFactor 2",
+    "status": "pending",
+    "totalCars": 0,
+    "categories": {},
+    "note": "To be completed - Realistic racing simulator"
+  },
+  "ams2": {
+    "game": "ams2",
+    "gameName": "Automobilista 2",
+    "status": "pending",
+    "totalCars": 0,
+    "categories": {},
+    "note": "To be completed - Brazilian racing sim platform"
+  },
+  "rbr": {
+    "game": "rbr",
+    "gameName": "Richard Burns Rally",
+    "status": "pending",
+    "totalCars": 0,
+    "categories": {},
+    "note": "To be completed - Legendary rally simulation"
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "totalPending": 5
+  }
+}

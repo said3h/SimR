@@ -1,0 +1,121 @@
+{
+  "games": [
+    {
+      "id": "acc",
+      "name": "Assetto Corsa Competizione",
+      "category": "Circuit Racing",
+      "cars": 44,
+      "circuits": 32,
+      "parameters": 38,
+      "status": "complete",
+      "description": "Professional GT racing simulation"
+    },
+    {
+      "id": "f1_24",
+      "name": "F1 24",
+      "category": "Formula 1",
+      "cars": 10,
+      "circuits": 24,
+      "parameters": 2,
+      "status": "complete",
+      "description": "Official Formula 1 game"
+    },
+    {
+      "id": "gt7",
+      "name": "Gran Turismo 7",
+      "category": "Circuit Racing",
+      "cars": 22,
+      "circuits": 20,
+      "parameters": 1,
+      "status": "complete",
+      "description": "PlayStation Gran Turismo series"
+    },
+    {
+      "id": "iracing",
+      "name": "iRacing",
+      "category": "Online Sim Racing",
+      "cars": "dynamic",
+      "circuits": 91,
+      "parameters": 30,
+      "status": "complete",
+      "description": "Online racing simulation platform"
+    },
+    {
+      "id": "dr2",
+      "name": "Dirt Rally 2.0",
+      "category": "Rally",
+      "cars": 48,
+      "circuits": 25,
+      "parameters": 20,
+      "status": "complete",
+      "description": "Rally racing simulation"
+    },
+    {
+      "id": "wrc",
+      "name": "EA Sports WRC",
+      "category": "Rally",
+      "cars": 82,
+      "circuits": 19,
+      "parameters": 29,
+      "status": "complete",
+      "description": "Official World Rally Championship"
+    },
+    {
+      "id": "ac",
+      "name": "Assetto Corsa",
+      "category": "Circuit Racing",
+      "cars": 0,
+      "circuits": 0,
+      "parameters": 0,
+      "status": "pending",
+      "description": "Original Assetto Corsa simulation"
+    },
+    {
+      "id": "forza",
+      "name": "Forza Motorsport",
+      "category": "Circuit Racing",
+      "cars": 0,
+      "circuits": 0,
+      "parameters": 0,
+      "status": "pending",
+      "description": "Xbox Forza racing series"
+    },
+    {
+      "id": "rf2",
+      "name": "rFactor 2",
+      "category": "Circuit Racing",
+      "cars": 0,
+      "circuits": 0,
+      "parameters": 0,
+      "status": "pending",
+      "description": "Realistic racing simulator"
+    },
+    {
+      "id": "ams2",
+      "name": "Automobilista 2",
+      "category": "Circuit Racing",
+      "cars": 0,
+      "circuits": 0,
+      "parameters": 0,
+      "status": "pending",
+      "description": "Brazilian racing sim platform"
+    },
+    {
+      "id": "rbr",
+      "name": "Richard Burns Rally",
+      "category": "Rally",
+      "cars": 0,
+      "circuits": 0,
+      "parameters": 0,
+      "status": "pending",
+      "description": "Legendary rally simulation"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-05-05",
+    "totalGames": 11,
+    "completeGames": 6,
+    "pendingGames": 5
+  }
+}

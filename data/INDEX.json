@@ -1,0 +1,113 @@
+{
+  "project": "SimRacing Vault",
+  "dataStructure": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-05-05",
+    "description": "Complete JSON database for SimRacing Vault application"
+  },
+  "files": {
+    "games": {
+      "path": "data/games/games.json",
+      "description": "Master list of all games with status and metadata",
+      "records": 11,
+      "status": "Complete"
+    },
+    "cars": {
+      "acc": {
+        "path": "data/cars/acc_cars.json",
+        "description": "Assetto Corsa Competizione - 44 cars in GT3/GT4 categories",
+        "records": 44,
+        "status": "Complete"
+      },
+      "f1": {
+        "path": "data/cars/f1_cars.json",
+        "description": "F1 24 - 10 F1 teams",
+        "records": 10,
+        "status": "Complete"
+      },
+      "gt7": {
+        "path": "data/cars/gt7_cars.json",
+        "description": "Gran Turismo 7 - 22 cars",
+        "records": 22,
+        "status": "Complete"
+      },
+      "dr2": {
+        "path": "data/cars/dr2_cars.json",
+        "description": "Dirt Rally 2.0 - 48 cars across 7 categories",
+        "records": 48,
+        "status": "Complete"
+      },
+      "wrc": {
+        "path": "data/cars/wrc_cars.json",
+        "description": "EA Sports WRC - 82 cars across 6 categories",
+        "records": 82,
+        "status": "Complete"
+      },
+      "secondary": {
+        "path": "data/cars/secondary_games.json",
+        "description": "AC, Forza, RF2, AMS2, RBR (pending completion)",
+        "records": 5,
+        "status": "Pending"
+      },
+      "iracing": {
+        "note": "iRacing uses dynamic function getAllIRacingCars() - not in JSON"
+      }
+    },
+    "circuits": {
+      "path": "data/circuits/all_circuits.json",
+      "description": "All circuits for all games",
+      "games": [
+        {
+          "game": "acc",
+          "records": 32,
+          "status": "Complete"
+        },
+        {
+          "game": "f1_24",
+          "records": 24,
+          "status": "Complete"
+        },
+        {
+          "game": "gt7",
+          "records": 20,
+          "status": "Complete"
+        },
+        {
+          "game": "dr2",
+          "records": 25,
+          "status": "Complete"
+        },
+        {
+          "game": "wrc",
+          "records": 19,
+          "status": "Complete"
+        },
+        {
+          "game": "iracing",
+          "records": 91,
+          "status": "Documented (91+ tracks)"
+        }
+      ]
+    }
+  },
+  "statistics": {
+    "totalGames": 11,
+    "completeGames": 6,
+    "pendingGames": 5,
+    "totalCars": 242,
+    "totalCircuits": 161,
+    "jsonFiles": 7
+  },
+  "usage": {
+    "format": "JSON REST API compatible",
+    "encoding": "UTF-8",
+    "structure": "Hierarchical with game-specific categorization",
+    "integration": "Can be imported into any database or API backend"
+  },
+  "nextSteps": [
+    "Fill in secondary games (AC, Forza, RF2, AMS2, RBR)",
+    "Import JSON data into application database",
+    "Create API endpoints to serve car/circuit data",
+    "Implement setup saving with linked car/circuit data"
+  ]
+}

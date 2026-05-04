@@ -1,0 +1,24 @@
+{
+  "game": "f1_24",
+  "gameName": "F1 24",
+  "totalCars": 10,
+  "teams": [
+    {"id": "mclaren_f1", "name": "McLaren F1 Team", "year": 2024},
+    {"id": "mercedes_f1", "name": "Mercedes F1 Team", "year": 2024},
+    {"id": "red_bull_f1", "name": "Red Bull Racing", "year": 2024},
+    {"id": "ferrari_f1", "name": "Ferrari", "year": 2024},
+    {"id": "aston_martin_f1", "name": "Aston Martin F1 Team", "year": 2024},
+    {"id": "alpine_f1", "name": "Alpine F1 Team", "year": 2024},
+    {"id": "williams_f1", "name": "Williams F1 Team", "year": 2024},
+    {"id": "haas_f1", "name": "Haas F1 Team", "year": 2024},
+    {"id": "sauber_f1", "name": "Sauber F1 Team", "year": 2024},
+    {"id": "kick_sauber_f1", "name": "Kick Sauber F1 Team", "year": 2024}
+  ],
+  "cars": [
+    {"id": "car_001", "name": "F1 2024 Generic", "engine": "V6 Hybrid", "year": 2024}
+  ],
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "F1 Official Database"
+  }
+}

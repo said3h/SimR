@@ -1,0 +1,93 @@
+{
+  "game": "wrc",
+  "gameName": "EA Sports WRC",
+  "totalCars": 82,
+  "categories": {
+    "wrc_current": {
+      "name": "WRC Current (2022-2024)",
+      "count": 8,
+      "cars": [
+        {"id": "toyota_gr_yaris_wrc_2024", "name": "Toyota GR Yaris WRC 2024", "year": 2024},
+        {"id": "hyundai_i20_n_wrc_2024", "name": "Hyundai i20 N WRC 2024", "year": 2024},
+        {"id": "ford_puma_wrc_2024", "name": "Ford Puma WRC 2024", "year": 2024},
+        {"id": "citroen_c3_wrc_2024", "name": "Citroën C3 WRC 2024", "year": 2024},
+        {"id": "toyota_gr_yaris_wrc_2023", "name": "Toyota GR Yaris WRC 2023", "year": 2023},
+        {"id": "hyundai_i20_n_wrc_2023", "name": "Hyundai i20 N WRC 2023", "year": 2023},
+        {"id": "ford_puma_wrc_2023", "name": "Ford Puma WRC 2023", "year": 2023},
+        {"id": "citroen_c3_wrc_2023", "name": "Citroën C3 WRC 2023", "year": 2023}
+      ]
+    },
+    "wrc2017_2021": {
+      "name": "WRC 2017-2021 Era",
+      "count": 12,
+      "cars": [
+        {"id": "hyundai_i20_wrc_2021", "name": "Hyundai i20 Coupe WRC 2021", "year": 2021},
+        {"id": "toyota_yaris_wrc_2021", "name": "Toyota Yaris WRC 2021", "year": 2021},
+        {"id": "ford_fiesta_wrc_2021", "name": "Ford Fiesta WRC 2021", "year": 2021},
+        {"id": "citroen_c3_wrc_2021", "name": "Citroën C3 WRC 2021", "year": 2021},
+        {"id": "hyundai_i20_wrc_2020", "name": "Hyundai i20 Coupe WRC 2020", "year": 2020},
+        {"id": "toyota_yaris_wrc_2020", "name": "Toyota Yaris WRC 2020", "year": 2020},
+        {"id": "ford_fiesta_wrc_2020", "name": "Ford Fiesta WRC 2020", "year": 2020},
+        {"id": "citroen_c3_wrc_2020", "name": "Citroën C3 WRC 2020", "year": 2020},
+        {"id": "toyota_yaris_wrc_2019", "name": "Toyota Yaris WRC 2019", "year": 2019},
+        {"id": "hyundai_i20_wrc_2019", "name": "Hyundai i20 Coupe WRC 2019", "year": 2019},
+        {"id": "ford_fiesta_wrc_2019", "name": "Ford Fiesta WRC 2019", "year": 2019},
+        {"id": "citroen_c3_wrc_2019", "name": "Citroën C3 WRC 2019", "year": 2019}
+      ]
+    },
+    "wrc2": {
+      "name": "WRC2 Class",
+      "count": 8,
+      "cars": [
+        {"id": "skoda_fabia_wrc2_2024", "name": "Skoda Fabia Rally2 EVO 2024", "year": 2024},
+        {"id": "ford_fiesta_wrc2_2024", "name": "Ford Fiesta Rally2 EVO 2024", "year": 2024},
+        {"id": "hyundai_i20_wrc2_2024", "name": "Hyundai i20 N Rally2 2024", "year": 2024},
+        {"id": "peugeot_208_wrc2_2024", "name": "Peugeot 208 Rally2 2024", "year": 2024},
+        {"id": "skoda_fabia_wrc2_2023", "name": "Skoda Fabia Rally2 EVO 2023", "year": 2023},
+        {"id": "ford_fiesta_wrc2_2023", "name": "Ford Fiesta Rally2 EVO 2023", "year": 2023},
+        {"id": "hyundai_i20_wrc2_2023", "name": "Hyundai i20 N Rally2 2023", "year": 2023},
+        {"id": "peugeot_208_wrc2_2023", "name": "Peugeot 208 Rally2 2023", "year": 2023}
+      ]
+    },
+    "junior_wrc": {
+      "name": "Junior WRC",
+      "count": 4,
+      "cars": [
+        {"id": "ford_fiesta_rally3_2024", "name": "Ford Fiesta Rally3 2024", "year": 2024},
+        {"id": "citroen_c3_rally3_2024", "name": "Citroën C3 Rally2 2024", "year": 2024},
+        {"id": "ford_fiesta_rally3_2023", "name": "Ford Fiesta Rally3 2023", "year": 2023},
+        {"id": "citroen_c3_rally3_2023", "name": "Citroën C3 Rally2 2023", "year": 2023}
+      ]
+    },
+    "historic": {
+      "name": "Historic",
+      "count": 12,
+      "cars": [
+        {"id": "lancia_stratos", "name": "Lancia Stratos", "year": 1974},
+        {"id": "audi_sport_s1_e2", "name": "Audi Sport S1 E2", "year": 1987},
+        {"id": "ford_rs200", "name": "Ford RS200 EVO", "year": 1986},
+        {"id": "lancia_delta_s4", "name": "Lancia Delta S4", "year": 1985},
+        {"id": "audi_quattro_sport", "name": "Audi Quattro Sport", "year": 1985},
+        {"id": "peugeot_205_t16", "name": "Peugeot 205 T16", "year": 1984},
+        {"id": "ford_escort_mk2", "name": "Ford Escort Mk II", "year": 1975},
+        {"id": "alpine_a110", "name": "Alpine A110", "year": 1972},
+        {"id": "fiat_131_abarth", "name": "Fiat 131 Abarth", "year": 1976},
+        {"id": "porsche_911_sc", "name": "Porsche 911 SC", "year": 1978},
+        {"id": "opel_manta_400", "name": "Opel Manta 400", "year": 1985},
+        {"id": "volkswagen_golf_mk1", "name": "Volkswagen Golf GTI Mk1", "year": 1976}
+      ]
+    },
+    "others": {
+      "name": "Other Categories",
+      "count": 38,
+      "cars": [
+        {"id": "skoda_fabia_r5_evo", "name": "Skoda Fabia R5 EVO", "year": 2019},
+        {"id": "ford_fiesta_r5_mk2", "name": "Ford Fiesta R5 Mk2", "year": 2017}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "EA Sports WRC Official Database"
+  }
+}
