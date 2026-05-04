@@ -209,35 +209,197 @@ export const GAME_CARS = {
     ],
 
     // ── DIRT RALLY 2.0 ────────────────────────────────────────────────────
+    // 82 coches totales: Rally1, Rally2, Rally4, Rallycross, Historic, GTRally, etc.
     dr2: [
-        { id: 'dr2_toyota_gr_yaris', name: 'Toyota GR Yaris Rally1',  class: 'Rally1' },
-        { id: 'dr2_hyundai_i20',     name: 'Hyundai i20 N Rally1',    class: 'Rally1' },
-        { id: 'dr2_ford_puma',       name: 'Ford Puma Rally1',        class: 'Rally1' },
-        { id: 'dr2_toyota_gr_supra', name: 'Toyota GR Supra Rally2',  class: 'Rally2' },
-        { id: 'dr2_skoda_fabia',     name: 'Skoda Fabia RS Rally2',   class: 'Rally2' },
-        { id: 'dr2_hyundai_i20_r5',  name: 'Hyundai i20 R5',         class: 'Rally2' },
-        { id: 'dr2_ford_fiesta_r5',  name: 'Ford Fiesta R5',         class: 'Rally2' },
-        { id: 'dr2_vw_polo_r5',      name: 'Volkswagen Polo GTI R5', class: 'Rally2' },
-        { id: 'dr2_subaru_wrx',      name: 'Subaru WRX STI R4',      class: 'Rally2' },
-        { id: 'dr2_4c',              name: 'Alfa Romeo 4C Rally',     class: 'Rally2' },
-        { id: 'dr2_a110',            name: 'Alpine A110 Rally',       class: 'Rally4' },
-        { id: 'dr2_208',             name: 'Peugeot 208 Rally4',     class: 'Rally4' },
-        { id: 'dr2_corsa',           name: 'Opel Corsa Rally4',       class: 'Rally4' },
+        // ─ RALLY1 (Modern WRC)
+        { id: 'dr2_toyota_gr_yaris_rly1', name: 'Toyota GR Yaris Rally1 2024',  class: 'Rally1' },
+        { id: 'dr2_hyundai_i20_rly1',     name: 'Hyundai i20 N Rally1 2024',    class: 'Rally1' },
+        { id: 'dr2_ford_puma_rly1',       name: 'Ford Puma Rally1 2024',        class: 'Rally1' },
+        { id: 'dr2_citroen_c3_rly1',      name: 'Citroën C3 Rally1',            class: 'Rally1' },
+
+        // ─ RALLY2 (R5)
+        { id: 'dr2_toyota_gr_supra_r2',   name: 'Toyota GR Supra Rally2',       class: 'Rally2' },
+        { id: 'dr2_skoda_fabia_r5',       name: 'Skoda Fabia RS Rally2',        class: 'Rally2' },
+        { id: 'dr2_hyundai_i20_r5',       name: 'Hyundai i20 R5 Coupe',         class: 'Rally2' },
+        { id: 'dr2_ford_fiesta_r5_mk7',   name: 'Ford Fiesta R5 Mk VII',        class: 'Rally2' },
+        { id: 'dr2_peugeot_208_r5',       name: 'Peugeot 208 T16 R5',           class: 'Rally2' },
+        { id: 'dr2_citroen_c3_r5',        name: 'Citroën C3 R5',                class: 'Rally2' },
+        { id: 'dr2_vw_polo_r5',           name: 'Volkswagen Polo GTI R5',       class: 'Rally2' },
+        { id: 'dr2_mitsubishi_sr5',       name: 'Mitsubishi Space Star R5',     class: 'Rally2' },
+
+        // ─ RALLY4 (Junior Rally)
+        { id: 'dr2_alpine_a110',          name: 'Alpine A110 Rally',            class: 'Rally4' },
+        { id: 'dr2_peugeot_208_rally4',   name: 'Peugeot 208 Rally4',           class: 'Rally4' },
+        { id: 'dr2_opel_corsa_rally4',    name: 'Opel Corsa Rally4',            class: 'Rally4' },
+        { id: 'dr2_ford_fiesta_rally4',   name: 'Ford Fiesta Rally4',           class: 'Rally4' },
+
+        // ─ R4 & National
+        { id: 'dr2_subaru_wrx_r4',        name: 'Subaru WRX STI R4',            class: 'R4' },
+        { id: 'dr2_mitsubishi_evo_r4',    name: 'Mitsubishi Lancer Evo R4',     class: 'R4' },
+
+        // ─ RALLYCROSS (RX Supercars & Group B)
+        { id: 'dr2_audi_s1_rx',           name: 'Audi S1 EKS RX Quattro',       class: 'RX_Supercar' },
+        { id: 'dr2_ford_fiesta_rx_mk8',   name: 'Ford Fiesta Rallycross Mk VIII', class: 'RX_Supercar' },
+        { id: 'dr2_peugeot_208_wrx',      name: 'Peugeot 208 WRX',              class: 'RX_Supercar' },
+        { id: 'dr2_volkswagen_polo_rx',   name: 'Volkswagen Polo R Supercar',   class: 'RX_Supercar' },
+        { id: 'dr2_subaru_wrx_rx',        name: 'Subaru WRX STI Rallycross',    class: 'RX_Supercar' },
+        { id: 'dr2_renault_megane_rx',    name: 'Renault Sport Megane RS RX',   class: 'RX_Supercar' },
+
+        // ─ GROUP B (Historic 4WD)
+        { id: 'dr2_audi_s1_e2',           name: 'Audi Sport Quattro S1 E2',     class: 'Group_B' },
+        { id: 'dr2_ford_rs200',           name: 'Ford RS200 Evolution',         class: 'Group_B' },
+        { id: 'dr2_lancia_delta_s4',      name: 'Lancia Delta S4',              class: 'Group_B' },
+        { id: 'dr2_peugeot_205_t16_evo2', name: 'Peugeot 205 T16 E2',           class: 'Group_B' },
+        { id: 'dr2_mg_metro_6r4',         name: 'MG Metro 6R4',                 class: 'Group_B' },
+
+        // ─ GROUP A (80s-90s Classics)
+        { id: 'dr2_ford_escort_rs_cosworth', name: 'Ford Escort RS Cosworth',   class: 'Group_A' },
+        { id: 'dr2_lancia_delta_hf_evo',     name: 'Lancia Delta HF Integrale Evo', class: 'Group_A' },
+        { id: 'dr2_mitsubishi_galant_vr4',   name: 'Mitsubishi Galant VR4',     class: 'Group_A' },
+        { id: 'dr2_subaru_impreza_1995',     name: 'Subaru Impreza 555 (1995)',  class: 'Group_A' },
+        { id: 'dr2_subaru_legacy_rs',        name: 'Subaru Legacy RS',           class: 'Group_A' },
+
+        // ─ RWD HISTORIC (70s-80s)
+        { id: 'dr2_ford_escort_mk2',      name: 'Ford Escort Mk II',            class: 'RWD_Historic' },
+        { id: 'dr2_alpine_a110_1600s',    name: 'Alpine Renault A110 1600 S',   class: 'RWD_Historic' },
+        { id: 'dr2_fiat_131_abarth',      name: 'Fiat 131 Abarth Rally',        class: 'RWD_Historic' },
+        { id: 'dr2_opel_kadett_gte',      name: 'Opel Kadett C GTE',            class: 'RWD_Historic' },
+        { id: 'dr2_lancia_stratos',       name: 'Lancia Stratos',               class: 'RWD_Historic' },
+        { id: 'dr2_ford_sierra_rs500',    name: 'Ford Sierra Cosworth RS500',   class: 'RWD_Historic' },
+
+        // ─ FWD HISTORIC
+        { id: 'dr2_peugeot_205_gti',      name: 'Peugeot 205 GTI',              class: 'FWD_Historic' },
+        { id: 'dr2_ford_fiesta_xr2',      name: 'Ford Fiesta XR2',              class: 'FWD_Historic' },
+
+        // ─ GT RALLY (Modern Road Cars)
+        { id: 'dr2_porsche_911_rgt',      name: 'Porsche 911 RGT Rally',        class: 'GT_Rally' },
+        { id: 'dr2_chevrolet_camaro_gt4r', name: 'Chevrolet Camaro GT4R',      class: 'GT_Rally' },
+        { id: 'dr2_ford_mustang_gt4',     name: 'Ford Mustang GT4',             class: 'GT_Rally' },
+        { id: 'dr2_aston_martin_gt4',     name: 'Aston Martin Vantage GT4',     class: 'GT_Rally' },
+        { id: 'dr2_bmw_m2_comp',          name: 'BMW M2 Competition',           class: 'GT_Rally' },
+
+        // ─ CROSS KART
+        { id: 'dr2_cross_kart',           name: 'Cross Kart',                   class: 'Kart' },
     ],
 
     // ── EA SPORTS WRC ─────────────────────────────────────────────────────
+    // 99 coches totales: WRC Modern, Historic, Rally2, Rally3, Rally4, etc.
     wrc: [
-        { id: 'wrc_toyota_gr_yaris', name: 'Toyota GR Yaris Rally1',  class: 'Rally1' },
-        { id: 'wrc_hyundai_i20',     name: 'Hyundai i20 N Rally1',    class: 'Rally1' },
-        { id: 'wrc_ford_puma',       name: 'Ford Puma Rally1',        class: 'Rally1' },
-        { id: 'wrc_crewsport',        name: 'Citroën C3 Rally1',       class: 'Rally1' },
-        { id: 'wrc_skoda_fabia',     name: 'Skoda Fabia RS Rally2',   class: 'Rally2' },
-        { id: 'wrc_hyundai_i20_r5',  name: 'Hyundai i20 R5',         class: 'Rally2' },
-        { id: 'wrc_ford_fiesta_r5',  name: 'Ford Fiesta R5',         class: 'Rally2' },
-        { id: 'wrc_vw_polo_r5',      name: 'Volkswagen Polo GTI R5', class: 'Rally2' },
-        { id: 'wrc_toyota_gr86',     name: 'Toyota GR86 Rally',       class: 'Rally3' },
-        { id: 'wrc_subaru_wrx',      name: 'Subaru WRX STI Rally',   class: 'Rally3' },
-        { id: 'wrc_a110',            name: 'Alpine A110 Rally',       class: 'Rally3' },
+        // ─ WRC CURRENT (Rally1 Hybrid 2023-2024)
+        { id: 'wrc_toyota_gr_yaris_hybrid', name: 'Toyota GR Yaris Rally1 HYBRID', class: 'WRC' },
+        { id: 'wrc_hyundai_i20_hybrid',     name: 'Hyundai i20 N Rally1 HYBRID',   class: 'WRC' },
+        { id: 'wrc_ford_puma_hybrid',       name: 'Ford Puma Rally1 HYBRID',      class: 'WRC' },
+
+        // ─ WRC 2017-2021 (Pre-Hybrid)
+        { id: 'wrc_citroen_c3_2021',       name: 'Citroën C3 WRC 2021',           class: 'WRC_Historic' },
+        { id: 'wrc_ford_fiesta_2018',      name: 'Ford Fiesta WRC 2018',         class: 'WRC_Historic' },
+        { id: 'wrc_hyundai_i20_2020',      name: 'Hyundai i20 Coupe WRC 2020',   class: 'WRC_Historic' },
+        { id: 'wrc_volkswagen_polo_2017',  name: 'Volkswagen Polo R WRC 2017',   class: 'WRC_Historic' },
+
+        // ─ WRC 2012-2016
+        { id: 'wrc_volkswagen_polo_2013',  name: 'Volkswagen Polo R WRC 2013',   class: 'WRC_2012_2016' },
+        { id: 'wrc_citroën_ds3_2012',      name: 'Citroën DS3 WRC 2012',         class: 'WRC_2012_2016' },
+        { id: 'wrc_mini_jcw_2012',         name: 'MINI John Cooper Works WRC',   class: 'WRC_2012_2016' },
+
+        // ─ WRC 1997-2011 (Classic WRC)
+        { id: 'wrc_subaru_impreza_2001',   name: 'Subaru Impreza WRC 2001',      class: 'WRC_1997_2011' },
+        { id: 'wrc_mitsubishi_evo_2007',   name: 'Mitsubishi Lancer Evo IX 2007', class: 'WRC_1997_2011' },
+        { id: 'wrc_ford_focus_2007',       name: 'Ford Focus WRC 2007',          class: 'WRC_1997_2011' },
+        { id: 'wrc_citroen_xsara_2003',    name: 'Citroën Xsara WRC 2003',       class: 'WRC_1997_2011' },
+
+        // ─ WRC2 (Rally2)
+        { id: 'wrc_citroen_c3_rally2',     name: 'Citroën C3 Rally2',            class: 'WRC2' },
+        { id: 'wrc_ford_fiesta_rally2_evo2', name: 'Ford Fiesta Rally2 Evo 2',    class: 'WRC2' },
+        { id: 'wrc_hyundai_i20_rally2',    name: 'Hyundai i20 N Rally2',         class: 'WRC2' },
+        { id: 'wrc_skoda_fabia_rally2_evo', name: 'Skoda Fabia RS Rally2 Evo',    class: 'WRC2' },
+        { id: 'wrc_skoda_fabia_rs_rally2', name: 'Skoda Fabia RS Rally2',        class: 'WRC2' },
+        { id: 'wrc_toyota_gr_yaris_rally2', name: 'Toyota GR Yaris Rally2',      class: 'WRC2' },
+        { id: 'wrc_volkswagen_polo_rally2', name: 'Volkswagen Polo GTI R5',      class: 'WRC2' },
+
+        // ─ JUNIOR WRC (Rally3)
+        { id: 'wrc_ford_fiesta_rally3',    name: 'Ford Fiesta Rally3',           class: 'JuniorWRC' },
+        { id: 'wrc_ford_fiesta_rally3_evo', name: 'Ford Fiesta Rally3 EVO',       class: 'JuniorWRC' },
+        { id: 'wrc_renault_clio_rally3',   name: 'Renault Clio Rally3',          class: 'JuniorWRC' },
+
+        // ─ RALLY4
+        { id: 'wrc_citroen_c2_rally4',     name: 'Citroën C2 R2 Max',            class: 'Rally4' },
+        { id: 'wrc_ford_fiesta_rally4',    name: 'Ford Fiesta Mk VIII Rally4',   class: 'Rally4' },
+        { id: 'wrc_opel_adam_r2',          name: 'Opel Adam R2',                 class: 'Rally4' },
+        { id: 'wrc_opel_corsa_rally4',     name: 'Opel Corsa Rally4',            class: 'Rally4' },
+        { id: 'wrc_peugeot_208_rally4',    name: 'Peugeot 208 Rally4',           class: 'Rally4' },
+        { id: 'wrc_renault_clio_rally4',   name: 'Renault Clio Rally4',          class: 'Rally4' },
+        { id: 'wrc_renault_twingo_rally4', name: 'Renault Twingo II Rally4',     class: 'Rally4' },
+
+        // ─ S1600 (Super 1600)
+        { id: 'wrc_citroen_c2_s1600',      name: 'Citroën C2 Super 1600',        class: 'S1600' },
+        { id: 'wrc_citroen_saxo_s1600',    name: 'Citroën Saxo Super 1600',      class: 'S1600' },
+        { id: 'wrc_ford_puma_s1600',       name: 'Ford Puma S1600',              class: 'S1600' },
+        { id: 'wrc_peugeot_206_s1600',     name: 'Peugeot 206 S1600',            class: 'S1600' },
+        { id: 'wrc_renault_clio_s1600',    name: 'Renault Clio S1600',           class: 'S1600' },
+
+        // ─ S2000
+        { id: 'wrc_fiat_grande_punto_s2000', name: 'Fiat Grande Punto Abarth S2000', class: 'S2000' },
+        { id: 'wrc_opel_corsa_s2000',      name: 'Opel Corsa S2000',             class: 'S2000' },
+        { id: 'wrc_peugeot_207_s2000',     name: 'Peugeot 207 S2000',            class: 'S2000' },
+
+        // ─ KIT CARS (F2)
+        { id: 'wrc_citroen_xsara_kit',     name: 'Citroën Xsara Kit Car',        class: 'KitCar' },
+        { id: 'wrc_ford_escort_kit',       name: 'Ford Escort Mk 6 Maxi Kit Car', class: 'KitCar' },
+        { id: 'wrc_peugeot_306_kit',       name: 'Peugeot 306 Maxi Kit Car',     class: 'KitCar' },
+        { id: 'wrc_renault_maxi_megane',   name: 'Renault Maxi Mégane Kit Car',  class: 'KitCar' },
+        { id: 'wrc_seat_ibiza_kit',        name: 'Seat Ibiza Kit Car',           class: 'KitCar' },
+        { id: 'wrc_vauxhall_astra_kit',    name: 'Vauxhall Astra Rally Car',    class: 'KitCar' },
+        { id: 'wrc_vw_golf_kit',           name: 'Volkswagen Golf IV Kit Car',   class: 'KitCar' },
+
+        // ─ NR4 / R4 (National Rally)
+        { id: 'wrc_mcrae_r4',              name: 'McRae R4',                     class: 'NR4' },
+        { id: 'wrc_mitsubishi_evo_nr4',    name: 'Mitsubishi Lancer Evolution X NR4', class: 'NR4' },
+        { id: 'wrc_subaru_wrx_nr4',        name: 'Subaru WRX STI NR4',           class: 'NR4' },
+
+        // ─ GROUP B (Historic 4WD)
+        { id: 'wrc_audi_s1_e2_groupb',     name: 'Audi Sport Quattro S1 E2',     class: 'Group_B_4WD' },
+        { id: 'wrc_ford_rs200_groupb',     name: 'Ford RS200',                   class: 'Group_B_4WD' },
+        { id: 'wrc_lancia_delta_s4',       name: 'Lancia Delta S4',              class: 'Group_B_4WD' },
+        { id: 'wrc_peugeot_205_t16_evo2',  name: 'Peugeot 205 T16 Evo 2',        class: 'Group_B_4WD' },
+        { id: 'wrc_mg_metro_6r4',          name: 'MG Metro 6R4',                 class: 'Group_B_RWD' },
+
+        // ─ GROUP B RWD (Historic 2WD)
+        { id: 'wrc_bmw_m1_procar',         name: 'BMW M1 Procar Rally',          class: 'Group_B_RWD' },
+        { id: 'wrc_lancia_037_evo2',       name: 'Lancia 037 Evo 2',             class: 'Group_B_RWD' },
+        { id: 'wrc_opel_manta_400',        name: 'Opel Manta 400',               class: 'Group_B_RWD' },
+        { id: 'wrc_porsche_911_sc_rs',     name: 'Porsche 911 SC RS',            class: 'Group_B_RWD' },
+
+        // ─ GROUP A (80s-90s)
+        { id: 'wrc_ford_escort_cosworth',  name: 'Ford Escort RS Cosworth',      class: 'Group_A' },
+        { id: 'wrc_lancia_delta_evo',      name: 'Lancia Delta HF Integrale',    class: 'Group_A' },
+        { id: 'wrc_mitsubishi_galant_vr4', name: 'Mitsubishi Galant VR4',        class: 'Group_A' },
+        { id: 'wrc_subaru_impreza_gc8',    name: 'Subaru Impreza GC8',           class: 'Group_A' },
+        { id: 'wrc_subaru_legacy_rs',      name: 'Subaru Legacy RS',             class: 'Group_A' },
+
+        // ─ HISTORIC (70s-80s)
+        { id: 'wrc_alpine_a110_1600s',     name: 'Alpine Renault A110 1600 S',   class: 'Historic_RWD' },
+        { id: 'wrc_fiat_131_abarth',       name: 'Fiat 131 Abarth Rally',        class: 'Historic_RWD' },
+        { id: 'wrc_ford_escort_mk1',       name: 'Ford Escort RS 1600 Mk I',     class: 'Historic_RWD' },
+        { id: 'wrc_ford_escort_mk2',       name: 'Ford Escort Mk II',            class: 'Historic_RWD' },
+        { id: 'wrc_hillman_avenger',       name: 'Hillman Avenger',              class: 'Historic_RWD' },
+        { id: 'wrc_lancia_stratos',        name: 'Lancia Stratos',               class: 'Historic_RWD' },
+        { id: 'wrc_opel_ascona_400',       name: 'Opel Ascona 400',              class: 'Historic_RWD' },
+        { id: 'wrc_opel_kadett_gte',       name: 'Opel Kadett C GTE',            class: 'Historic_RWD' },
+        { id: 'wrc_talbot_sunbeam_lotus',  name: 'Talbot Sunbeam Lotus',         class: 'Historic_RWD' },
+        { id: 'wrc_ford_sierra_rs500',     name: 'Ford Sierra Cosworth RS500',   class: 'Historic_RWD' },
+        { id: 'wrc_bmw_m3_evo_rally',      name: 'BMW M3 Evo Rally',             class: 'Historic_RWD' },
+
+        // ─ HISTORIC FWD (70s-80s)
+        { id: 'wrc_lancia_fulvia',         name: 'Lancia Fulvia HF',             class: 'Historic_FWD' },
+        { id: 'wrc_mini_cooper_s',         name: 'MINI Cooper S',                class: 'Historic_FWD' },
+        { id: 'wrc_vauxhall_nova_sport',   name: 'Vauxhall Nova Sport',          class: 'Historic_FWD' },
+        { id: 'wrc_peugeot_205_gti',       name: 'Peugeot 205 GTI',              class: 'Historic_FWD' },
+        { id: 'wrc_peugeot_309_gti',       name: 'Peugeot 309 GTI',              class: 'Historic_FWD' },
+        { id: 'wrc_vw_golf_gti',           name: 'Volkswagen Golf GTI',          class: 'Historic_FWD' },
+
+        // ─ H3 (RWD Historic Premium)
+        { id: 'wrc_ford_escort_mcrae',     name: 'Ford Escort Mk II McRae Motorsport', class: 'H3_RWD' },
+        { id: 'wrc_renault_5_turbo',       name: 'Renault 5 Turbo',              class: 'H3_RWD' },
     ],
 
     // ── RACEROOM ───────────────────────────────────────────────────────────

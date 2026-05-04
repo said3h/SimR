@@ -1095,8 +1095,134 @@ export const GAME_TEMPLATES = [
 
     // GROUP 3: RALLY
     { id: 'rbr', name: 'Richard Burns Rally', type: 'group_rally' },
-    { id: 'dr2', name: 'Dirt Rally 2.0', type: 'group_rally' },
-    { id: 'wrc', name: 'EA Sports WRC', type: 'group_rally' },
+
+    // ── DIRT RALLY 2.0 ────────────────────────────────────────────────────────
+    {
+        id: 'dr2',
+        name: 'Dirt Rally 2.0',
+        type: 'tabbed',
+        notes: [
+            { id: 'note_drive', label: 'Notas — Conducción', placeholder: 'Ejs: Coche muy sobrevirador en lluvia. Suspension muy blanda en grava...' },
+            { id: 'note_setup', label: 'Notas — Setup', placeholder: 'Ejs: Diferencial bloqueado 100% en Höljes. Presión baja en nieve...' },
+            { id: 'note_splits', label: 'Notas — Tiempos', placeholder: 'Ejs: Sector 1 rápido con ARB más rígido. Frenada tramo 3 mejorada...' }
+        ],
+        tabs: [
+            {
+                id: 'drivetrain',
+                name: 'Transmisión',
+                params: [
+                    { id: 'df_final', l: 'Relación Final', type: 'step', min: 2.5, max: 5.5, step: 0.1, note: '✓ Afecta velocidad máx y aceleración' },
+                    { id: 'df_lock', l: 'Bloqueo Diff', type: 'step', min: 0, max: 100, step: 5, s: '%', note: '✓ 0%=Abierto, 100%=Bloqueado. Asfalto: 0-40%, Grava: 30-80%' }
+                ]
+            },
+            {
+                id: 'suspension',
+                name: 'Suspensión',
+                params: [
+                    { id: 'suspension_f', l: 'Muelle Delantero', type: 'step', min: 1, max: 12, step: 1, note: '✓ Rigidez del muelle delantero' },
+                    { id: 'suspension_r', l: 'Muelle Trasero', type: 'step', min: 1, max: 12, step: 1, note: '✓ Rigidez del muelle trasero' },
+                    { id: 'arb_f', l: 'ARB Delantero', type: 'step', min: 0, max: 12, step: 1, note: '✓ Anti Roll Bar delantero' },
+                    { id: 'arb_r', l: 'ARB Trasero', type: 'step', min: 0, max: 12, step: 1, note: '✓ Anti Roll Bar trasero' },
+                    { id: 'height_f', l: 'Altura Delante (mm)', type: 'step', min: 80, max: 150, step: 2, s: ' mm', note: '✓ Altura del chasis delante' },
+                    { id: 'height_r', l: 'Altura Atrás (mm)', type: 'step', min: 80, max: 150, step: 2, s: ' mm', note: '✓ Altura del chasis atrás' }
+                ]
+            },
+            {
+                id: 'brakes',
+                name: 'Frenos',
+                params: [
+                    { id: 'brake_balance', l: 'Balance Freno (%)', type: 'step', min: 30, max: 70, step: 1, s: '%', note: '✓ % de presión en eje delantero' },
+                    { id: 'brake_pressure', l: 'Presión Freno (%)', type: 'step', min: 50, max: 120, step: 5, s: '%', note: '✓ Presión total del sistema' }
+                ]
+            },
+            {
+                id: 'tyres',
+                name: 'Neumáticos',
+                params: [
+                    { id: 'tyre_compound', l: 'Compuesto', type: 'options', options: ['Slick', 'Asfalto Seco', 'Asfalto Lluvia', 'Grava Blando', 'Grava Duro', 'Nieve', 'Hielo'], note: '✓ Según superficie' },
+                    { id: 'tyre_pressure_f', l: 'Presión Delante (PSI)', type: 'step', min: 18, max: 32, step: 0.5, s: ' PSI', note: '✓ Varía por superficie y clima' },
+                    { id: 'tyre_pressure_r', l: 'Presión Atrás (PSI)', type: 'step', min: 18, max: 32, step: 0.5, s: ' PSI', note: '✓ Típico: grava 24-26 PSI' }
+                ]
+            },
+            {
+                id: 'geometry',
+                name: 'Geometría',
+                params: [
+                    { id: 'camber_f', l: 'Camber Delante', type: 'step', min: -3, max: 3, step: 0.5, s: '°', note: '✓ Negativo = más grip en curvas' },
+                    { id: 'camber_r', l: 'Camber Atrás', type: 'step', min: -3, max: 3, step: 0.5, s: '°', note: '✓' },
+                    { id: 'toe_f', l: 'Toe-in Delante', type: 'step', min: -1, max: 1, step: 0.1, s: '°', note: '✓ Positivo = estable, Negativo = responsive' },
+                    { id: 'toe_r', l: 'Toe-in Atrás', type: 'step', min: -1, max: 1, step: 0.1, s: '°', note: '✓' }
+                ]
+            }
+        ]
+    },
+
+    // ── EA SPORTS WRC ─────────────────────────────────────────────────────────
+    {
+        id: 'wrc',
+        name: 'EA Sports WRC',
+        type: 'tabbed',
+        notes: [
+            { id: 'note_rally', label: 'Notas — Rally', placeholder: 'Ejs: Etapa Monte-Carlo: tarmac + nieve mix. Asfalto resbaladizo...'},
+            { id: 'note_setup', label: 'Notas — Setup', placeholder: 'Ejs: Diferencial 80% en Höljes. Presiones altas en Estonia...' },
+            { id: 'note_pace', label: 'Notas — Ritmo', placeholder: 'Ejs: Pérdida en frenadas. Mejorar salida de curva lenta...' }
+        ],
+        tabs: [
+            {
+                id: 'driveline',
+                name: 'Transmisión',
+                params: [
+                    { id: 'final_ratio', l: 'Relación Final', type: 'step', min: 2.8, max: 5.2, step: 0.1, note: '✓ Velocidad vs aceleración' },
+                    { id: 'diff_lock_coast', l: 'Bloqueo Coast', type: 'step', min: 0, max: 100, step: 5, s: '%', note: '✓ Al soltar acelerador' },
+                    { id: 'diff_lock_drive', l: 'Bloqueo Aceleración', type: 'step', min: 0, max: 100, step: 5, s: '%', note: '✓ Acelerando' }
+                ]
+            },
+            {
+                id: 'chassis',
+                name: 'Chasis',
+                params: [
+                    { id: 'spring_rate_f', l: 'Rigidez Muelles Del.', type: 'step', min: 30, max: 130, step: 5, s: ' N/mm', note: '✓ Más rígido = menos balanceo' },
+                    { id: 'spring_rate_r', l: 'Rigidez Muelles Tras.', type: 'step', min: 30, max: 130, step: 5, s: ' N/mm', note: '✓' },
+                    { id: 'damper_bump_f', l: 'Amortiguación Bump Del.', type: 'step', min: 1, max: 20, step: 1, note: '✓ Compresión' },
+                    { id: 'damper_bump_r', l: 'Amortiguación Bump Tras.', type: 'step', min: 1, max: 20, step: 1, note: '✓' },
+                    { id: 'damper_rebound_f', l: 'Amortiguación Rebound Del.', type: 'step', min: 1, max: 20, step: 1, note: '✓ Extensión' },
+                    { id: 'damper_rebound_r', l: 'Amortiguación Rebound Tras.', type: 'step', min: 1, max: 20, step: 1, note: '✓' },
+                    { id: 'arb_f', l: 'ARB Delantero', type: 'step', min: 0, max: 30, step: 1, note: '✓ Rigidez barra anti-balanceo' },
+                    { id: 'arb_r', l: 'ARB Trasero', type: 'step', min: 0, max: 30, step: 1, note: '✓' },
+                    { id: 'ride_height', l: 'Altura Chasis (mm)', type: 'step', min: 80, max: 150, step: 2, s: ' mm', note: '✓ Rally típico: 120-140 mm' }
+                ]
+            },
+            {
+                id: 'brakes',
+                name: 'Frenos',
+                params: [
+                    { id: 'brake_balance', l: 'Balance Freno (%)', type: 'step', min: 35, max: 65, step: 1, s: '%', note: '✓ % presión delante' },
+                    { id: 'brake_power_f', l: 'Potencia Freno Del.', type: 'step', min: 50, max: 150, step: 5, s: '%', note: '✓' },
+                    { id: 'brake_power_r', l: 'Potencia Freno Tras.', type: 'step', min: 50, max: 150, step: 5, s: '%', note: '✓' }
+                ]
+            },
+            {
+                id: 'tyres',
+                name: 'Neumáticos',
+                params: [
+                    { id: 'tyre_set', l: 'Juego Neumáticos', type: 'options', options: ['Slick', 'Asfalto Seco', 'Asfalto Lluvia', 'Grava Blando', 'Grava Duro', 'Grava Lluvia', 'Nieve', 'Hielo'], note: '✓ Según terreno' },
+                    { id: 'tyre_pressure_front', l: 'Presión Delante (kPa)', type: 'step', min: 100, max: 250, step: 5, s: ' kPa', note: '✓ Típico grava: 150-180 kPa' },
+                    { id: 'tyre_pressure_rear', l: 'Presión Atrás (kPa)', type: 'step', min: 100, max: 250, step: 5, s: ' kPa', note: '✓' },
+                    { id: 'tyre_wear', l: 'Desgaste Neumáticos', type: 'options', options: ['Nuevo', 'Desgastado'], note: '✓ Afecta grip' }
+                ]
+            },
+            {
+                id: 'geometry',
+                name: 'Alineación',
+                params: [
+                    { id: 'camber_f', l: 'Camber Delante', type: 'step', min: -3.5, max: 0, step: 0.5, s: '°', note: '✓ Negativo típico' },
+                    { id: 'camber_r', l: 'Camber Atrás', type: 'step', min: -3.5, max: 0, step: 0.5, s: '°', note: '✓' },
+                    { id: 'toe_f', l: 'Toe Delante', type: 'step', min: -2, max: 2, step: 0.1, s: '°', note: '✓ Positivo = estable' },
+                    { id: 'toe_r', l: 'Toe Atrás', type: 'step', min: -2, max: 2, step: 0.1, s: '°', note: '✓' }
+                ]
+            }
+        ]
+    },
 
     // GROUP 4: STANDARD SIMPLIFIED
     { id: 'rrre', name: 'RaceRoom', type: 'group_standard' },

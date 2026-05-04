@@ -295,37 +295,64 @@ export const GAME_CIRCUITS = {
 
     // ── DIRT RALLY 2.0 ─────────────────────────────────────────────────────
     dr2: [
-        { id: 'dr2_greece',      name: 'Greece',                               class: 'Rally' },
-        { id: 'dr2_argentina',   name: 'Argentina',                           class: 'Rally' },
-        { id: 'dr2_australia',   name: 'Australia',                           class: 'Rally' },
-        { id: 'dr2_new_zealand', name: 'New Zealand',                        class: 'Rally' },
-        { id: 'dr2_poland',       name: 'Poland',                             class: 'Rally' },
-        { id: 'dr2_spain',        name: 'Spain',                              class: 'Rally' },
-        { id: 'dr2_finland',      name: 'Finland',                            class: 'Rally' },
-        { id: 'dr2_germany',      name: 'Germany',                            class: 'Rally' },
-        { id: 'dr2_italy',       name: 'Italy',                              class: 'Rally' },
-        { id: 'dr2_sweden',      name: 'Sweden',                             class: 'Rally' },
-        { id: 'dr2_norway',      name: 'Norway',                             class: 'Rally' },
-        { id: 'dr2_kenya',       name: 'Kenya',                              class: 'Rally' },
-        { id: 'dr2_japan',       name: 'Japan',                               class: 'Rally' },
-        { id: 'dr2_usa',         name: 'USA',                                class: 'Rally' },
+        // RALLY LOCATIONS (26 locations with 169 stages)
+        // European Classics
+        { id: 'dr2_monte_carlo', name: 'Monte Carlo',                           class: 'European' },
+        { id: 'dr2_sweden_rally', name: 'Sweden Rally',                          class: 'European' },
+        { id: 'dr2_finland_rally', name: 'Finland Rally',                        class: 'European' },
+        { id: 'dr2_germany_rally', name: 'Germany Rally (Rallye Deutschland)',   class: 'European' },
+        { id: 'dr2_italy_rally', name: 'Italy Rally (Rally d\'Italia Sardegna)', class: 'European' },
+        { id: 'dr2_spain_rally', name: 'Spain Rally (Rally RACC)',               class: 'European' },
+        { id: 'dr2_wales_rally', name: 'Wales Rally GB',                         class: 'European' },
+        { id: 'dr2_scotland_rally', name: 'Scotland Rally (Colin McRae)',        class: 'European' },
+        { id: 'dr2_greece_rally', name: 'Greece Rally (Acropolis)',              class: 'European' },
+        { id: 'dr2_portugal_rally', name: 'Portugal Rally',                      class: 'European' },
+        { id: 'dr2_poland_rally', name: 'Poland Rally',                          class: 'European' },
+
+        // Worldwide Locations
+        { id: 'dr2_australia_rally', name: 'Australia Rally',                    class: 'Worldwide' },
+        { id: 'dr2_argentina_rally', name: 'Argentina Rally',                    class: 'Worldwide' },
+        { id: 'dr2_new_zealand_rally', name: 'New Zealand Rally',                class: 'Worldwide' },
+        { id: 'dr2_japan_rally', name: 'Japan Rally',                            class: 'Worldwide' },
+        { id: 'dr2_usa_rally', name: 'USA Rally',                                class: 'Worldwide' },
+        { id: 'dr2_kenya_rally', name: 'Kenya Safari Rally',                     class: 'Worldwide' },
+        { id: 'dr2_china_rally', name: 'China Rally',                            class: 'Worldwide' },
+        { id: 'dr2_mexico_rally', name: 'Mexico Rally',                          class: 'Worldwide' },
+        { id: 'dr2_thailand_rally', name: 'Thailand Rally',                      class: 'Worldwide' },
+        { id: 'dr2_turkey_rally', name: 'Turkey Rally',                          class: 'Worldwide' },
+
+        // Rallycross Locations (8 World RX locations)
+        { id: 'dr2_1xrx_höljes', name: 'World RX - Höljes (Sweden)',             class: 'Rallycross' },
+        { id: 'dr2_wrx_lohéac', name: 'World RX - Lohéac (France)',              class: 'Rallycross' },
+        { id: 'dr2_wrx_lydden', name: 'World RX - Lydden Hill (UK)',            class: 'Rallycross' },
+        { id: 'dr2_wrx_buxtedo', name: 'World RX - Buxtehude (Germany)',         class: 'Rallycross' },
     ],
 
     // ── EA SPORTS WRC ─────────────────────────────────────────────────────
+    // 19 WRC Rally Locations
     wrc: [
-        { id: 'wrc_monaco',      name: 'Monte-Carlo',                         class: 'Rally' },
-        { id: 'wrc_sweden',      name: 'Sweden',                             class: 'Rally' },
-        { id: 'wrc_kenya',       name: 'Kenya',                              class: 'Rally' },
-        { id: 'wrc_chile',       name: 'Chile',                              class: 'Rally' },
-        { id: 'wrc_eth',        name: 'Ethiopia',                           class: 'Rally' },
-        { id: 'wrc_italy',       name: 'Italy',                              class: 'Rally' },
-        { id: 'wrc_estonia',    name: 'Estonia',                            class: 'Rally' },
-        { id: 'wrc_finland',     name: 'Finland',                            class: 'Rally' },
-        { id: 'wrc_greece',     name: 'Greece',                             class: 'Rally' },
-        { id: 'wrc_japan',       name: 'Japan',                               class: 'Rally' },
-        { id: 'wrc_central_europe', name: 'Central Europe',                   class: 'Rally' },
-        { id: 'wrc_spain',       name: 'Spain',                              class: 'Rally' },
-        { id: 'wrc_australia',   name: 'Australia',                         class: 'Rally' },
+        // Classic European Rounds
+        { id: 'wrc_monte_carlo', name: 'Monte-Carlo Rally',                      class: 'European' },
+        { id: 'wrc_rally_sweden', name: 'Rally Sweden',                          class: 'European' },
+        { id: 'wrc_rally_estonia', name: 'Estonia Rally (Secto)',                class: 'Baltic' },
+        { id: 'wrc_rally_finland', name: 'Arctic Rally Finland',                 class: 'European' },
+        { id: 'wrc_acropolis_rally', name: 'Acropolis Rally Greece',             class: 'European' },
+        { id: 'wrc_rally_italy', name: 'Rally Italia Sardegna',                  class: 'European' },
+        { id: 'wrc_rally_españa', name: 'Rally RACC Spain (Catalonia)',          class: 'European' },
+        { id: 'wrc_rally_france', name: 'Rally France Alsace',                   class: 'European' },
+        { id: 'wrc_rally_belgium', name: 'Rally Belgium',                        class: 'European' },
+        { id: 'wrc_rally_germany', name: 'Rallye Deutschland',                   class: 'European' },
+        { id: 'wrc_wales_rally', name: 'Wales Rally GB',                         class: 'European' },
+
+        // International Rounds
+        { id: 'wrc_safari_rally_kenya', name: 'Kenya Safari Rally',              class: 'African' },
+        { id: 'wrc_rally_chile', name: 'Rally Chile',                            class: 'South_American' },
+        { id: 'wrc_rally_argentina', name: 'Rally Argentina',                    class: 'South_American' },
+        { id: 'wrc_rally_japan', name: 'Rally Japan (Hokkaido)',                 class: 'Asian' },
+        { id: 'wrc_rally_new_zealand', name: 'Rally New Zealand',                class: 'Oceania' },
+        { id: 'wrc_rally_australia', name: 'Rally Australia',                    class: 'Oceania' },
+        { id: 'wrc_rally_thailand', name: 'Rally Thailand',                      class: 'Asian' },
+        { id: 'wrc_rally_mexico', name: 'Rally Mexico',                          class: 'North_American' },
     ],
 
     // ── RACEROOM ─────────────────────────────────────────────────────────────
