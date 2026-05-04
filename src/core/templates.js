@@ -1237,6 +1237,302 @@ export const GAME_TEMPLATES = [
         ]
     },
 
+    // ── ASSETTO CORSA (AC) ────────────────────────────────────────────────────
+    {
+        id: 'ac',
+        name: 'Assetto Corsa',
+        type: 'tabbed',
+        weatherVariants: true,
+        notes: [
+            { id: 'note_setup', label: 'Notas — Setup', placeholder: 'Ejs: Balance muy frontal en lluvia. Aumentar rigidez trasera...' },
+            { id: 'note_grip', label: 'Notas — Grip', placeholder: 'Ejs: Buena adherencia en frenada. Mejorar aceleración curva...' }
+        ],
+        tabs: [
+            {
+                id: 'tyres',
+                name: 'Neumáticos',
+                params: [
+                    { id: 'tyre_compound', l: 'Compuesto', type: 'options', options: ['Slicks', 'Road', 'Street'], note: '✓ Según superficie' },
+                    { id: 'tyre_pressure_f', l: 'Presión Delante (PSI)', type: 'step', min: 24, max: 32, step: 0.1, s: ' PSI', note: '✓' },
+                    { id: 'tyre_pressure_r', l: 'Presión Atrás (PSI)', type: 'step', min: 24, max: 32, step: 0.1, s: ' PSI', note: '✓' }
+                ]
+            },
+            {
+                id: 'suspension',
+                name: 'Suspensión',
+                params: [
+                    { id: 'spring_f', l: 'Rigidez Muelle Del. (N/mm)', type: 'step', min: 5, max: 20, step: 0.5, note: '✓' },
+                    { id: 'spring_r', l: 'Rigidez Muelle Tras. (N/mm)', type: 'step', min: 5, max: 20, step: 0.5, note: '✓' },
+                    { id: 'arb_f', l: 'Anti Roll Bar Del.', type: 'step', min: 1, max: 8, step: 0.1, note: '✓' },
+                    { id: 'arb_r', l: 'Anti Roll Bar Tras.', type: 'step', min: 1, max: 8, step: 0.1, note: '✓' },
+                    { id: 'height_f', l: 'Altura Del. (mm)', type: 'step', min: 50, max: 120, step: 1, s: ' mm', note: '✓' },
+                    { id: 'height_r', l: 'Altura Tras. (mm)', type: 'step', min: 50, max: 120, step: 1, s: ' mm', note: '✓' }
+                ]
+            },
+            {
+                id: 'brakes',
+                name: 'Frenos',
+                params: [
+                    { id: 'brake_power', l: 'Potencia Freno', type: 'step', min: 80, max: 120, step: 1, s: '%', note: '✓' },
+                    { id: 'brake_balance', l: 'Balance Freno (%)', type: 'step', min: 40, max: 60, step: 1, s: '%', note: '✓' }
+                ]
+            },
+            {
+                id: 'geometry',
+                name: 'Alineación',
+                params: [
+                    { id: 'camber_f', l: 'Camber Del. (°)', type: 'step', min: -3, max: 0, step: 0.5, s: '°', note: '✓' },
+                    { id: 'camber_r', l: 'Camber Tras. (°)', type: 'step', min: -3, max: 0, step: 0.5, s: '°', note: '✓' },
+                    { id: 'toe_f', l: 'Toe Del. (°)', type: 'step', min: -1, max: 1, step: 0.1, s: '°', note: '✓' },
+                    { id: 'toe_r', l: 'Toe Tras. (°)', type: 'step', min: -1, max: 1, step: 0.1, s: '°', note: '✓' }
+                ]
+            },
+            {
+                id: 'aero',
+                name: 'Aerodinámico',
+                params: [
+                    { id: 'wing_f', l: 'Ala Delantera', type: 'step', min: 0, max: 8, step: 1, note: '✓ Mayor = más downforce' },
+                    { id: 'wing_r', l: 'Ala Trasera', type: 'step', min: 0, max: 8, step: 1, note: '✓' }
+                ]
+            }
+        ]
+    },
+
+    // ── FORZA MOTORSPORT ──────────────────────────────────────────────────────
+    {
+        id: 'forza',
+        name: 'Forza Motorsport',
+        type: 'tabbed',
+        weatherVariants: true,
+        notes: [
+            { id: 'note_setup', label: 'Notas — Setup', placeholder: 'Setup notes...' },
+            { id: 'note_driving', label: 'Notas — Conducción', placeholder: 'Driving notes...' }
+        ],
+        tabs: [
+            {
+                id: 'tyres',
+                name: 'Neumáticos',
+                params: [
+                    { id: 'tyre_compound', l: 'Compuesto', type: 'options', options: ['Slicks', 'Sport', 'Road'], note: '✓' },
+                    { id: 'tyre_pressure_f', l: 'Presión Del. (PSI)', type: 'step', min: 20, max: 35, step: 0.1, s: ' PSI', note: '✓' },
+                    { id: 'tyre_pressure_r', l: 'Presión Tras. (PSI)', type: 'step', min: 20, max: 35, step: 0.1, s: ' PSI', note: '✓' }
+                ]
+            },
+            {
+                id: 'suspension',
+                name: 'Suspensión',
+                params: [
+                    { id: 'spring_f', l: 'Muelles Delante', type: 'step', min: 100, max: 500, step: 5, note: '✓' },
+                    { id: 'spring_r', l: 'Muelles Trasera', type: 'step', min: 100, max: 500, step: 5, note: '✓' },
+                    { id: 'arb_f', l: 'ARB Delante', type: 'step', min: 0, max: 100, step: 1, note: '✓' },
+                    { id: 'arb_r', l: 'ARB Trasera', type: 'step', min: 0, max: 100, step: 1, note: '✓' },
+                    { id: 'height', l: 'Altura Chasis (mm)', type: 'step', min: 50, max: 150, step: 1, s: ' mm', note: '✓' }
+                ]
+            },
+            {
+                id: 'brakes',
+                name: 'Frenos',
+                params: [
+                    { id: 'brake_balance', l: 'Balance Freno', type: 'step', min: 40, max: 60, step: 1, s: '%', note: '✓' },
+                    { id: 'brake_power', l: 'Potencia Freno', type: 'step', min: 80, max: 120, step: 1, s: '%', note: '✓' }
+                ]
+            },
+            {
+                id: 'transmission',
+                name: 'Transmisión',
+                params: [
+                    { id: 'final_ratio', l: 'Relación Final', type: 'step', min: 2, max: 6, step: 0.1, note: '✓' },
+                    { id: 'diff_lock', l: 'Bloqueo Diff', type: 'step', min: 0, max: 100, step: 5, s: '%', note: '✓' }
+                ]
+            },
+            {
+                id: 'aero',
+                name: 'Aerodinámico',
+                params: [
+                    { id: 'wing_f', l: 'Ala Delantera', type: 'step', min: 0, max: 20, step: 1, note: '✓' },
+                    { id: 'wing_r', l: 'Ala Trasera', type: 'step', min: 0, max: 20, step: 1, note: '✓' }
+                ]
+            }
+        ]
+    },
+
+    // ── RFACTOR 2 (RF2) ───────────────────────────────────────────────────────
+    {
+        id: 'rf2',
+        name: 'rFactor 2',
+        type: 'tabbed',
+        weatherVariants: true,
+        notes: [
+            { id: 'note_setup', label: 'Setup Notes', placeholder: 'Setup details...' },
+            { id: 'note_feedback', label: 'Driver Feedback', placeholder: 'Car behavior notes...' }
+        ],
+        tabs: [
+            {
+                id: 'tyres',
+                name: 'Neumáticos',
+                params: [
+                    { id: 'tyre_pressure_f', l: 'Presión Del. (PSI)', type: 'step', min: 20, max: 40, step: 0.1, s: ' PSI', note: '✓' },
+                    { id: 'tyre_pressure_r', l: 'Presión Tras. (PSI)', type: 'step', min: 20, max: 40, step: 0.1, s: ' PSI', note: '✓' }
+                ]
+            },
+            {
+                id: 'suspension',
+                name: 'Suspensión',
+                params: [
+                    { id: 'spring_f', l: 'Rigidez Del.', type: 'step', min: 200, max: 1200, step: 10, note: '✓' },
+                    { id: 'spring_r', l: 'Rigidez Tras.', type: 'step', min: 200, max: 1200, step: 10, note: '✓' },
+                    { id: 'damper_f', l: 'Damper Del.', type: 'step', min: 1000, max: 8000, step: 100, note: '✓' },
+                    { id: 'damper_r', l: 'Damper Tras.', type: 'step', min: 1000, max: 8000, step: 100, note: '✓' },
+                    { id: 'arb_f', l: 'ARB Del.', type: 'step', min: 100, max: 2000, step: 50, note: '✓' },
+                    { id: 'arb_r', l: 'ARB Tras.', type: 'step', min: 100, max: 2000, step: 50, note: '✓' }
+                ]
+            },
+            {
+                id: 'brakes',
+                name: 'Frenos',
+                params: [
+                    { id: 'brake_balance', l: 'Balance', type: 'step', min: 40, max: 65, step: 0.5, s: '%', note: '✓' },
+                    { id: 'brake_pressure', l: 'Presión', type: 'step', min: 1, max: 3, step: 0.05, note: '✓ Atm' }
+                ]
+            },
+            {
+                id: 'geometry',
+                name: 'Alineación',
+                params: [
+                    { id: 'camber_f', l: 'Camber Del.', type: 'step', min: -4, max: 0, step: 0.1, s: '°', note: '✓' },
+                    { id: 'camber_r', l: 'Camber Tras.', type: 'step', min: -4, max: 0, step: 0.1, s: '°', note: '✓' },
+                    { id: 'toe_f', l: 'Toe Del.', type: 'step', min: -1, max: 1, step: 0.05, s: '°', note: '✓' },
+                    { id: 'toe_r', l: 'Toe Tras.', type: 'step', min: -1, max: 1, step: 0.05, s: '°', note: '✓' }
+                ]
+            },
+            {
+                id: 'transmission',
+                name: 'Transmisión',
+                params: [
+                    { id: 'final_ratio', l: 'Relación Final', type: 'step', min: 1, max: 6, step: 0.05, note: '✓' }
+                ]
+            }
+        ]
+    },
+
+    // ── AUTOMOBILISTA 2 (AMS2) ────────────────────────────────────────────────
+    {
+        id: 'ams2',
+        name: 'Automobilista 2',
+        type: 'tabbed',
+        weatherVariants: true,
+        notes: [
+            { id: 'note_setup', label: 'Setup', placeholder: 'Setup adjustments...' },
+            { id: 'note_driver', label: 'Driver Notes', placeholder: 'Car behavior and feedback...' }
+        ],
+        tabs: [
+            {
+                id: 'tyres',
+                name: 'Neumáticos',
+                params: [
+                    { id: 'tyre_pressure_f', l: 'Presión Del. (PSI)', type: 'step', min: 22, max: 34, step: 0.1, s: ' PSI', note: '✓' },
+                    { id: 'tyre_pressure_r', l: 'Presión Tras. (PSI)', type: 'step', min: 22, max: 34, step: 0.1, s: ' PSI', note: '✓' }
+                ]
+            },
+            {
+                id: 'suspension',
+                name: 'Suspensión',
+                params: [
+                    { id: 'spring_f', l: 'Muelles Del. (N/mm)', type: 'step', min: 50, max: 300, step: 5, note: '✓' },
+                    { id: 'spring_r', l: 'Muelles Tras. (N/mm)', type: 'step', min: 50, max: 300, step: 5, note: '✓' },
+                    { id: 'arb_f', l: 'ARB Del.', type: 'step', min: 0, max: 100, step: 1, note: '✓' },
+                    { id: 'arb_r', l: 'ARB Tras.', type: 'step', min: 0, max: 100, step: 1, note: '✓' }
+                ]
+            },
+            {
+                id: 'brakes',
+                name: 'Frenos',
+                params: [
+                    { id: 'brake_balance', l: 'Balance Freno', type: 'step', min: 35, max: 65, step: 1, s: '%', note: '✓' },
+                    { id: 'brake_power', l: 'Potencia', type: 'step', min: 80, max: 120, step: 1, s: '%', note: '✓' }
+                ]
+            },
+            {
+                id: 'transmission',
+                name: 'Transmisión',
+                params: [
+                    { id: 'final_ratio', l: 'Relación Final', type: 'step', min: 2, max: 6, step: 0.1, note: '✓' },
+                    { id: 'diff_lock', l: 'Bloqueo Diff', type: 'step', min: 0, max: 100, step: 5, s: '%', note: '✓' }
+                ]
+            },
+            {
+                id: 'geometry',
+                name: 'Alineación',
+                params: [
+                    { id: 'camber_f', l: 'Camber Del.', type: 'step', min: -3, max: 0, step: 0.5, s: '°', note: '✓' },
+                    { id: 'camber_r', l: 'Camber Tras.', type: 'step', min: -3, max: 0, step: 0.5, s: '°', note: '✓' }
+                ]
+            }
+        ]
+    },
+
+    // ── RICHARD BURNS RALLY (RBR) ─────────────────────────────────────────────
+    {
+        id: 'rbr',
+        name: 'Richard Burns Rally',
+        type: 'tabbed',
+        weatherVariants: false,
+        includFFB: false,
+        notes: [
+            { id: 'note_drive', label: 'Notas — Conducción', placeholder: 'Behavior on different surfaces...' },
+            { id: 'note_setup', label: 'Notas — Setup', placeholder: 'Setup adjustments...' }
+        ],
+        tabs: [
+            {
+                id: 'drivetrain',
+                name: 'Transmisión',
+                params: [
+                    { id: 'final_ratio', l: 'Relación Final', type: 'step', min: 2, max: 6, step: 0.1, note: '✓' },
+                    { id: 'diff_lock', l: 'Bloqueo Diff (%)', type: 'step', min: 0, max: 100, step: 5, s: '%', note: '✓' }
+                ]
+            },
+            {
+                id: 'suspension',
+                name: 'Suspensión',
+                params: [
+                    { id: 'spring_f', l: 'Muelles Del. (N/mm)', type: 'step', min: 50, max: 200, step: 5, note: '✓' },
+                    { id: 'spring_r', l: 'Muelles Tras. (N/mm)', type: 'step', min: 50, max: 200, step: 5, note: '✓' },
+                    { id: 'damper_f', l: 'Damper Del.', type: 'step', min: 1, max: 20, step: 1, note: '✓' },
+                    { id: 'damper_r', l: 'Damper Tras.', type: 'step', min: 1, max: 20, step: 1, note: '✓' },
+                    { id: 'arb', l: 'Anti Roll Bar', type: 'step', min: 0, max: 30, step: 1, note: '✓' },
+                    { id: 'height', l: 'Altura Chasis (mm)', type: 'step', min: 80, max: 150, step: 5, s: ' mm', note: '✓' }
+                ]
+            },
+            {
+                id: 'brakes',
+                name: 'Frenos',
+                params: [
+                    { id: 'brake_balance', l: 'Balance Freno (%)', type: 'step', min: 35, max: 70, step: 1, s: '%', note: '✓' },
+                    { id: 'brake_pressure', l: 'Presión Freno', type: 'step', min: 1, max: 3, step: 0.1, note: '✓ Atm' }
+                ]
+            },
+            {
+                id: 'tyres',
+                name: 'Neumáticos',
+                params: [
+                    { id: 'tyre_compound', l: 'Compuesto', type: 'options', options: ['Asfalto Seco', 'Asfalto Lluvia', 'Grava Blando', 'Grava Duro', 'Nieve'], note: '✓' },
+                    { id: 'tyre_pressure_f', l: 'Presión Del. (kPa)', type: 'step', min: 150, max: 250, step: 5, s: ' kPa', note: '✓' },
+                    { id: 'tyre_pressure_r', l: 'Presión Tras. (kPa)', type: 'step', min: 150, max: 250, step: 5, s: ' kPa', note: '✓' }
+                ]
+            },
+            {
+                id: 'geometry',
+                name: 'Alineación',
+                params: [
+                    { id: 'camber_f', l: 'Camber Del. (°)', type: 'step', min: -3, max: 1, step: 0.5, s: '°', note: '✓' },
+                    { id: 'camber_r', l: 'Camber Tras. (°)', type: 'step', min: -3, max: 1, step: 0.5, s: '°', note: '✓' },
+                    { id: 'toe_f', l: 'Toe Del. (°)', type: 'step', min: -1, max: 1, step: 0.1, s: '°', note: '✓' },
+                    { id: 'toe_r', l: 'Toe Tras. (°)', type: 'step', min: -1, max: 1, step: 0.1, s: '°', note: '✓' }
+                ]
+            }
+        ]
+    },
+
     // GROUP 4: STANDARD SIMPLIFIED
     { id: 'rrre', name: 'RaceRoom', type: 'group_standard' },
     { id: 'pc2', name: 'Project CARS 2', type: 'group_standard' },
