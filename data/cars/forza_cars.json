@@ -1,0 +1,126 @@
+{
+  "game": "forza",
+  "gameName": "Forza Motorsport (2023)",
+  "totalCars": 500,
+  "description": "Forza Motorsport - 500+ cars at launch, organized by divisions and eras",
+  "categories": {
+    "modern_hypercars": {
+      "name": "Modern Hypercars & SuperCars (2010+)",
+      "count": 45,
+      "sample_cars": [
+        {"id": "pagani_huayra_2012", "name": "Pagani Huayra", "year": 2012},
+        {"id": "koenigsegg_jesko_2019", "name": "Koenigsegg Jesko", "year": 2019},
+        {"id": "bugatti_bolide_2020", "name": "Bugatti Bolide", "year": 2020},
+        {"id": "ferrari_sf90_stradale", "name": "Ferrari SF90 Stradale", "year": 2019},
+        {"id": "lamborghini_sian", "name": "Lamborghini Sián", "year": 2019},
+        {"id": "mclaren_speedtail", "name": "McLaren Speedtail", "year": 2018},
+        {"id": "porsche_911_turbo_s_2020", "name": "Porsche 911 Turbo S", "year": 2020},
+        {"id": "mercedes_amg_one", "name": "Mercedes-AMG ONE", "year": 2021},
+        {"id": "rimac_concept_two", "name": "Rimac Concept_Two", "year": 2018},
+        {"id": "aspark_owl", "name": "Aspark Owl", "year": 2020}
+      ]
+    },
+    "gt_racing": {
+      "name": "GT Racing (GT3, GT4, GTE)",
+      "count": 60,
+      "sample_cars": [
+        {"id": "porsche_911_gt3_rs", "name": "Porsche 911 GT3 RS", "year": 2018},
+        {"id": "chevrolet_corvette_c8_gt", "name": "Chevrolet Corvette C8.R", "year": 2020},
+        {"id": "aston_martin_vantage_gte", "name": "Aston Martin Vantage GTE", "year": 2018},
+        {"id": "ferrari_488_gte", "name": "Ferrari 488 GTE", "year": 2018},
+        {"id": "bmw_m4_gt3", "name": "BMW M4 GT3", "year": 2021},
+        {"id": "lamborghini_huracan_gt3_evo2", "name": "Lamborghini Huracán GT3 EVO2", "year": 2022},
+        {"id": "mercedes_amg_gt3", "name": "Mercedes-AMG GT3", "year": 2015},
+        {"id": "audi_r8_lms_evo_ii", "name": "Audi R8 LMS evo II", "year": 2022},
+        {"id": "ford_mustang_gt4", "name": "Ford Mustang GT4", "year": 2016},
+        {"id": "porsche_718_cayman_gt4", "name": "Porsche 718 Cayman GT4", "year": 2019}
+      ]
+    },
+    "formula_racing": {
+      "name": "Formula Racing (F1, F2, IndyCar)",
+      "count": 35,
+      "sample_cars": [
+        {"id": "mercedes_f1_w11", "name": "Mercedes-AMG Petronas F1 W11", "year": 2020},
+        {"id": "red_bull_rb15", "name": "Red Bull Racing RB15", "year": 2019},
+        {"id": "ferrari_sf1000", "name": "Ferrari SF1000", "year": 2020},
+        {"id": "mclaren_mp4_35", "name": "McLaren MCL35", "year": 2020},
+        {"id": "indycar_2020", "name": "Indianapolis 500 Race Car (2020)", "year": 2020},
+        {"id": "formula_e_gen_2", "name": "Formula E Gen 2 Car", "year": 2018},
+        {"id": "f2_2019", "name": "Formula 2 Car", "year": 2019},
+        {"id": "f3_2019", "name": "Formula 3 Car", "year": 2019},
+        {"id": "lmp1_hybrid", "name": "LMP1 Hybrid Prototype", "year": 2018},
+        {"id": "dallara_f320", "name": "Dallara F320", "year": 2020}
+      ]
+    },
+    "classic_cars": {
+      "name": "Classic & Vintage (1960s-1990s)",
+      "count": 85,
+      "sample_cars": [
+        {"id": "ferrari_250_gto_1962", "name": "Ferrari 250 GTO", "year": 1962},
+        {"id": "jaguar_e_type_1961", "name": "Jaguar E-Type", "year": 1961},
+        {"id": "porsche_911_1973", "name": "Porsche 911 Carrera RS", "year": 1973},
+        {"id": "ford_gt40_1966", "name": "Ford GT40", "year": 1966},
+        {"id": "shelby_cobra_1963", "name": "Shelby Cobra 427 SC", "year": 1963},
+        {"id": "lamborghini_miura_1966", "name": "Lamborghini Miura", "year": 1966},
+        {"id": "mclaren_f1_1993", "name": "McLaren F1", "year": 1993},
+        {"id": "ferrari_testarossa_1984", "name": "Ferrari Testarossa", "year": 1984},
+        {"id": "bmw_m1_1978", "name": "BMW M1", "year": 1978},
+        {"id": "aston_martin_db5_1963", "name": "Aston Martin DB5", "year": 1963}
+      ]
+    },
+    "muscle_cars": {
+      "name": "Muscle & American Cars",
+      "count": 60,
+      "sample_cars": [
+        {"id": "dodge_challenger_1970", "name": "Dodge Challenger R/T", "year": 1970},
+        {"id": "plymouth_road_runner_1969", "name": "Plymouth Road Runner", "year": 1969},
+        {"id": "chevrolet_camaro_ss_1969", "name": "Chevrolet Camaro SS", "year": 1969},
+        {"id": "ford_mustang_boss_429_1969", "name": "Ford Mustang Boss 429", "year": 1969},
+        {"id": "cadillac_eldorado_1959", "name": "Cadillac Eldorado", "year": 1959},
+        {"id": "pontiac_gto_1966", "name": "Pontiac GTO", "year": 1966},
+        {"id": "buick_skylark_1970", "name": "Buick Skylark GSX", "year": 1970},
+        {"id": "oldsmobile_442_1970", "name": "Oldsmobile 442", "year": 1970},
+        {"id": "dodge_charger_1968", "name": "Dodge Charger R/T", "year": 1968},
+        {"id": "chevy_nova_ss_1970", "name": "Chevy Nova SS", "year": 1970}
+      ]
+    },
+    "japanese_sports": {
+      "name": "Japanese Sports & Tuners",
+      "count": 50,
+      "sample_cars": [
+        {"id": "nissan_skyline_gtr_r35", "name": "Nissan Skyline GT-R R35", "year": 2016},
+        {"id": "mazda_rx7_fd3s", "name": "Mazda RX-7 FD3S", "year": 1993},
+        {"id": "toyota_ae86", "name": "Toyota AE86 Corolla GT-S", "year": 1985},
+        {"id": "honda_civic_type_r", "name": "Honda Civic Type R", "year": 2015},
+        {"id": "subaru_impreza_wrx_sti", "name": "Subaru Impreza WRX STI", "year": 2011},
+        {"id": "mitsubishi_lancer_evo_x", "name": "Mitsubishi Lancer Evolution X", "year": 2008},
+        {"id": "nissan_370z", "name": "Nissan 370Z", "year": 2008},
+        {"id": "toyota_supra_a90", "name": "Toyota Supra A90", "year": 2019},
+        {"id": "lexus_lfa", "name": "Lexus LFA", "year": 2010},
+        {"id": "acura_nsx", "name": "Acura NSX", "year": 2016}
+      ]
+    },
+    "trucks_suv": {
+      "name": "Trucks & SUVs (Rally, Offroad)",
+      "count": 35,
+      "sample_cars": [
+        {"id": "ford_f150_raptor", "name": "Ford F-150 Raptor", "year": 2017},
+        {"id": "range_rover_sport_svr", "name": "Range Rover Sport SVR", "year": 2015},
+        {"id": "jeep_wrangler", "name": "Jeep Wrangler Rubicon", "year": 2018},
+        {"id": "hummer_h1", "name": "Hummer H1", "year": 1992},
+        {"id": "ford_bronco_1966", "name": "Ford Bronco", "year": 1966},
+        {"id": "land_rover_defender_90", "name": "Land Rover Defender 90", "year": 2015},
+        {"id": "subaru_baja", "name": "Subaru Baja", "year": 2002},
+        {"id": "ford_fiesta_rs_rally", "name": "Ford Fiesta RS Rally", "year": 2016},
+        {"id": "hyundai_veloster_n_tcr", "name": "Hyundai Veloster N TCR", "year": 2018},
+        {"id": "volkswagen_beetle_gsr", "name": "Volkswagen Beetle GSR", "year": 1972}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "Forza Official Database - kudosprime.com",
+    "totalDivisions": 6,
+    "note": "500+ cars at launch with seasonal DLC additions"
+  }
+}

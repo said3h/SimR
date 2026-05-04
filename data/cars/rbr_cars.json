@@ -1,0 +1,95 @@
+{
+  "game": "rbr",
+  "gameName": "Richard Burns Rally",
+  "totalCars": 50,
+  "description": "Richard Burns Rally - Classic and modern rally cars, expandable with mods",
+  "categories": {
+    "wrc_modern": {
+      "name": "Modern WRC (2000s-2010s)",
+      "count": 8,
+      "cars": [
+        {"id": "ford_focus_rs_wrc_05", "name": "Ford Focus RS WRC 05", "year": 2005},
+        {"id": "ford_focus_rs_wrc_06", "name": "Ford Focus RS WRC 06", "year": 2006},
+        {"id": "subaru_impreza_wrx_sti", "name": "Subaru Impreza WRX STI", "year": 2007},
+        {"id": "mitsubishi_lancer_evo_x", "name": "Mitsubishi Lancer Evolution X", "year": 2008},
+        {"id": "citroen_c4_wrc", "name": "Citroën C4 WRC", "year": 2007},
+        {"id": "peugeot_307_wrc", "name": "Peugeot 307 WRC", "year": 2003},
+        {"id": "renault_clio_rsnormahal", "name": "Renault Clio RS", "year": 2006},
+        {"id": "saab_9_3_wrc", "name": "Saab 9-3 WRC", "year": 2004}
+      ]
+    },
+    "wrc_1990s": {
+      "name": "1990s WRC",
+      "count": 6,
+      "cars": [
+        {"id": "ford_escort_rs_cosworth", "name": "Ford Escort RS Cosworth", "year": 1992},
+        {"id": "lancia_delta_hf_evo", "name": "Lancia Delta HF Evoluzione", "year": 1991},
+        {"id": "subaru_legacy_rs", "name": "Subaru Legacy RS", "year": 1993},
+        {"id": "toyota_celica_gt4", "name": "Toyota Celica GT-Four", "year": 1994},
+        {"id": "mitsubishi_galant_vr4", "name": "Mitsubishi Galant VR4", "year": 1992},
+        {"id": "ford_sierra_cosworth", "name": "Ford Sierra RS Cosworth", "year": 1989}
+      ]
+    },
+    "group_b": {
+      "name": "Group B (1980s Legends)",
+      "count": 8,
+      "cars": [
+        {"id": "audi_s1_e2", "name": "Audi Sport S1 E2", "year": 1987},
+        {"id": "ford_rs200", "name": "Ford RS200 Evolution", "year": 1986},
+        {"id": "lancia_delta_s4", "name": "Lancia Delta S4", "year": 1985},
+        {"id": "audi_quattro_sport", "name": "Audi Quattro Sport S1", "year": 1985},
+        {"id": "peugeot_205_t16_evo2", "name": "Peugeot 205 T16 E2", "year": 1987},
+        {"id": "mx_5_turbo", "name": "MX-5 Turbo", "year": 1989},
+        {"id": "datsun_240z", "name": "Datsun 240Z", "year": 1970},
+        {"id": "toyota_ae86", "name": "Toyota AE86 Corolla", "year": 1985}
+      ]
+    },
+    "group_a": {
+      "name": "Group A (1970s-1980s)",
+      "count": 6,
+      "cars": [
+        {"id": "lancia_stratos", "name": "Lancia Stratos", "year": 1974},
+        {"id": "porsche_911_carrera_rs", "name": "Porsche 911 Carrera RS", "year": 1973},
+        {"id": "alpine_a110_1600s", "name": "Alpine A110 1600 SX", "year": 1972},
+        {"id": "ford_escort_mk2_rs", "name": "Ford Escort Mk2 RS 2000", "year": 1975},
+        {"id": "fiat_131_abarth", "name": "Fiat 131 Abarth", "year": 1976},
+        {"id": "opel_manta_400", "name": "Opel Manta 400", "year": 1985}
+      ]
+    },
+    "classic": {
+      "name": "Classic Rally Cars (1960s-1970s)",
+      "count": 6,
+      "cars": [
+        {"id": "mini_cooper_s", "name": "Mini Cooper S", "year": 1964},
+        {"id": "bmw_2002", "name": "BMW 2002 Tii", "year": 1971},
+        {"id": "fulvia_1_6_hf", "name": "Lancia Fulvia 1.6 HF", "year": 1970},
+        {"id": "toyota_corolla_1600gt", "name": "Toyota Corolla 1600 GT", "year": 1970},
+        {"id": "porsche_911e", "name": "Porsche 911E", "year": 1970},
+        {"id": "volkswagen_karmann_ghia", "name": "Volkswagen Karmann Ghia", "year": 1966}
+      ]
+    },
+    "other_rally": {
+      "name": "Other Rally & Street Cars",
+      "count": 10,
+      "cars": [
+        {"id": "opel_kadett_gsi", "name": "Opel Kadett GSi", "year": 1989},
+        {"id": "vauxhall_nova_gsi", "name": "Vauxhall Nova GSi", "year": 1987},
+        {"id": "mg_metro_6r4", "name": "MG Metro 6R4", "year": 1984},
+        {"id": "rover_mini_spares", "name": "Rover Mini Cooper", "year": 1988},
+        {"id": "volkswagen_golf_gti", "name": "Volkswagen Golf GTi", "year": 1982},
+        {"id": "renault_5_turbo", "name": "Renault 5 Turbo", "year": 1980},
+        {"id": "sunbeam_lotus", "name": "Sunbeam Lotus", "year": 1980},
+        {"id": "talbot_sunbeam_ti", "name": "Talbot Sunbeam Lotus Ti", "year": 1981},
+        {"id": "volkswagen_scirocco_gti", "name": "Volkswagen Scirocco GTi", "year": 1985},
+        {"id": "rover_25_vi", "name": "Rover 25 Vi", "year": 2000}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "Richard Burns Rally - rallysimfans.hu",
+    "baseGameCars": 8,
+    "expandableWithMods": true,
+    "note": "Base game includes 8 cars. Extensive mod support available through rallysimfans.hu plugin with 50+ additional vehicles"
+  }
+}

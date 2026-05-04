@@ -1,0 +1,136 @@
+{
+  "game": "rf2",
+  "gameName": "rFactor 2",
+  "totalCars": 93,
+  "description": "rFactor 2 - 93 official cars including GT3, Formula, Touring, Stock Cars",
+  "categories": {
+    "gt3_racing": {
+      "name": "GT3 Racing",
+      "count": 20,
+      "cars": [
+        {"id": "porsche_911_gt3_r_rf2", "name": "Porsche 911 GT3 R", "year": 2019},
+        {"id": "mercedes_amg_gt3_rf2", "name": "Mercedes-AMG GT3", "year": 2019},
+        {"id": "bmw_m6_gt3_rf2", "name": "BMW M6 GT3", "year": 2019},
+        {"id": "audi_r8_lms_rf2", "name": "Audi R8 LMS", "year": 2019},
+        {"id": "lamborghini_huracan_gt3_rf2", "name": "Lamborghini Huracán GT3", "year": 2019},
+        {"id": "ferrari_488_gt3_rf2", "name": "Ferrari 488 GT3", "year": 2019},
+        {"id": "mclaren_650s_gt3_rf2", "name": "McLaren 650S GT3", "year": 2015},
+        {"id": "nissan_gtr_gt3_rf2", "name": "Nissan GT-R GT3", "year": 2019},
+        {"id": "bentley_continental_gt3_rf2", "name": "Bentley Continental GT3", "year": 2018},
+        {"id": "jaguar_f_type_gt3_rf2", "name": "Jaguar F-TYPE GT3", "year": 2016},
+        {"id": "lexus_rc_f_gt3_rf2", "name": "Lexus RC F GT3", "year": 2017},
+        {"id": "honda_nsx_gt3_rf2", "name": "Honda NSX GT3", "year": 2016},
+        {"id": "maserati_gt_mc_gt3_rf2", "name": "Maserati MC GT3", "year": 2016},
+        {"id": "peugeot_rcz_gt3_rf2", "name": "Peugeot RCZ GT3", "year": 2016},
+        {"id": "alpine_a110_gt3_rf2", "name": "Alpine A110 GT3", "year": 2018},
+        {"id": "aston_martin_vantage_gt3_rf2", "name": "Aston Martin Vantage GT3", "year": 2018},
+        {"id": "dodge_viper_gt3_rf2", "name": "Dodge Viper ACR GT3", "year": 2016},
+        {"id": "corvette_c7r_rf2", "name": "Chevrolet Corvette C7 R", "year": 2014},
+        {"id": "ktm_x_bow_gt2_rf2", "name": "KTM X-Bow GT2", "year": 2016},
+        {"id": "lamborghini_huracan_st_rf2", "name": "Lamborghini Huracán Super Trofeo", "year": 2017}
+      ]
+    },
+    "formula_racing": {
+      "name": "Formula Racing",
+      "count": 15,
+      "cars": [
+        {"id": "f1_2021_generic", "name": "Formula 1 2021 Car", "year": 2021},
+        {"id": "f2_2020", "name": "Formula 2 2020 Car", "year": 2020},
+        {"id": "f3_2019", "name": "Formula 3 2019 Car", "year": 2019},
+        {"id": "indycar_2021", "name": "IndyCar DW12 2021", "year": 2021},
+        {"id": "formula_e_gen2", "name": "Formula E Gen 2 Car", "year": 2018},
+        {"id": "lmp1_hybrid", "name": "LMP1 Hybrid Prototype", "year": 2018},
+        {"id": "formula_vintage_1600", "name": "Formula Vintage 1600", "year": 1980},
+        {"id": "formula_junior", "name": "Formula Junior", "year": 1960},
+        {"id": "f3000_1989", "name": "Formula 3000 1989", "year": 1989},
+        {"id": "indy_lola", "name": "Indy Lola", "year": 1998},
+        {"id": "champ_car", "name": "Champ Car", "year": 2007},
+        {"id": "caterham_superlight", "name": "Caterham Superlight", "year": 2018},
+        {"id": "ariel_atom", "name": "Ariel Atom", "year": 2020},
+        {"id": "radical_sr8", "name": "Radical SR8 RX", "year": 2020},
+        {"id": "locost_7", "name": "Locost 7", "year": 2015}
+      ]
+    },
+    "touring_cars": {
+      "name": "Touring & Road Cars",
+      "count": 25,
+      "cars": [
+        {"id": "bmw_m3_e92_rf2", "name": "BMW M3 E92", "year": 2008},
+        {"id": "honda_civic_type_r_rf2", "name": "Honda Civic Type R FK2", "year": 2015},
+        {"id": "hyundai_i30_n_tcr", "name": "Hyundai i30 N TCR", "year": 2018},
+        {"id": "volkswagen_golf_gti_tcr", "name": "Volkswagen Golf GTI TCR", "year": 2018},
+        {"id": "peugeot_308_tcr", "name": "Peugeot 308 TCR", "year": 2018},
+        {"id": "seat_leon_cupra_tcr", "name": "SEAT León Cupra TCR", "year": 2018},
+        {"id": "nissan_altima_tcr", "name": "Nissan Altima TCR", "year": 2018},
+        {"id": "porsche_911_carrera_cup", "name": "Porsche 911 Carrera Cup", "year": 2019},
+        {"id": "porsche_cayman_gt4_clubsport", "name": "Porsche Cayman GT4 Clubsport", "year": 2016},
+        {"id": "ferrari_f430_challenge", "name": "Ferrari F430 Challenge", "year": 2015},
+        {"id": "lamborghini_gallardo_lp600", "name": "Lamborghini Gallardo LP 600", "year": 2013},
+        {"id": "bmw_z4_gt3", "name": "BMW Z4 GT3", "year": 2011},
+        {"id": "ford_focus_st", "name": "Ford Focus ST", "year": 2015},
+        {"id": "audi_rs3", "name": "Audi RS3", "year": 2017},
+        {"id": "subaru_sti", "name": "Subaru WRX STI", "year": 2018},
+        {"id": "mitsubishi_lancer_evo", "name": "Mitsubishi Lancer Evo X", "year": 2008},
+        {"id": "mazda_mx5_miata", "name": "Mazda MX5 Miata", "year": 2016},
+        {"id": "chevrolet_corvette_c8", "name": "Chevrolet Corvette C8", "year": 2020},
+        {"id": "porsche_992_carrera_4s", "name": "Porsche 992 Carrera 4S", "year": 2019},
+        {"id": "lamborghini_huracan_evo", "name": "Lamborghini Huracán EVO", "year": 2019},
+        {"id": "mclaren_570s", "name": "McLaren 570S", "year": 2015},
+        {"id": "ferrari_f8_tributo", "name": "Ferrari F8 Tributo", "year": 2019},
+        {"id": "aston_martin_db11", "name": "Aston Martin DB11", "year": 2016},
+        {"id": "bentley_continental_gtc", "name": "Bentley Continental GTC", "year": 2018},
+        {"id": "bugatti_chiron", "name": "Bugatti Chiron", "year": 2016}
+      ]
+    },
+    "stock_cars": {
+      "name": "Stock Cars (NASCAR)",
+      "count": 20,
+      "cars": [
+        {"id": "nascar_cup_2021", "name": "NASCAR Cup Series 2021", "year": 2021},
+        {"id": "nascar_truck_2021", "name": "NASCAR Truck Series 2021", "year": 2021},
+        {"id": "nascar_xfinity_2021", "name": "NASCAR Xfinity Series 2021", "year": 2021},
+        {"id": "nascar_vintage_1970s", "name": "NASCAR Vintage 1970s", "year": 1975},
+        {"id": "nascar_vintage_1980s", "name": "NASCAR Vintage 1980s", "year": 1985},
+        {"id": "indycar_oval", "name": "IndyCar Oval Configuration", "year": 2021},
+        {"id": "imca_modified", "name": "IMCA Modified", "year": 2020},
+        {"id": "super_late_model", "name": "Super Late Model", "year": 2020},
+        {"id": "midget_car", "name": "Midget Car", "year": 2020},
+        {"id": "sprint_car", "name": "Sprint Car", "year": 2020},
+        {"id": "dirtcar_supermodified", "name": "Dirt Car Supermodified", "year": 2020},
+        {"id": "dirt_late_model", "name": "Dirt Late Model", "year": 2020},
+        {"id": "legend_car", "name": "Legend Car", "year": 2020},
+        {"id": "street_stock", "name": "Street Stock", "year": 2020},
+        {"id": "hobby_stock", "name": "Hobby Stock", "year": 2020},
+        {"id": "pure_stock", "name": "Pure Stock", "year": 2020},
+        {"id": "bomber", "name": "Bomber Car", "year": 2020},
+        {"id": "mini_stock", "name": "Mini Stock", "year": 2020},
+        {"id": "vintage_f1", "name": "Vintage Formula 1 1980", "year": 1980},
+        {"id": "historic_sportcar", "name": "Historic Sports Car", "year": 1970}
+      ]
+    },
+    "other_racing": {
+      "name": "Other Racing Categories",
+      "count": 13,
+      "cars": [
+        {"id": "lmp2_dpi", "name": "LMP2 / DPi Prototype", "year": 2018},
+        {"id": "lmp3_car", "name": "LMP3 Car", "year": 2017},
+        {"id": "formula_electric", "name": "Formula Electric", "year": 2020},
+        {"id": "hypercar", "name": "Hypercar LMH/LMDh", "year": 2021},
+        {"id": "gtc_car", "name": "GTC Car", "year": 2015},
+        {"id": "vintage_gt", "name": "Vintage GT Car", "year": 1970},
+        {"id": "pickup_truck", "name": "Pickup Truck Racing", "year": 2020},
+        {"id": "super_truck", "name": "Super Truck", "year": 2020},
+        {"id": "buggy", "name": "Off-Road Buggy", "year": 2020},
+        {"id": "rally_car", "name": "Rally Car", "year": 2020},
+        {"id": "formula_vee", "name": "Formula Vee", "year": 2020},
+        {"id": "formula_ford", "name": "Formula Ford", "year": 1980},
+        {"id": "fc_sport_2000", "name": "Formula C / Sport 2000", "year": 2000}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "rFactor 2 Official - Traxion.gg",
+    "totalCategories": 5
+  }
+}

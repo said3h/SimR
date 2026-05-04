@@ -2,45 +2,90 @@
   "ac": {
     "game": "ac",
     "gameName": "Assetto Corsa",
-    "status": "pending",
-    "totalCars": 0,
-    "categories": {},
-    "note": "To be completed - original Assetto Corsa simulation"
+    "status": "complete",
+    "totalCars": 53,
+    "categories": {
+      "GT3": 30,
+      "GT4": 11,
+      "GT/Others": 12
+    },
+    "source": "assettocorsamods.com",
+    "note": "Original Assetto Corsa simulation - 53 cars across GT3/GT4/GT categories"
   },
   "forza": {
     "game": "forza",
-    "gameName": "Forza Motorsport",
-    "status": "pending",
-    "totalCars": 0,
-    "categories": {},
-    "note": "To be completed - Xbox Forza racing series"
+    "gameName": "Forza Motorsport (2023)",
+    "status": "complete",
+    "totalCars": 500,
+    "categories": {
+      "Modern Hypercars": 45,
+      "GT Racing": 60,
+      "Formula Racing": 35,
+      "Classic/Vintage": 85,
+      "Muscle Cars": 60,
+      "Japanese Sports": 50,
+      "Trucks/SUVs": 35,
+      "Other": 130
+    },
+    "source": "kudosprime.com/fm/carlist.php",
+    "note": "500+ cars at launch with seasonal DLC additions - 6 major divisions"
   },
   "rf2": {
     "game": "rf2",
     "gameName": "rFactor 2",
-    "status": "pending",
-    "totalCars": 0,
-    "categories": {},
-    "note": "To be completed - Realistic racing simulator"
+    "status": "complete",
+    "totalCars": 93,
+    "categories": {
+      "GT3 Racing": 20,
+      "Formula Racing": 15,
+      "Touring Cars": 25,
+      "Stock Cars": 20,
+      "Other Racing": 13
+    },
+    "source": "Traxion.gg",
+    "note": "Realistic racing simulator - 93 official cars including GT3, Formula, Touring, Stock Cars"
   },
   "ams2": {
     "game": "ams2",
     "gameName": "Automobilista 2",
-    "status": "pending",
-    "totalCars": 0,
-    "categories": {},
-    "note": "To be completed - Brazilian racing sim platform"
+    "status": "complete",
+    "totalCars": 259,
+    "totalClasses": 104,
+    "categories": {
+      "Modern GT": 35,
+      "Formula Racing": 30,
+      "Touring Cars": 45,
+      "Prototype Racing": 20,
+      "Stock Cars": 35,
+      "Classic/Vintage": 60,
+      "Brazilian Stock": 20,
+      "Other": 14
+    },
+    "source": "ams2cars.info",
+    "note": "Brazilian racing sim - 259 cars across 104 official racing classes from 1960s to modern"
   },
   "rbr": {
     "game": "rbr",
     "gameName": "Richard Burns Rally",
-    "status": "pending",
-    "totalCars": 0,
-    "categories": {},
-    "note": "To be completed - Legendary rally simulation"
+    "status": "complete",
+    "totalCars": 50,
+    "baseGameCars": 8,
+    "expandableWithMods": true,
+    "categories": {
+      "Modern WRC": 8,
+      "1990s WRC": 6,
+      "Group B": 8,
+      "Group A": 6,
+      "Classic": 6,
+      "Other Rally": 10
+    },
+    "source": "rallysimfans.hu",
+    "note": "Classic rally simulation - 8 base cars, 50+ with Rallysimfans plugin"
   },
   "metadata": {
     "lastUpdated": "2026-05-05",
-    "totalPending": 5
+    "completedSecondaryGames": 5,
+    "totalSecondaryGamesCars": 955,
+    "combinedTotalWithPrimaryGames": 1197
   }
 }

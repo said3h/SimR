@@ -1,0 +1,143 @@
+{
+  "game": "ams2",
+  "gameName": "Automobilista 2",
+  "totalCars": 259,
+  "totalClasses": 104,
+  "description": "Automobilista 2 - 259 cars across 104 racing classes from 1960s to modern era",
+  "categories": {
+    "modern_gt": {
+      "name": "Modern GT Racing (GT3, GTE, GT2)",
+      "count": 35,
+      "sample_cars": [
+        {"id": "porsche_911_gt3_ams2", "name": "Porsche 911 GT3 R", "year": 2019},
+        {"id": "mercedes_amg_gt3_ams2", "name": "Mercedes-AMG GT3", "year": 2019},
+        {"id": "bmw_m6_gt3_ams2", "name": "BMW M6 GT3", "year": 2019},
+        {"id": "audi_r8_lms_ams2", "name": "Audi R8 LMS", "year": 2019},
+        {"id": "lamborghini_huracan_gt3_ams2", "name": "Lamborghini Huracán GT3", "year": 2019},
+        {"id": "ferrari_488_gt3_ams2", "name": "Ferrari 488 GT3", "year": 2019},
+        {"id": "nissan_gtr_gt3_ams2", "name": "Nissan GT-R GT3", "year": 2019},
+        {"id": "chevrolet_corvette_c8r_ams2", "name": "Chevrolet Corvette C8 R", "year": 2020},
+        {"id": "aston_martin_vantage_gte_ams2", "name": "Aston Martin Vantage GTE", "year": 2018},
+        {"id": "ferrari_488_gte_ams2", "name": "Ferrari 488 GTE", "year": 2018}
+      ]
+    },
+    "formula_racing": {
+      "name": "Formula Racing (F1-F3, IndyCar, Formula E)",
+      "count": 30,
+      "sample_cars": [
+        {"id": "formula_1_ams2", "name": "Formula 1 Generic", "year": 2021},
+        {"id": "formula_2_ams2", "name": "Formula 2 Generic", "year": 2021},
+        {"id": "formula_3_ams2", "name": "Formula 3 Generic", "year": 2021},
+        {"id": "indycar_ams2", "name": "IndyCar DW12", "year": 2021},
+        {"id": "formula_e_ams2", "name": "Formula E Generic", "year": 2021},
+        {"id": "formula_vee_ams2", "name": "Formula Vee", "year": 2020},
+        {"id": "formula_ford_ams2", "name": "Formula Ford", "year": 1980},
+        {"id": "f3000_ams2", "name": "Formula 3000", "year": 1989},
+        {"id": "indycar_oval_ams2", "name": "IndyCar Oval Setup", "year": 2021},
+        {"id": "champ_car_ams2", "name": "Champ Car", "year": 2007}
+      ]
+    },
+    "touring_cars": {
+      "name": "Touring & Road Cars (TCR, IMSA, Street)",
+      "count": 45,
+      "sample_cars": [
+        {"id": "honda_civic_tcr_ams2", "name": "Honda Civic Type R TCR", "year": 2018},
+        {"id": "hyundai_i30_n_tcr_ams2", "name": "Hyundai i30 N TCR", "year": 2018},
+        {"id": "volkswagen_golf_gti_tcr_ams2", "name": "Volkswagen Golf GTI TCR", "year": 2018},
+        {"id": "seat_leon_tcr_ams2", "name": "SEAT León Cupra TCR", "year": 2018},
+        {"id": "peugeot_308_tcr_ams2", "name": "Peugeot 308 TCR", "year": 2018},
+        {"id": "nissan_sentra_nismo_tcr_ams2", "name": "Nissan Sentra Nismo TCR", "year": 2018},
+        {"id": "subaru_wrx_sti_ams2", "name": "Subaru WRX STI", "year": 2018},
+        {"id": "mitsubishi_lancer_evo_ams2", "name": "Mitsubishi Lancer Evolution X", "year": 2008},
+        {"id": "ford_focus_st_ams2", "name": "Ford Focus ST", "year": 2015},
+        {"id": "audi_rs3_ams2", "name": "Audi RS3", "year": 2017}
+      ]
+    },
+    "prototype_racing": {
+      "name": "Prototype Racing (LMP1, LMP2, LMP3, DPi)",
+      "count": 20,
+      "sample_cars": [
+        {"id": "lmp1_hybrid_ams2", "name": "LMP1 Hybrid", "year": 2018},
+        {"id": "lmp1_hyper_ams2", "name": "LMP1 Hypercar", "year": 2021},
+        {"id": "lmp2_oreca_ams2", "name": "LMP2 Oreca", "year": 2017},
+        {"id": "lmp3_ligier_ams2", "name": "LMP3 Ligier", "year": 2017},
+        {"id": "dpi_cadillac_ams2", "name": "DPi Cadillac", "year": 2018},
+        {"id": "dpi_acura_ams2", "name": "DPi Acura NSX", "year": 2018},
+        {"id": "dpi_bmw_ams2", "name": "DPi BMW M8", "year": 2018},
+        {"id": "dpi_nissan_ams2", "name": "DPi Nissan", "year": 2018},
+        {"id": "prototype_vintage_ams2", "name": "Vintage Prototype 1960s", "year": 1965},
+        {"id": "prototype_vintage_70s_ams2", "name": "Vintage Prototype 1970s", "year": 1975}
+      ]
+    },
+    "stock_cars": {
+      "name": "Stock Cars (NASCAR, V8 Supercars)",
+      "count": 35,
+      "sample_cars": [
+        {"id": "nascar_cup_2021_ams2", "name": "NASCAR Cup Series 2021", "year": 2021},
+        {"id": "nascar_truck_ams2", "name": "NASCAR Truck Series", "year": 2021},
+        {"id": "nascar_xfinity_ams2", "name": "NASCAR Xfinity Series", "year": 2021},
+        {"id": "v8_supercar_ams2", "name": "V8 Supercar", "year": 2016},
+        {"id": "v8_super_2000_ams2", "name": "V8 Super 2000", "year": 2015},
+        {"id": "nascar_vintage_ams2", "name": "NASCAR Vintage", "year": 1975},
+        {"id": "imca_modified_ams2", "name": "IMCA Modified", "year": 2020},
+        {"id": "super_late_model_ams2", "name": "Super Late Model", "year": 2020},
+        {"id": "sprint_car_ams2", "name": "Sprint Car", "year": 2020},
+        {"id": "midget_car_ams2", "name": "Midget Car", "year": 2020}
+      ]
+    },
+    "classic_vintage": {
+      "name": "Classic & Vintage (1960s-1980s)",
+      "count": 60,
+      "sample_cars": [
+        {"id": "ferrari_250_gto_ams2", "name": "Ferrari 250 GTO", "year": 1962},
+        {"id": "jaguar_e_type_ams2", "name": "Jaguar E-Type", "year": 1961},
+        {"id": "porsche_911_ams2", "name": "Porsche 911 Carrera RS", "year": 1973},
+        {"id": "ford_gt40_ams2", "name": "Ford GT40", "year": 1966},
+        {"id": "shelby_cobra_ams2", "name": "Shelby Cobra", "year": 1963},
+        {"id": "lamborghini_miura_ams2", "name": "Lamborghini Miura", "year": 1966},
+        {"id": "bmw_3_0_csl_ams2", "name": "BMW 3.0 CSL", "year": 1973},
+        {"id": "chevrolet_corvette_sting_ray_ams2", "name": "Chevrolet Corvette Sting Ray", "year": 1963},
+        {"id": "dodge_charger_ams2", "name": "Dodge Charger", "year": 1969},
+        {"id": "aston_martin_db5_ams2", "name": "Aston Martin DB5", "year": 1963}
+      ]
+    },
+    "brazilian_stock": {
+      "name": "Brazilian Stock (Divisão Especial, Stock Car Brasil)",
+      "count": 20,
+      "sample_cars": [
+        {"id": "stock_car_brasil_2021", "name": "Stock Car Brasil 2021", "year": 2021},
+        {"id": "divisao_especial_ams2", "name": "Divisão Especial", "year": 2020},
+        {"id": "copa_truck_ams2", "name": "Copa Truck", "year": 2020},
+        {"id": "pickup_truck_ams2", "name": "Pickup Truck Racing", "year": 2020},
+        {"id": "super_truck_ams2", "name": "Super Truck Brasil", "year": 2020},
+        {"id": "porsche_carrera_cup_ams2", "name": "Porsche Carrera Cup", "year": 2019},
+        {"id": "mini_cup_ams2", "name": "Mini Challenge", "year": 2020},
+        {"id": "formula_3_regional_ams2", "name": "F3 Regional", "year": 2020},
+        {"id": "formula_vee_brasil_ams2", "name": "Formula Vee Brasil", "year": 2020},
+        {"id": "campeonato_paulista_ams2", "name": "Campeonato Paulista", "year": 2020}
+      ]
+    },
+    "other_racing": {
+      "name": "Other Racing Categories",
+      "count": 14,
+      "sample_cars": [
+        {"id": "rally_car_ams2", "name": "Rally Car Generic", "year": 2020},
+        {"id": "group_c_ams2", "name": "Group C Prototype", "year": 1985},
+        {"id": "group_b_ams2", "name": "Group B Rally Car", "year": 1985},
+        {"id": "formula_e_vintage_ams2", "name": "Formula E Vintage", "year": 2010},
+        {"id": "buggy_ams2", "name": "Off-Road Buggy", "year": 2020},
+        {"id": "baja_truck_ams2", "name": "Baja Truck", "year": 2020},
+        {"id": "truck_offroad_ams2", "name": "Truck Off-Road", "year": 2020},
+        {"id": "motocross_ams2", "name": "Motocross Car", "year": 2020},
+        {"id": "endurance_car_ams2", "name": "Endurance Car", "year": 2020},
+        {"id": "formula_v12_ams2", "name": "Formula V12", "year": 2015}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "Automobilista 2 - ams2cars.info",
+    "totalCategories": 8,
+    "note": "259 cars across 104 official racing classes"
+  }
+}

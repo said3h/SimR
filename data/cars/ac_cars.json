@@ -1,0 +1,84 @@
+{
+  "game": "ac",
+  "gameName": "Assetto Corsa",
+  "totalCars": 53,
+  "description": "Original Assetto Corsa - 53 cars in GT3, GT4, GT2 and GT categories",
+  "categories": {
+    "gt3": {
+      "name": "GT3",
+      "count": 30,
+      "cars": [
+        {"id": "porsche_991_gt3_r", "name": "Porsche 911 GT3 R", "year": 2019},
+        {"id": "mercedes_amg_gt3", "name": "Mercedes-AMG GT3", "year": 2019},
+        {"id": "bmw_m6_gt3", "name": "BMW M6 GT3", "year": 2019},
+        {"id": "audi_r8_lms_evo", "name": "Audi R8 LMS evo", "year": 2019},
+        {"id": "lamborghini_huracan_gt3", "name": "Lamborghini Huracán GT3", "year": 2019},
+        {"id": "ferrari_488_gt3", "name": "Ferrari 488 GT3", "year": 2019},
+        {"id": "mclaren_650s_gt3", "name": "McLaren 650S GT3", "year": 2017},
+        {"id": "nissan_gtr_nismo_gt3", "name": "Nissan GT-R NISMO GT3", "year": 2018},
+        {"id": "bentley_continental_gt3", "name": "Bentley Continental GT3", "year": 2018},
+        {"id": "jaguar_f_type_gt3", "name": "Jaguar F-TYPE GT3", "year": 2016},
+        {"id": "lexus_rc_f_gt3", "name": "Lexus RC F GT3", "year": 2017},
+        {"id": "honda_nsx_gt3", "name": "Honda NSX GT3", "year": 2016},
+        {"id": "maserati_mc_gt3", "name": "Maserati MC GT3", "year": 2016},
+        {"id": "peugeot_rcz_gt3", "name": "Peugeot RCZ GT3", "year": 2016},
+        {"id": "alpine_a110_gt3", "name": "Alpine A110 GT3", "year": 2018},
+        {"id": "aston_martin_vantage_gt3", "name": "Aston Martin Vantage GT3", "year": 2018},
+        {"id": "dodge_viper_acr_gt3", "name": "Dodge Viper ACR GT3", "year": 2016},
+        {"id": "corvette_c7r", "name": "Chevrolet Corvette C7 R", "year": 2014},
+        {"id": "callaway_corvette_gt3r", "name": "Callaway Corvette GT3-R", "year": 2015},
+        {"id": "nissan_gtr_gt3", "name": "Nissan GT-R GT3", "year": 2015},
+        {"id": "ktm_x_bow_gt2", "name": "KTM X-Bow GT2", "year": 2016},
+        {"id": "lamborghini_huracan_super_trofeo", "name": "Lamborghini Huracán Super Trofeo", "year": 2017},
+        {"id": "bmw_m4_gt4", "name": "BMW M4 GT4", "year": 2016},
+        {"id": "chevrolet_camaro_gt4r", "name": "Chevrolet Camaro GT4.R", "year": 2017},
+        {"id": "ford_mustang_gt4", "name": "Ford Mustang GT4", "year": 2016},
+        {"id": "ginetta_g55_gt4", "name": "Ginetta G55 GT4", "year": 2012},
+        {"id": "ktm_x_bow_gt4", "name": "KTM X-Bow GT4", "year": 2015},
+        {"id": "mclaren_570s_gt4", "name": "McLaren 570S GT4", "year": 2016},
+        {"id": "porsche_718_cayman_gt4", "name": "Porsche 718 Cayman GT4", "year": 2016},
+        {"id": "range_rover_evoque_gt4", "name": "Range Rover Evoque GT4", "year": 2017}
+      ]
+    },
+    "gt4": {
+      "name": "GT4",
+      "count": 11,
+      "cars": [
+        {"id": "bmw_m4_gt4_gt4", "name": "BMW M4 GT4", "year": 2016},
+        {"id": "chevrolet_camaro_gt4r_gt4", "name": "Chevrolet Camaro GT4.R", "year": 2017},
+        {"id": "ford_mustang_gt4_gt4", "name": "Ford Mustang GT4", "year": 2016},
+        {"id": "ginetta_g55_gt4_gt4", "name": "Ginetta G55 GT4", "year": 2012},
+        {"id": "ktm_x_bow_gt4_gt4", "name": "KTM X-Bow GT4", "year": 2015},
+        {"id": "mclaren_570s_gt4_gt4", "name": "McLaren 570S GT4", "year": 2016},
+        {"id": "porsche_718_cayman_gt4_gt4", "name": "Porsche 718 Cayman GT4", "year": 2016},
+        {"id": "range_rover_evoque_gt4_gt4", "name": "Range Rover Evoque GT4", "year": 2017},
+        {"id": "nissan_370z_gt4", "name": "Nissan 370Z GT4", "year": 2012},
+        {"id": "jaguar_f_type_svr_gt4", "name": "Jaguar F-TYPE SVR GT4", "year": 2016},
+        {"id": "aston_martin_v12_vantage_gt3", "name": "Aston Martin V12 Vantage GT3", "year": 2014}
+      ]
+    },
+    "gt2": {
+      "name": "GT2 / GT / Others",
+      "count": 12,
+      "cars": [
+        {"id": "porsche_911_turbo", "name": "Porsche 911 Turbo", "year": 2010},
+        {"id": "ferrari_f430", "name": "Ferrari F430", "year": 2005},
+        {"id": "lamborghini_murcielago", "name": "Lamborghini Murciélago", "year": 2003},
+        {"id": "pagani_huayra", "name": "Pagani Huayra", "year": 2012},
+        {"id": "koenigsegg_ccx", "name": "Koenigsegg CCX", "year": 2006},
+        {"id": "bugatti_veyron", "name": "Bugatti Veyron", "year": 2005},
+        {"id": "mclaren_f1", "name": "McLaren F1", "year": 1993},
+        {"id": "lancia_stratos", "name": "Lancia Stratos", "year": 1974},
+        {"id": "alpha_romeo_33", "name": "Alfa Romeo 33", "year": 1989},
+        {"id": "toyota_ae86", "name": "Toyota AE86", "year": 1987},
+        {"id": "nissan_skyline_gtr_r34", "name": "Nissan Skyline GT-R R34", "year": 2002},
+        {"id": "mazda_rx7_fd", "name": "Mazda RX-7 FD", "year": 1991}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "Assetto Corsa Official Database",
+    "website": "https://www.assettocorsamods.com/"
+  }
+}
