@@ -12,6 +12,10 @@ import { getWRCCarOverride } from '../../core/overrides/wrc_car_overrides.js';
 
 /**
  * Param → Override key mappings (extensible)
+ *
+ * Note: For nested override objects like finalRatio: { min: 3.8, max: 4.8, step: 0.05 },
+ * we need to extract min/max/step from nested structure at apply-time (see applyGameOverrides).
+ * For flat override values, map directly to template parameter IDs.
  */
 const OVERRIDE_MAPS = {
   acc: {
@@ -44,6 +48,60 @@ const OVERRIDE_MAPS = {
   },
   iracing: {
     p_fl:   { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
+  },
+  dr2: {
+    // Map template param IDs to override nested object keys
+    // Nested objects follow pattern: { min: x, max: y, step: z }
+    df_final:        { nested: 'finalRatio' },
+    spring_f:        { nested: 'springRateFront' },
+    spring_r:        { nested: 'springRateRear' },
+    damper_bump:     { nested: 'damperBump' },
+    damper_rebound:  { nested: 'damperRebound' },
+    arb_f:           { nested: 'arbFront' },
+    arb_r:           { nested: 'arbRear' },
+    height:          { nested: 'rideHeight' },
+    brake_power:     { nested: 'brakePower' },
+    brake_bias:      { nested: 'brakeBias' },
+    tyre_pres_f:     { nested: 'tyrePressureFront' },
+    tyre_pres_r:     { nested: 'tyrePressureRear' },
+    tyre_thermal:    { nested: 'tyreBrake' },
+    camber_f:        { nested: 'camberFront' },
+    camber_r:        { nested: 'camberRear' },
+    toe_f:           { nested: 'toeFront' },
+    toe_r:           { nested: 'toeRear' },
+    // Note: df_lock_* params use template defaults; override diff lock constraints are flat (diffLockMin/Max/Step)
+  },
+  wrc: {
+    // Will be completed after validating WRC override structure
+    final_ratio:         { nested: 'finalRatio' },
+    diff_lock_accel:     { nested: 'diffLockAccel' },
+    diff_lock_coast:     { nested: 'diffLockCoast' },
+    diff_lock_decel:     { nested: 'diffLockDecel' },
+    spring_f:            { nested: 'springRateFront' },
+    spring_r:            { nested: 'springRateRear' },
+    damper_bump_slow_f:  { nested: 'damperBumpSlowFront' },
+    damper_bump_slow_r:  { nested: 'damperBumpSlowRear' },
+    damper_bump_fast_f:  { nested: 'damperBumpFastFront' },
+    damper_bump_fast_r:  { nested: 'damperBumpFastRear' },
+    damper_rebound_slow_f: { nested: 'damperReboundSlowFront' },
+    damper_rebound_slow_r: { nested: 'damperReboundSlowRear' },
+    damper_rebound_fast_f: { nested: 'damperReboundFastFront' },
+    damper_rebound_fast_r: { nested: 'damperReboundFastRear' },
+    arb_f:               { nested: 'arbFront' },
+    arb_r:               { nested: 'arbRear' },
+    height_f:            { nested: 'rideHeightFront' },
+    height_r:            { nested: 'rideHeightRear' },
+    brake_power_f:       { nested: 'brakePowerFront' },
+    brake_power_r:       { nested: 'brakePowerRear' },
+    brake_bias:          { nested: 'brakeBias' },
+    handbrake:           { nested: 'handbrakePower' },
+    tyre_pres_f:         { nested: 'tyrePressureFront' },
+    tyre_pres_r:         { nested: 'tyrePressureRear' },
+    tyre_wear:           { nested: 'tyreWear' },
+    camber_f:            { nested: 'camberFront' },
+    camber_r:            { nested: 'camberRear' },
+    toe_f:               { nested: 'toeFront' },
+    toe_r:               { nested: 'toeRear' },
   }
 };
 
@@ -82,6 +140,18 @@ export function applyGameOverrides(gameId, params, override) {
 
     const patched = { ...p };
 
+    // Handle nested objects (e.g., finalRatio: { min: 3.8, max: 4.8, step: 0.05 })
+    if (entry.nested) {
+      const nestedObj = override[entry.nested];
+      if (nestedObj && typeof nestedObj === 'object') {
+        // Extract min/max/step from nested object
+        if (typeof nestedObj.min === 'number') patched.min = nestedObj.min;
+        if (typeof nestedObj.max === 'number') patched.max = nestedObj.max;
+        if (typeof nestedObj.step === 'number') patched.step = nestedObj.step;
+      }
+      return patched;
+    }
+
     if (entry.array) {
       const arr = override[entry.array];
       if (Array.isArray(arr) && arr.length > 0) {
@@ -91,7 +161,7 @@ export function applyGameOverrides(gameId, params, override) {
       return patched;
     }
 
-    // Apply min/max/step from override
+    // Apply min/max/step from flat override keys
     for (const [prop, key] of Object.entries(entry)) {
       const val = override[key];
       if (typeof val === 'number') patched[prop] = val;

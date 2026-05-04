@@ -1101,6 +1101,8 @@ export const GAME_TEMPLATES = [
         id: 'dr2',
         name: 'Dirt Rally 2.0',
         type: 'tabbed',
+        weatherVariants: false,
+        includFFB: false,
         notes: [
             { id: 'note_drive', label: 'Notas — Conducción', placeholder: 'Ejs: Coche muy sobrevirador en lluvia. Suspension muy blanda en grava...' },
             { id: 'note_setup', label: 'Notas — Setup', placeholder: 'Ejs: Diferencial bloqueado 100% en Höljes. Presión baja en nieve...' },
@@ -1121,43 +1123,39 @@ export const GAME_TEMPLATES = [
                 id: 'suspension',
                 name: 'Suspensión',
                 params: [
-                    { id: 'spring_f', l: 'Rigidez Muelle Delantero', type: 'step', min: 1, max: 12, step: 1, note: '✓ Índice 1-12. Más alto = más rígido' },
-                    { id: 'spring_r', l: 'Rigidez Muelle Trasero', type: 'step', min: 1, max: 12, step: 1, note: '✓ Índice 1-12' },
-                    { id: 'bump_f', l: 'Compresión Rápida Del.', type: 'step', min: 0, max: 10, step: 1, note: '✓ Damper bump rápido' },
-                    { id: 'bump_r', l: 'Compresión Rápida Tras.', type: 'step', min: 0, max: 10, step: 1, note: '✓' },
-                    { id: 'rebound_f', l: 'Extensión Rápida Del.', type: 'step', min: 0, max: 10, step: 1, note: '✓ Damper rebound rápido' },
-                    { id: 'rebound_r', l: 'Extensión Rápida Tras.', type: 'step', min: 0, max: 10, step: 1, note: '✓' },
-                    { id: 'arb_f', l: 'Anti Roll Bar Delantero', type: 'step', min: 0, max: 12, step: 1, note: '✓ Mayor = menos rolido, más subviraje en curva' },
-                    { id: 'arb_r', l: 'Anti Roll Bar Trasero', type: 'step', min: 0, max: 12, step: 1, note: '✓' },
-                    { id: 'height_f', l: 'Altura Chasis Delante (mm)', type: 'step', min: 80, max: 150, step: 2, s: ' mm', note: '✓ Típico: 110-130mm' },
-                    { id: 'height_r', l: 'Altura Chasis Trasero (mm)', type: 'step', min: 80, max: 150, step: 2, s: ' mm', note: '✓' }
+                    { id: 'spring_f', l: 'Rigidez Muelle Delantero (N/mm)', type: 'step', min: 50, max: 200, step: 1, note: '✓ Mayor = más rígido' },
+                    { id: 'spring_r', l: 'Rigidez Muelle Trasero (N/mm)', type: 'step', min: 50, max: 200, step: 1, note: '✓' },
+                    { id: 'damper_bump', l: 'Compresión (Bump)', type: 'step', min: 1, max: 20, step: 1, note: '✓ Resistencia en compresión rápida' },
+                    { id: 'damper_rebound', l: 'Extensión (Rebound)', type: 'step', min: 1, max: 20, step: 1, note: '✓ Resistencia en extensión rápida' },
+                    { id: 'arb_f', l: 'Anti Roll Bar Delantero', type: 'step', min: 0, max: 20, step: 0.1, note: '✓ Mayor = menos rolido' },
+                    { id: 'arb_r', l: 'Anti Roll Bar Trasero', type: 'step', min: 0, max: 20, step: 0.1, note: '✓' },
+                    { id: 'height', l: 'Altura Chasis (mm)', type: 'step', min: 70, max: 160, step: 1, s: ' mm', note: '✓ Típico: 100-140mm' }
                 ]
             },
             {
                 id: 'brakes',
                 name: 'Frenos',
                 params: [
-                    { id: 'brake_balance', l: 'Balance Freno (%)', type: 'step', min: 30, max: 70, step: 1, s: '%', note: '✓ % de presión en eje delantero. Típico: 50-60%' },
-                    { id: 'brake_pressure', l: 'Presión Freno Total (%)', type: 'step', min: 50, max: 120, step: 5, s: '%', note: '✓ Presión total del sistema. Mayor grip pero menos modulación' }
+                    { id: 'brake_power', l: 'Potencia Freno (%)', type: 'step', min: 40, max: 120, step: 1, s: '%', note: '✓ % de potencia total del sistema' },
+                    { id: 'brake_bias', l: 'Balance Freno (%)', type: 'step', min: 30, max: 70, step: 1, s: '%', note: '✓ % en eje delantero. Típico: 50-60%' }
                 ]
             },
             {
                 id: 'tyres',
                 name: 'Neumáticos',
                 params: [
-                    { id: 'tyre_compound', l: 'Compuesto de Neumático', type: 'options', options: ['Slick', 'Asfalto Seco', 'Asfalto Lluvia', 'Grava Blando', 'Grava Duro', 'Nieve', 'Hielo'], note: '✓ Según superficie y clima' },
-                    { id: 'tyre_pressure_f', l: 'Presión Delante (PSI)', type: 'step', min: 18, max: 32, step: 0.5, s: ' PSI', note: '✓ Asfalto: 26-30 PSI, Grava: 22-26 PSI, Nieve: 20-24 PSI' },
-                    { id: 'tyre_pressure_r', l: 'Presión Atrás (PSI)', type: 'step', min: 18, max: 32, step: 0.5, s: ' PSI', note: '✓' },
-                    { id: 'tyre_pack', l: 'Juego Neumáticos', type: 'options', options: ['Juego 1', 'Juego 2', 'Juego 3', 'Juego 4'], note: '✓ Juegos disponibles en la etapa' }
+                    { id: 'tyre_pres_f', l: 'Presión Delante (kPa)', type: 'step', min: 150, max: 250, step: 1, s: ' kPa', note: '✓ Asfalto: 200-230, Grava: 180-220, Nieve: 170-210' },
+                    { id: 'tyre_pres_r', l: 'Presión Atrás (kPa)', type: 'step', min: 150, max: 250, step: 1, s: ' kPa', note: '✓' },
+                    { id: 'tyre_thermal', l: 'Gestión Térmica Neumáticos', type: 'step', min: 0, max: 10, step: 1, note: '✓ Control de temperatura' }
                 ]
             },
             {
                 id: 'geometry',
                 name: 'Alineación',
                 params: [
-                    { id: 'camber_f', l: 'Camber Delante (°)', type: 'step', min: -3, max: 3, step: 0.5, s: '°', note: '✓ Negativo = más grip en curvas. Típico: -1.5 a -0.5°' },
-                    { id: 'camber_r', l: 'Camber Trasero (°)', type: 'step', min: -3, max: 3, step: 0.5, s: '°', note: '✓' },
-                    { id: 'toe_f', l: 'Toe-in Delante (°)', type: 'step', min: -1, max: 1, step: 0.1, s: '°', note: '✓ Positivo = estable/sobreviraje, Negativo = ágil/subviraje' },
+                    { id: 'camber_f', l: 'Camber Delante (°)', type: 'step', min: -3, max: 1, step: 0.1, s: '°', note: '✓ Negativo = más grip en curvas' },
+                    { id: 'camber_r', l: 'Camber Trasero (°)', type: 'step', min: -3, max: 1, step: 0.1, s: '°', note: '✓' },
+                    { id: 'toe_f', l: 'Toe-in Delante (°)', type: 'step', min: -1, max: 1, step: 0.1, s: '°', note: '✓ Positivo = estable, Negativo = ágil' },
                     { id: 'toe_r', l: 'Toe-in Trasero (°)', type: 'step', min: -1, max: 1, step: 0.1, s: '°', note: '✓' }
                 ]
             }
