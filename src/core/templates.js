@@ -1095,6 +1095,7 @@ export const GAME_TEMPLATES = [
 
     // GROUP 3: RALLY
     { id: 'rbr', name: 'Richard Burns Rally', type: 'group_rally' },
+    { id: 'ac_rally', name: 'Assetto Corsa Rally', type: 'group_rally' },
 
     // ── DIRT RALLY 2.0 ────────────────────────────────────────────────────────
     {

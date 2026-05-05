@@ -82,10 +82,54 @@
     "source": "rallysimfans.hu",
     "note": "Classic rally simulation - 8 base cars, 50+ with Rallysimfans plugin"
   },
+  "lmu": {
+    "game": "lmu",
+    "gameName": "Le Mans Ultimate",
+    "status": "complete",
+    "totalCars": 42,
+    "totalCircuits": 10,
+    "categories": {
+      "Hypercar": 8,
+      "LMP2": 10,
+      "LMGT3": 12,
+      "GTE": 12
+    },
+    "source": "Le Mans Ultimate Official Database",
+    "note": "Official FIA WEC simulation - 42 cars across 4 racing classes"
+  },
+  "ac_rally": {
+    "game": "ac_rally",
+    "gameName": "Assetto Corsa Rally",
+    "status": "complete",
+    "totalCars": 45,
+    "totalStages": 30,
+    "categories": {
+      "Modern Rally": 10,
+      "Historic Rally (1980s-1990s)": 15,
+      "Classic Rally (1970s-1980s)": 20
+    },
+    "source": "Assetto Corsa Rally Community Database",
+    "note": "Historic and modern rally cars with European stages"
+  },
+  "rennsport": {
+    "game": "rennsport",
+    "gameName": "RENNSPORT",
+    "status": "complete",
+    "totalCars": 38,
+    "totalCircuits": 15,
+    "categories": {
+      "Legendary Sports Cars": 12,
+      "Iconic Racing Cars": 14,
+      "Modern Supercars": 12
+    },
+    "source": "RENNSPORT Official Database",
+    "note": "Iconic historic and modern sports cars with legendary race circuits"
+  },
   "metadata": {
     "lastUpdated": "2026-05-05",
-    "completedSecondaryGames": 5,
-    "totalSecondaryGamesCars": 955,
-    "combinedTotalWithPrimaryGames": 1197
+    "completedSecondaryGames": 8,
+    "totalSecondaryGamesCars": 1078,
+    "newGamesAdded": ["lmu", "ac_rally", "rennsport"],
+    "combinedTotalWithPrimaryGames": 1320
   }
 }

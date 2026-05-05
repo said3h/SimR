@@ -189,6 +189,43 @@ const OVERRIDE_MAPS = {
     camber_r:            { min: 'camberMin', max: 'camberMax' },
     toe_f:               { min: 'toeMin', max: 'toeMax' },
     toe_r:               { min: 'toeMin', max: 'toeMax' },
+  },
+  lmu: {
+    // Le Mans Ultimate (FIA WEC)
+    psi:                 { min: 'tyrePressureMin', max: 'tyrePressureMax' },
+    bb:                  { min: 'brakeBiasMin', max: 'brakeBiasMax' },
+    spr:                 { min: 'springMin', max: 'springMax' },
+    arb:                 { min: 'arbMin', max: 'arbMax' },
+    h:                   { min: 'heightMin', max: 'heightMax' },
+    wing:                { min: 'wingMin', max: 'wingMax' },
+    pre:                 { min: 'diffPreloadMin', max: 'diffPreloadMax' },
+    final:               { min: 'ratioMin', max: 'ratioMax' },
+  },
+  ac_rally: {
+    // Assetto Corsa Rally
+    comp:                { min: 'compoundMin', max: 'compoundMax' },
+    psi:                 { min: 'tyrePressureMin', max: 'tyrePressureMax' },
+    spr:                 { min: 'springMin', max: 'springMax' },
+    h:                   { min: 'heightMin', max: 'heightMax' },
+    diff_c:              { min: 'diffMin', max: 'diffMax' },
+    lock:                { min: 'diffLockMin', max: 'diffLockMax' },
+    dist:                { min: 'distMin', max: 'distMax' },
+    bb:                  { min: 'brakeBiasMin', max: 'brakeBiasMax' },
+    cam:                 { min: 'camberMin', max: 'camberMax' },
+    final:               { min: 'ratioMin', max: 'ratioMax' },
+  },
+  rennsport: {
+    // RENNSPORT (Historic & Modern Sports Cars)
+    comp:                { min: 'compoundMin', max: 'compoundMax' },
+    psi:                 { min: 'tyrePressureMin', max: 'tyrePressureMax' },
+    bb:                  { min: 'brakeBiasMin', max: 'brakeBiasMax' },
+    spr:                 { min: 'springMin', max: 'springMax' },
+    arb:                 { min: 'arbMin', max: 'arbMax' },
+    h:                   { min: 'heightMin', max: 'heightMax' },
+    cam:                 { min: 'camberMin', max: 'camberMax' },
+    diff:                { min: 'diffLockMin', max: 'diffLockMax' },
+    wing:                { min: 'wingMin', max: 'wingMax' },
+    map:                 { min: 'mapMin', max: 'mapMax' },
   }
 };
 
