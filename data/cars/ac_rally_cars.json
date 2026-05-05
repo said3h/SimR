@@ -1,0 +1,76 @@
+{
+  "game": "ac_rally",
+  "gameName": "Assetto Corsa Rally",
+  "totalCars": 45,
+  "description": "Assetto Corsa Rally - Classic and modern rally cars with historic stages",
+  "categories": {
+    "modern_rally": {
+      "name": "Modern Rally",
+      "count": 10,
+      "cars": [
+        {"id": "hyundai_i20_wrc", "name": "Hyundai i20 WRC", "year": 2021},
+        {"id": "toyota_yaris_wrc", "name": "Toyota Yaris GR WRC", "year": 2021},
+        {"id": "ford_fiesta_wrc", "name": "Ford Fiesta WRC", "year": 2018},
+        {"id": "citroen_c3_wrc", "name": "Citroën C3 WRC", "year": 2017},
+        {"id": "volkswagen_polo_wrc", "name": "Volkswagen Polo WRC", "year": 2017},
+        {"id": "skoda_fabia_r5", "name": "Škoda Fabia R5", "year": 2017},
+        {"id": "peugeot_208_r5", "name": "Peugeot 208 R5", "year": 2016},
+        {"id": "opel_adam_r2", "name": "Opel Adam R2", "year": 2013},
+        {"id": "ford_fiesta_r2", "name": "Ford Fiesta R2", "year": 2013},
+        {"id": "peugeot_207_s2000", "name": "Peugeot 207 S2000", "year": 2008}
+      ]
+    },
+    "historic_rally": {
+      "name": "Historic Rally (1980s-1990s)",
+      "count": 15,
+      "cars": [
+        {"id": "audi_s1_e2", "name": "Audi S1 E2", "year": 1987},
+        {"id": "lancia_delta_hf_integrale", "name": "Lancia Delta HF Integrale", "year": 1989},
+        {"id": "ford_escort_cosworth", "name": "Ford Escort Cosworth", "year": 1992},
+        {"id": "subaru_impreza_555", "name": "Subaru Impreza 555", "year": 1994},
+        {"id": "mitsubishi_evo_3", "name": "Mitsubishi Lancer Evolution III", "year": 1995},
+        {"id": "toyota_celica_gt4", "name": "Toyota Celica GT-Four", "year": 1992},
+        {"id": "ford_rs200", "name": "Ford RS200 Evolution", "year": 1987},
+        {"id": "audi_quattro_a2", "name": "Audi Quattro A2", "year": 1984},
+        {"id": "lancia_037", "name": "Lancia 037 Stradale", "year": 1984},
+        {"id": "opel_manta_400", "name": "Opel Manta 400", "year": 1985},
+        {"id": "renault_5_turbo", "name": "Renault 5 Turbo", "year": 1981},
+        {"id": "fiat_131_abarth", "name": "Fiat 131 Abarth", "year": 1978},
+        {"id": "vauxhall_chevette_hsl", "name": "Vauxhall Chevette 2300 HSL", "year": 1983},
+        {"id": "volkswagen_golf_gti", "name": "Volkswagen Golf GTI", "year": 1979},
+        {"id": "hannu_mikkola_4wd", "name": "Hannu Mikkola 4WD Prototype", "year": 1985}
+      ]
+    },
+    "classic_rally": {
+      "name": "Classic Rally (1970s-1980s)",
+      "count": 20,
+      "cars": [
+        {"id": "fiat_131_rally", "name": "Fiat 131 Rally", "year": 1975},
+        {"id": "lancia_stratos", "name": "Lancia Stratos", "year": 1972},
+        {"id": "porsche_911_carrera", "name": "Porsche 911 Carrera", "year": 1980},
+        {"id": "audi_sport_quattro", "name": "Audi Sport Quattro", "year": 1980},
+        {"id": "renault_5_alpine", "name": "Renault 5 Alpine", "year": 1976},
+        {"id": "opel_kadett", "name": "Opel Kadett GTE", "year": 1976},
+        {"id": "peugeot_504_coupe", "name": "Peugeot 504 Coupé", "year": 1974},
+        {"id": "morris_mini_cooper", "name": "Morris Mini Cooper S", "year": 1970},
+        {"id": "seat_128_rally", "name": "SEAT 128 Rally", "year": 1973},
+        {"id": "simca_1200s", "name": "Simca 1200S", "year": 1970},
+        {"id": "volvo_142", "name": "Volvo 142", "year": 1971},
+        {"id": "ford_escort_mk1", "name": "Ford Escort MkI", "year": 1970},
+        {"id": "bmw_2002", "name": "BMW 2002", "year": 1972},
+        {"id": "toyota_corolla_ke25", "name": "Toyota Corolla KE25", "year": 1976},
+        {"id": "datsun_510", "name": "Datsun 510", "year": 1973},
+        {"id": "fiat_850_abarth", "name": "Fiat 850 Abarth", "year": 1971},
+        {"id": "sunbeam_alpine", "name": "Sunbeam Alpine", "year": 1968},
+        {"id": "triumph_2000", "name": "Triumph 2000", "year": 1969},
+        {"id": "rover_3500", "name": "Rover 3500", "year": 1977},
+        {"id": "hillman_imp_sport", "name": "Hillman Imp Sport", "year": 1970}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "Assetto Corsa Rally Community Database",
+    "baseGameContent": true
+  }
+}

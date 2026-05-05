@@ -1,0 +1,79 @@
+{
+  "game": "lmu",
+  "gameName": "Le Mans Ultimate",
+  "totalCars": 42,
+  "description": "Le Mans Ultimate - Official FIA WEC simulation with Hypercars, LMP2, GTE, and LMGT3",
+  "categories": {
+    "hypercar": {
+      "name": "Hypercar Class",
+      "count": 8,
+      "cars": [
+        {"id": "porsche_963", "name": "Porsche 963", "year": 2023},
+        {"id": "toyota_gr010", "name": "Toyota GR010 Hybrid", "year": 2023},
+        {"id": "peugeot_9x8", "name": "Peugeot 9X8", "year": 2023},
+        {"id": "ferrari_499p", "name": "Ferrari 499P", "year": 2023},
+        {"id": "bmw_mhev", "name": "BMW M Hybrid V8", "year": 2023},
+        {"id": "lamborghini_sc63", "name": "Lamborghini SC63", "year": 2024},
+        {"id": "cadillac_v_series", "name": "Cadillac V-Series.R", "year": 2023},
+        {"id": "isotta_fraschini", "name": "Isotta Fraschini Tipo 6C", "year": 2024}
+      ]
+    },
+    "lmp2": {
+      "name": "LMP2 Class",
+      "count": 10,
+      "cars": [
+        {"id": "oreca_07", "name": "Oreca 07 - Gibson", "year": 2023},
+        {"id": "oreca_07_hybrid", "name": "Oreca 07 - Hybrid", "year": 2024},
+        {"id": "ligier_js_p320", "name": "Ligier JS P320 - Gibson", "year": 2023},
+        {"id": "ligier_js_p320_hybrid", "name": "Ligier JS P320 - Hybrid", "year": 2024},
+        {"id": "dallara_lmp2", "name": "Dallara LMP2", "year": 2023},
+        {"id": "alpine_a470", "name": "Alpine A470", "year": 2023},
+        {"id": "mr_racing_lmp2", "name": "MR Racing LMP2", "year": 2024},
+        {"id": "cool_racing_lmp2", "name": "Cool Racing LMP2", "year": 2024},
+        {"id": "united_autosports_lmp2", "name": "United Autosports LMP2", "year": 2023},
+        {"id": "jotasim_lmp2", "name": "JotaSim LMP2", "year": 2024}
+      ]
+    },
+    "lmgt3": {
+      "name": "LMGT3 Class",
+      "count": 12,
+      "cars": [
+        {"id": "porsche_911_gt3_r", "name": "Porsche 911 GT3 R", "year": 2024},
+        {"id": "ferrari_296_gt3", "name": "Ferrari 296 GT3", "year": 2023},
+        {"id": "lamborghini_revuelto_gt3", "name": "Lamborghini Revuelto GT3", "year": 2024},
+        {"id": "bmw_m4_gt3", "name": "BMW M4 GT3", "year": 2024},
+        {"id": "aston_martin_vantage_gt3", "name": "Aston Martin Vantage GT3", "year": 2023},
+        {"id": "mercedes_amg_gt3", "name": "Mercedes-AMG GT3", "year": 2024},
+        {"id": "mclaren_720s_gt3", "name": "McLaren 720S GT3", "year": 2023},
+        {"id": "corvette_z06_gt3r", "name": "Chevrolet Corvette Z06 GT3.R", "year": 2024},
+        {"id": "nissan_gtr_nismo_gt3", "name": "Nissan GT-R NISMO GT3", "year": 2023},
+        {"id": "acura_nsx_gt3", "name": "Acura NSX GT3 EVO", "year": 2023},
+        {"id": "lexus_rc_f_gt3", "name": "Lexus RC F GT3", "year": 2024},
+        {"id": "maserati_mc20_gt2", "name": "Maserati MC20 GT2", "year": 2023}
+      ]
+    },
+    "gte": {
+      "name": "GTE Class (Legacy)",
+      "count": 12,
+      "cars": [
+        {"id": "porsche_911_rsr", "name": "Porsche 911 RSR-19", "year": 2019},
+        {"id": "ferrari_488_gte_evo", "name": "Ferrari 488 GTE EVO", "year": 2019},
+        {"id": "corvette_c8_gte", "name": "Corvette C8.R GT", "year": 2020},
+        {"id": "bmw_m8_gte", "name": "BMW M8 GTE", "year": 2020},
+        {"id": "aston_martin_vantage_gte", "name": "Aston Martin Vantage GTE", "year": 2019},
+        {"id": "lamborghini_huracan_gte", "name": "Lamborghini Huracán GT EVO", "year": 2019},
+        {"id": "maserati_ghibli_gt", "name": "Maserati Ghibli Trofeo", "year": 2019},
+        {"id": "ford_gt_gte", "name": "Ford GT", "year": 2016},
+        {"id": "lexus_lc_500_gt", "name": "Lexus LC 500 GT", "year": 2017},
+        {"id": "nissan_gtr_nismo_gte", "name": "Nissan GT-R NISMO GT500", "year": 2019},
+        {"id": "honda_nsx_gt", "name": "Honda NSX GT", "year": 2017},
+        {"id": "jaguar_f_type_svr_gte", "name": "Jaguar F-TYPE SVR GT3", "year": 2019}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "Le Mans Ultimate Official Database",
+    "officialLicense": "FIA World Endurance Championship"
+  }
+}

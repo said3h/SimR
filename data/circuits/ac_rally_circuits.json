@@ -1,0 +1,42 @@
+{
+  "game": "ac_rally",
+  "gameName": "Assetto Corsa Rally",
+  "totalStages": 30,
+  "description": "Historic and modern rally stages from across Europe",
+  "stages": [
+    {"id": "wales_epynt", "name": "Epynt", "country": "Wales", "type": "Forest Road", "length": "7.5km", "era": "Modern"},
+    {"id": "wales_crychan", "name": "Crychan", "country": "Wales", "type": "Mountain Pass", "length": "9.2km", "era": "Modern"},
+    {"id": "scotland_glen_ey", "name": "Glen Ey", "country": "Scotland", "type": "Forest Road", "length": "8.1km", "era": "Modern"},
+    {"id": "scotland_roseisle", "name": "Roseisle", "country": "Scotland", "type": "Forest Road", "length": "10.5km", "era": "Modern"},
+    {"id": "england_symonds_yat", "name": "Symonds Yat", "country": "England", "type": "Road Course", "length": "6.8km", "era": "Historic"},
+    {"id": "germany_mosel", "name": "Mosel Valley", "country": "Germany", "type": "Mountain Pass", "length": "11.3km", "era": "Modern"},
+    {"id": "germany_hundrueck", "name": "Hunsrück", "country": "Germany", "type": "Forest Road", "length": "8.7km", "era": "Modern"},
+    {"id": "france_Col_du_Telegraphe", "name": "Col du Télégraphe", "country": "France", "type": "Mountain Pass", "length": "12.8km", "era": "Historic"},
+    {"id": "france_Mont_Blanc", "name": "Mont Blanc Ridge", "country": "France", "type": "Mountain Pass", "length": "15.2km", "era": "Modern"},
+    {"id": "france_Jura", "name": "Jura Forest", "country": "France", "type": "Forest Road", "length": "9.4km", "era": "Modern"},
+    {"id": "italy_Col_de_la_Bonette", "name": "Col de la Bonette", "country": "Italy", "type": "Mountain Pass", "length": "11.9km", "era": "Historic"},
+    {"id": "italy_Poggio_Torte", "name": "Poggio Torte", "country": "Italy", "type": "Mountain Road", "length": "8.3km", "era": "Modern"},
+    {"id": "italy_Tormento_di_Assisi", "name": "Tormento di Assisi", "country": "Italy", "type": "Hillclimb", "length": "5.6km", "era": "Modern"},
+    {"id": "greece_Agia_Efimia", "name": "Agia Efimia", "country": "Greece", "type": "Mountain Pass", "length": "10.1km", "era": "Historic"},
+    {"id": "greece_Kraneia", "name": "Kraneia", "country": "Greece", "type": "Mountain Road", "length": "9.0km", "era": "Modern"},
+    {"id": "spain_La_Muela", "name": "La Muela", "country": "Spain", "type": "Mountain Pass", "length": "13.4km", "era": "Modern"},
+    {"id": "spain_Ascari", "name": "Ascari", "country": "Spain", "type": "Road Course", "length": "6.2km", "era": "Historic"},
+    {"id": "austria_Tirol_Pass", "name": "Tirol Pass", "country": "Austria", "type": "Mountain Pass", "length": "11.7km", "era": "Modern"},
+    {"id": "austria_Zillertal", "name": "Zillertal", "country": "Austria", "type": "Mountain Road", "length": "8.9km", "era": "Modern"},
+    {"id": "sweden_Värmland", "name": "Värmland Forest", "country": "Sweden", "type": "Forest Road", "length": "10.3km", "era": "Modern"},
+    {"id": "finland_Lakelands", "name": "Finnish Lakelands", "country": "Finland", "type": "Forest Road", "length": "11.2km", "era": "Modern"},
+    {"id": "norway_Sognefjord", "name": "Sognefjord Valley", "country": "Norway", "type": "Mountain Pass", "length": "12.5km", "era": "Historic"},
+    {"id": "czech_Krkonose", "name": "Krkonoše Mountains", "country": "Czech Republic", "type": "Mountain Road", "length": "9.8km", "era": "Modern"},
+    {"id": "hungary_Mecsek", "name": "Mecsek Hills", "country": "Hungary", "type": "Forest Road", "length": "8.6km", "era": "Modern"},
+    {"id": "romania_Carpathian", "name": "Carpathian Pass", "country": "Romania", "type": "Mountain Pass", "length": "14.1km", "era": "Modern"},
+    {"id": "turkey_Taurus", "name": "Taurus Mountains", "country": "Turkey", "type": "Mountain Pass", "length": "13.0km", "era": "Modern"},
+    {"id": "portugal_Serra", "name": "Serra da Estrela", "country": "Portugal", "type": "Mountain Road", "length": "10.7km", "era": "Historic"},
+    {"id": "belgium_Ardennes", "name": "Ardennes Forest", "country": "Belgium", "type": "Forest Road", "length": "8.4km", "era": "Modern"},
+    {"id": "netherlands_Limburg", "name": "Limburg Hills", "country": "Netherlands", "type": "Road Course", "length": "7.1km", "era": "Historic"},
+    {"id": "ireland_Wicklow", "name": "Wicklow Mountains", "country": "Ireland", "type": "Mountain Road", "length": "9.5km", "era": "Modern"}
+  ],
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "Assetto Corsa Rally Official Database"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "game": "rennsport",
+  "gameName": "RENNSPORT",
+  "totalCars": 38,
+  "description": "RENNSPORT - Iconic historic and legendary sports cars from racing heritage",
+  "categories": {
+    "legendary_sports_cars": {
+      "name": "Legendary Sports Cars",
+      "count": 12,
+      "cars": [
+        {"id": "porsche_911_2_7_rs", "name": "Porsche 911 2.7 RS", "year": 1973},
+        {"id": "porsche_911_turbo_930", "name": "Porsche 911 Turbo 930", "year": 1976},
+        {"id": "porsche_959", "name": "Porsche 959", "year": 1987},
+        {"id": "ferrari_250_gto", "name": "Ferrari 250 GTO", "year": 1962},
+        {"id": "ferrari_testarossa", "name": "Ferrari Testarossa", "year": 1984},
+        {"id": "ferrari_f40", "name": "Ferrari F40", "year": 1987},
+        {"id": "lamborghini_miura", "name": "Lamborghini Miura", "year": 1966},
+        {"id": "lamborghini_countach", "name": "Lamborghini Countach LP400", "year": 1974},
+        {"id": "mercedes_benz_300sl", "name": "Mercedes-Benz 300 SL Gullwing", "year": 1954},
+        {"id": "jaguar_xk120", "name": "Jaguar XK120", "year": 1948},
+        {"id": "aston_martin_db5", "name": "Aston Martin DB5", "year": 1963},
+        {"id": "mclaren_f1", "name": "McLaren F1", "year": 1993}
+      ]
+    },
+    "iconic_racers": {
+      "name": "Iconic Racing Cars",
+      "count": 14,
+      "cars": [
+        {"id": "porsche_917", "name": "Porsche 917 LH", "year": 1970},
+        {"id": "porsche_962_c", "name": "Porsche 962C", "year": 1989},
+        {"id": "ferrari_312t", "name": "Ferrari 312T", "year": 1975},
+        {"id": "ferrari_512_bb", "name": "Ferrari 512 BB", "year": 1976},
+        {"id": "lamborghini_lm002", "name": "Lamborghini LM002", "year": 1986},
+        {"id": "jaguar_d_type", "name": "Jaguar D-Type", "year": 1954},
+        {"id": "jaguar_xj220c", "name": "Jaguar XJ220C", "year": 1992},
+        {"id": "corvette_c6_zr1", "name": "Chevrolet Corvette C6 ZR1", "year": 2009},
+        {"id": "dodge_viper_rt10", "name": "Dodge Viper RT10", "year": 1992},
+        {"id": "bmw_m1_procar", "name": "BMW M1 Procar", "year": 1979},
+        {"id": "mercedes_amg_300sel_6_8", "name": "Mercedes-AMG 300SEL 6.8", "year": 1971},
+        {"id": "nissan_skyline_gt_r_r34", "name": "Nissan Skyline GT-R R34", "year": 1999},
+        {"id": "toyota_2000gt", "name": "Toyota 2000 GT", "year": 1965},
+        {"id": "lancia_stratos_hf", "name": "Lancia Stratos HF", "year": 1974}
+      ]
+    },
+    "modern_supercars": {
+      "name": "Modern Supercars",
+      "count": 12,
+      "cars": [
+        {"id": "porsche_918_spyder", "name": "Porsche 918 Spyder", "year": 2013},
+        {"id": "ferrari_laferrari", "name": "Ferrari LaFerrari", "year": 2013},
+        {"id": "mclaren_p1", "name": "McLaren P1", "year": 2013},
+        {"id": "bugatti_veyron_ss", "name": "Bugatti Veyron Super Sport", "year": 2010},
+        {"id": "pagani_huayra", "name": "Pagani Huayra", "year": 2011},
+        {"id": "koenigsegg_agera", "name": "Koenigsegg Agera", "year": 2010},
+        {"id": "lamborghini_aventador", "name": "Lamborghini Aventador", "year": 2011},
+        {"id": "lexus_lfa", "name": "Lexus LFA", "year": 2010},
+        {"id": "nissan_gt_r_r35", "name": "Nissan GT-R R35", "year": 2008},
+        {"id": "aston_martin_one_77", "name": "Aston Martin One-77", "year": 2009},
+        {"id": "maserati_mc12", "name": "Maserati MC12", "year": 2004},
+        {"id": "enzo_ferrari", "name": "Ferrari Enzo", "year": 2002}
+      ]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "RENNSPORT Official Database",
+    "gameType": "Historic Sports Car Simulation"
+  }
+}

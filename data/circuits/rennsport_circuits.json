@@ -1,0 +1,28 @@
+{
+  "game": "rennsport",
+  "gameName": "RENNSPORT",
+  "totalCircuits": 15,
+  "description": "Iconic historic racing circuits and legendary race tracks",
+  "circuits": [
+    {"id": "lemans_classic", "name": "Circuit de la Sarthe", "country": "France", "type": "Road Course", "length": "13629m", "era": "Historic/Modern", "fame": "24 Hours of Le Mans"},
+    {"id": "nurburgring_nordschleife", "name": "Nürburgring Nordschleife", "country": "Germany", "type": "Road Course", "length": "20832m", "era": "Historic", "fame": "The Green Hell"},
+    {"id": "monza_classic", "name": "Autodromo Nazionale di Monza", "country": "Italy", "type": "Road Course", "length": "5793m", "era": "Historic/Modern", "fame": "Italian Grand Prix"},
+    {"id": "spa_classic", "name": "Circuit de Spa-Francorchamps", "country": "Belgium", "type": "Road Course", "length": "7004m", "era": "Historic/Modern", "fame": "Belgian Grand Prix"},
+    {"id": "silverstone_classic", "name": "Silverstone Circuit", "country": "United Kingdom", "type": "Road Course", "length": "5891m", "era": "Historic/Modern", "fame": "British Grand Prix"},
+    {"id": "brands_hatch_indy", "name": "Brands Hatch", "country": "United Kingdom", "type": "Road Course", "length": "3540m", "era": "Historic", "fame": "British Racing"},
+    {"id": "pau", "name": "Circuit de Pau", "country": "France", "type": "Street Circuit", "length": "5465m", "era": "Historic", "fame": "Grand Prix de Pau"},
+    {"id": "monaco_classic", "name": "Circuit de Monaco", "country": "Monaco", "type": "Street Circuit", "length": "3340m", "era": "Historic/Modern", "fame": "Monaco Grand Prix"},
+    {"id": "zandvoort", "name": "Circuit Zandvoort", "country": "Netherlands", "type": "Road Course", "length": "4259m", "era": "Historic/Modern", "fame": "Dutch Grand Prix"},
+    {"id": "portimao", "name": "Autódromo Internacional do Algarve", "country": "Portugal", "type": "Road Course", "length": "4653m", "era": "Modern", "fame": "Portuguese Grand Prix"},
+    {"id": "donington_park", "name": "Donington Park", "country": "United Kingdom", "type": "Road Course", "length": "3127m", "era": "Historic", "fame": "British Sports Car Racing"},
+    {"id": "laguna_seca", "name": "Laguna Seca Raceway", "country": "USA", "type": "Road Course", "length": "3602m", "era": "Historic/Modern", "fame": "Corkscrew"},
+    {"id": "watkins_glen", "name": "Watkins Glen International", "country": "USA", "type": "Road Course", "length": "6106m", "era": "Historic/Modern", "fame": "US Grand Prix"},
+    {"id": "mount_fuji", "name": "Fuji Speedway", "country": "Japan", "type": "Road Course", "length": "4563m", "era": "Historic/Modern", "fame": "Japanese Grand Prix"},
+    {"id": "suzuka_classic", "name": "Suzuka International Racing Course", "country": "Japan", "type": "Road Course", "length": "5807m", "era": "Historic/Modern", "fame": "Japanese Grand Prix"}
+  ],
+  "metadata": {
+    "lastUpdated": "2026-05-05",
+    "source": "RENNSPORT Official Database",
+    "gameType": "Historic Circuit Racing"
+  }
+}
