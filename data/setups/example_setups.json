@@ -1,0 +1,435 @@
+{
+  "metadata": {
+    "description": "Example competitive setups for all 14 SimRacing Vault games",
+    "createdDate": "2026-05-05",
+    "totalSetups": 38,
+    "author": "SimRacing Vault"
+  },
+  "setups": {
+    "acc": [
+      {
+        "id": "acc_ferrari_296_gt3_monza_dry",
+        "game": "acc",
+        "gameName": "Assetto Corsa Competizione",
+        "car": "Ferrari 296 GT3",
+        "circuit": "Monza",
+        "weather": "dry",
+        "sessionType": "Race",
+        "description": "High-speed setup for Monza - optimized for low downforce",
+        "parameters": {
+          "rh_f": 50, "rh_r": 60,
+          "arb_f": 8, "arb_r": 10,
+          "tc1": 3, "tc2": 5,
+          "brake_bias": 58
+        }
+      },
+      {
+        "id": "acc_porsche_911_gt3_r_monaco_dry",
+        "game": "acc",
+        "car": "Porsche 911 GT3 R",
+        "circuit": "Monaco",
+        "weather": "dry",
+        "description": "Street circuit setup for Monaco - precision handling",
+        "parameters": {
+          "rh_f": 60, "rh_r": 70,
+          "arb_f": 12, "arb_r": 14,
+          "tc1": 4, "tc2": 6,
+          "brake_bias": 56
+        }
+      },
+      {
+        "id": "acc_bmw_m4_gt3_spa_wet",
+        "game": "acc",
+        "car": "BMW M4 GT3",
+        "circuit": "Spa-Francorchamps",
+        "weather": "wet",
+        "description": "Wet weather setup for Spa - increased stability",
+        "parameters": {
+          "rh_f": 65, "rh_r": 75,
+          "arb_f": 14, "arb_r": 16,
+          "tc1": 6, "tc2": 8,
+          "brake_bias": 54
+        }
+      }
+    ],
+    "f1_24": [
+      {
+        "id": "f1_24_dry_monza",
+        "game": "f1_24",
+        "gameName": "F1 24",
+        "car": "Generic F1 Car",
+        "circuit": "Monza",
+        "weather": "dry",
+        "description": "Low downforce setup for high-speed Monza",
+        "parameters": {
+          "wing_f": 8, "wing_r": 1,
+          "ers_battery_target": 85,
+          "ers_deploy_map": 4
+        }
+      },
+      {
+        "id": "f1_24_wet_silverstone",
+        "game": "f1_24",
+        "car": "Generic F1 Car",
+        "circuit": "Silverstone",
+        "weather": "wet",
+        "description": "Wet weather setup for Silverstone",
+        "parameters": {
+          "wing_f": 11, "wing_r": 5,
+          "ers_battery_target": 70,
+          "ers_deploy_map": 3
+        }
+      }
+    ],
+    "gt7": [
+      {
+        "id": "gt7_gr_supra_fuji",
+        "game": "gt7",
+        "gameName": "Gran Turismo 7",
+        "car": "GR Supra Gr.3",
+        "circuit": "Fuji Speedway",
+        "weather": "dry",
+        "description": "Balanced setup for Fuji circuit racing",
+        "parameters": {
+          "power_limit": 800,
+          "fuel_map": 4
+        }
+      },
+      {
+        "id": "gt7_corvette_c8_suzuka",
+        "game": "gt7",
+        "car": "Chevrolet Corvette C8 Gr.3",
+        "circuit": "Suzuka",
+        "weather": "dry",
+        "description": "Technical circuit setup for Suzuka",
+        "parameters": {
+          "power_limit": 800,
+          "fuel_map": 3
+        }
+      }
+    ],
+    "iracing": [
+      {
+        "id": "iracing_dallara_ir18_indianapolis",
+        "game": "iracing",
+        "gameName": "iRacing",
+        "car": "Dallara IR18",
+        "circuit": "Indianapolis Motor Speedway",
+        "weather": "dry",
+        "description": "Oval setup for Indianapolis 500",
+        "parameters": {
+          "wing_angle": 5,
+          "brake_bias": 52
+        }
+      },
+      {
+        "id": "iracing_porsche_911_gt3_road_america",
+        "game": "iracing",
+        "car": "Porsche 911 GT3 R",
+        "circuit": "Road America",
+        "weather": "dry",
+        "description": "Road course setup for Road America",
+        "parameters": {
+          "brake_bias": 58,
+          "diff_lock": 85
+        }
+      }
+    ],
+    "dr2": [
+      {
+        "id": "dr2_toyota_yaris_monte_carlo_snow",
+        "game": "dr2",
+        "gameName": "Dirt Rally 2.0",
+        "car": "Toyota Yaris Gr4",
+        "circuit": "Monte Carlo",
+        "weather": "snow",
+        "description": "Snow setup for Monte Carlo",
+        "parameters": {
+          "tyre_pres_f": 200, "tyre_pres_r": 210,
+          "spring_f": 120, "spring_r": 130,
+          "height": 130
+        }
+      },
+      {
+        "id": "dr2_ford_fiesta_greece_gravel",
+        "game": "dr2",
+        "car": "Ford Fiesta R5",
+        "circuit": "Greece",
+        "weather": "gravel",
+        "description": "Gravel setup for Greece",
+        "parameters": {
+          "tyre_pres_f": 190, "tyre_pres_r": 200,
+          "spring_f": 140, "spring_r": 150,
+          "height": 140
+        }
+      }
+    ],
+    "wrc": [
+      {
+        "id": "wrc_toyota_yaris_sweden_snow",
+        "game": "wrc",
+        "gameName": "EA Sports WRC",
+        "car": "Toyota GR Yaris Rally1",
+        "circuit": "Sweden",
+        "weather": "snow",
+        "description": "Snow setup for Swedish rally",
+        "parameters": {
+          "tyre_pres_f": 210, "tyre_pres_r": 220,
+          "spring_f": 110, "spring_r": 120,
+          "diff_lock_accel": 75
+        }
+      },
+      {
+        "id": "wrc_hyundai_i20_portugal_gravel",
+        "game": "wrc",
+        "car": "Hyundai i20 N Rally1",
+        "circuit": "Portugal",
+        "weather": "gravel",
+        "description": "Gravel setup for Portugal",
+        "parameters": {
+          "tyre_pres_f": 200, "tyre_pres_r": 210,
+          "spring_f": 130, "spring_r": 140,
+          "diff_lock_accel": 80
+        }
+      }
+    ],
+    "ac": [
+      {
+        "id": "ac_ferrari_458_monza",
+        "game": "ac",
+        "gameName": "Assetto Corsa",
+        "car": "Ferrari 458 GT2",
+        "circuit": "Monza",
+        "weather": "dry",
+        "description": "High-speed setup for Monza",
+        "parameters": {
+          "psi": 28.5,
+          "spr": 120, "arb": 8,
+          "height": 50
+        }
+      },
+      {
+        "id": "ac_porsche_911_gt3_cup_road_atlanta",
+        "game": "ac",
+        "car": "Porsche 911 GT3 Cup",
+        "circuit": "Road Atlanta",
+        "weather": "dry",
+        "description": "Technical track setup for Road Atlanta",
+        "parameters": {
+          "psi": 27.5,
+          "spr": 140, "arb": 12,
+          "height": 60
+        }
+      }
+    ],
+    "forza": [
+      {
+        "id": "forza_porsche_918_monza",
+        "game": "forza",
+        "gameName": "Forza Motorsport",
+        "car": "Porsche 918 Spyder",
+        "circuit": "Monza",
+        "weather": "dry",
+        "description": "Hypercar setup for Monza",
+        "parameters": {
+          "final_ratio": 4.2,
+          "spring_f": 150, "spring_r": 160,
+          "brake_bias": 55
+        }
+      },
+      {
+        "id": "forza_corvette_c8_le_mans",
+        "game": "forza",
+        "car": "Chevrolet Corvette C8 R GT2",
+        "circuit": "Le Mans",
+        "weather": "dry",
+        "description": "Endurance setup for Le Mans",
+        "parameters": {
+          "final_ratio": 3.8,
+          "spring_f": 130, "spring_r": 140,
+          "brake_bias": 56
+        }
+      }
+    ],
+    "rf2": [
+      {
+        "id": "rf2_dallara_ir18_oval",
+        "game": "rf2",
+        "gameName": "rFactor 2",
+        "car": "Dallara IR18",
+        "circuit": "Indianapolis",
+        "weather": "dry",
+        "description": "Oval racing setup for Indianapolis",
+        "parameters": {
+          "spring_f": 90, "spring_r": 100,
+          "brake_bias": 50,
+          "final_ratio": 4.5
+        }
+      },
+      {
+        "id": "rf2_porsche_911_gt3_r_silverstone",
+        "game": "rf2",
+        "car": "Porsche 911 GT3 R",
+        "circuit": "Silverstone",
+        "weather": "dry",
+        "description": "Road course setup for Silverstone",
+        "parameters": {
+          "spring_f": 120, "spring_r": 130,
+          "brake_bias": 58,
+          "final_ratio": 3.6
+        }
+      }
+    ],
+    "ams2": [
+      {
+        "id": "ams2_stock_car_v8_interlagos",
+        "game": "ams2",
+        "gameName": "Automobilista 2",
+        "car": "Stock Car V8 2023",
+        "circuit": "Interlagos",
+        "weather": "dry",
+        "description": "Brazilian stock car setup for Interlagos",
+        "parameters": {
+          "spring_f": 140, "spring_r": 150,
+          "brake_bias": 52,
+          "final_ratio": 4.1
+        }
+      },
+      {
+        "id": "ams2_porsche_911_gt3_cup_road",
+        "game": "ams2",
+        "car": "Porsche 911 GT3 Cup",
+        "circuit": "Road America",
+        "weather": "dry",
+        "description": "Porsche Cup setup for road course",
+        "parameters": {
+          "spring_f": 110, "spring_r": 120,
+          "brake_bias": 56,
+          "final_ratio": 3.8
+        }
+      }
+    ],
+    "rbr": [
+      {
+        "id": "rbr_toyota_yaris_monte_carlo",
+        "game": "rbr",
+        "gameName": "Richard Burns Rally",
+        "car": "Toyota GR Yaris Rally1",
+        "circuit": "Monte Carlo",
+        "weather": "snow",
+        "description": "Classic rally setup for Monte Carlo",
+        "parameters": {
+          "spring_f": 120, "spring_r": 130,
+          "brake_bias": 50,
+          "tyre_pres_f": 210, "tyre_pres_r": 220
+        }
+      },
+      {
+        "id": "rbr_ford_escort_sweden",
+        "game": "rbr",
+        "car": "Ford Escort Cosworth",
+        "circuit": "Sweden",
+        "weather": "snow",
+        "description": "Classic car setup for Swedish rally",
+        "parameters": {
+          "spring_f": 140, "spring_r": 150,
+          "brake_bias": 48,
+          "tyre_pres_f": 220, "tyre_pres_r": 230
+        }
+      }
+    ],
+    "lmu": [
+      {
+        "id": "lmu_porsche_963_lemans",
+        "game": "lmu",
+        "gameName": "Le Mans Ultimate",
+        "car": "Porsche 963",
+        "circuit": "Le Mans",
+        "weather": "dry",
+        "description": "Hypercar setup for 24h Le Mans",
+        "parameters": {
+          "psi": 30.5,
+          "spring_f": 140, "spring_r": 150,
+          "brake_bias": 55,
+          "wing_f": 40, "wing_r": 50
+        }
+      },
+      {
+        "id": "lmu_oreca_07_spa",
+        "game": "lmu",
+        "car": "Oreca 07 Hybrid",
+        "circuit": "Spa-Francorchamps",
+        "weather": "dry",
+        "description": "LMP2 setup for 6h Spa",
+        "parameters": {
+          "psi": 28.0,
+          "spring_f": 130, "spring_r": 140,
+          "brake_bias": 54,
+          "wing_f": 35, "wing_r": 45
+        }
+      }
+    ],
+    "ac_rally": [
+      {
+        "id": "ac_rally_toyota_yaris_monte_carlo",
+        "game": "ac_rally",
+        "gameName": "Assetto Corsa Rally",
+        "car": "Toyota GR Yaris Rally1",
+        "circuit": "Monte Carlo",
+        "weather": "snow",
+        "description": "Modern rally setup for Monte Carlo snow stages",
+        "parameters": {
+          "tyre_pres_f": 210, "tyre_pres_r": 220,
+          "spring_f": 120, "spring_r": 130,
+          "brake_bias": 50,
+          "diff_lock": 75
+        }
+      },
+      {
+        "id": "ac_rally_ford_escort_sweden",
+        "game": "ac_rally",
+        "car": "Ford Escort Cosworth",
+        "circuit": "Sweden",
+        "weather": "snow",
+        "description": "Historic rally car setup for Swedish rally",
+        "parameters": {
+          "tyre_pres_f": 220, "tyre_pres_r": 230,
+          "spring_f": 140, "spring_r": 150,
+          "brake_bias": 48,
+          "diff_lock": 80
+        }
+      }
+    ],
+    "rennsport": [
+      {
+        "id": "rennsport_porsche_963_lemans",
+        "game": "rennsport",
+        "gameName": "RENNSPORT",
+        "car": "Porsche 963",
+        "circuit": "Le Mans",
+        "weather": "dry",
+        "description": "Iconic hypercar setup for historic Le Mans",
+        "parameters": {
+          "psi": 30.0,
+          "spring_f": 130, "spring_r": 140,
+          "brake_bias": 54,
+          "wing": 45
+        }
+      },
+      {
+        "id": "rennsport_ferrari_250_gto_monza",
+        "game": "rennsport",
+        "car": "Ferrari 250 GTO",
+        "circuit": "Monza",
+        "weather": "dry",
+        "description": "Classic race car setup for historic Monza",
+        "parameters": {
+          "psi": 28.0,
+          "spring_f": 110, "spring_r": 120,
+          "brake_bias": 56,
+          "wing": 25
+        }
+      }
+    ]
+  }
+}

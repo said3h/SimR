@@ -16,6 +16,14 @@ import { getCarOverride as getAccCarOverride } from './src/core/overrides/acc_ca
 import { getF1CarOverride } from './src/core/overrides/f1_car_overrides.js';
 import { getGT7CarOverride } from './src/core/overrides/gt7_car_overrides.js';
 import { getIRacingCarOverride } from './src/core/overrides/iracing_car_overrides.js';
+import { getCarOverride as getAcCarOverride } from './src/core/overrides/ac_car_overrides.js';
+import { getCarOverride as getForzaCarOverride } from './src/core/overrides/forza_car_overrides.js';
+import { getCarOverride as getRf2CarOverride } from './src/core/overrides/rf2_car_overrides.js';
+import { getCarOverride as getAms2CarOverride } from './src/core/overrides/ams2_car_overrides.js';
+import { getCarOverride as getRbrCarOverride } from './src/core/overrides/rbr_car_overrides.js';
+import { getCarOverride as getLmuCarOverride } from './src/core/overrides/lmu_car_overrides.js';
+import { getCarOverride as getAcRallyCarOverride } from './src/core/overrides/ac_rally_car_overrides.js';
+import { getCarOverride as getRennsportCarOverride } from './src/core/overrides/rennsport_car_overrides.js';
 
 // ── DOM helpers ───────────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
@@ -175,6 +183,14 @@ function getGameOverride(gameId, carId) {
     if (gameId === 'f1_24') return getF1CarOverride(carId);
     if (gameId === 'gt7') return getGT7CarOverride(carId);
     if (gameId === 'iracing') return getIRacingCarOverride(carId);
+    if (gameId === 'ac') return getAcCarOverride(carId);
+    if (gameId === 'forza') return getForzaCarOverride(carId);
+    if (gameId === 'rf2') return getRf2CarOverride(carId);
+    if (gameId === 'ams2') return getAms2CarOverride(carId);
+    if (gameId === 'rbr') return getRbrCarOverride(carId);
+    if (gameId === 'lmu') return getLmuCarOverride(carId);
+    if (gameId === 'ac_rally') return getAcRallyCarOverride(carId);
+    if (gameId === 'rennsport') return getRennsportCarOverride(carId);
     return null;
 }
 
