@@ -27,15 +27,15 @@ import { getCarOverride as getRennsportCarOverride } from './src/core/overrides/
 
 // ── DOM helpers ───────────────────────────────────────────────────────────────
 const $ = id => document.getElementById(id);
-const authView      = document.getElementById('auth-view');
-const appView       = document.getElementById('app');
-const gameSelect    = document.getElementById('game-select');
-const setupForm     = document.getElementById('setup-form');
-const dynamicTabs   = document.getElementById('dynamic-tabs');
+const authView = document.getElementById('auth-view');
+const appView = document.getElementById('app');
+const gameSelect = document.getElementById('game-select');
+const setupForm = document.getElementById('setup-form');
+const dynamicTabs = document.getElementById('dynamic-tabs');
 const dynamicParams = document.getElementById('dynamic-params');
-const setupsGrid    = document.getElementById('setups-grid');
+const setupsGrid = document.getElementById('setups-grid');
 const dashboardView = document.getElementById('dashboard');
-const editorView    = document.getElementById('setup-editor');
+const editorView = document.getElementById('setup-editor');
 
 const escapeHTML = (value) => String(value ?? '').replace(/[&<>"']/g, char => ({
     '&': '&amp;',
@@ -49,13 +49,13 @@ const escapeAttr = escapeHTML;
 
 // ── Module state ──────────────────────────────────────────────────────────────
 let isAuthenticated = false;
-let editingSetupId  = null;
-let activeTabId     = null;
-let _tabData        = {};
-let sortBy          = 'updatedAt_desc';
-let currentFilters  = {};
+let editingSetupId = null;
+let activeTabId = null;
+let _tabData = {};
+let sortBy = 'updatedAt_desc';
+let currentFilters = {};
 let _activeOverride = null;
-let _compareSetups  = new Set();
+let _compareSetups = new Set();
 let _telemetrySetupId = null;
 let _telemetryVisible = false;
 let _communityVisible = false;
@@ -63,100 +63,107 @@ let _communityVisible = false;
 // ── ACC car overrides — param → override key mapping ─────────────────────────
 
 const ACC_PARAM_OVERRIDE_MAP = {
-    pres_fl:        { min: 'tyrePressureMin',    max: 'tyrePressureMax',    step: 'tyrePressureStep' },
-    pres_fr:        { min: 'tyrePressureMin',    max: 'tyrePressureMax',    step: 'tyrePressureStep' },
-    pres_rl:        { min: 'tyrePressureMin',    max: 'tyrePressureMax',    step: 'tyrePressureStep' },
-    pres_rr:        { min: 'tyrePressureMin',    max: 'tyrePressureMax',    step: 'tyrePressureStep' },
-    camber_f:       { min: 'camberFrontMin',     max: 'camberFrontMax',     step: 'camberStep'       },
-    camber_r:       { min: 'camberRearMin',      max: 'camberRearMax',      step: 'camberStep'       },
-    toe_f:          { min: 'toeFrontMin',        max: 'toeMax',             step: 'toeStep'          },
-    toe_r:          { min: 'toeRearMin',         max: 'toeMax',             step: 'toeStep'          },
-    caster:         { min: 'casterMin',          max: 'casterMax'                                    },
-    arb_f:          { min: 'arbFrontMin',        max: 'arbFrontMax'                                  },
-    arb_r:          { min: 'arbRearMin',         max: 'arbRearMax'                                   },
-    wrate_f:        { array: 'wheelRateFront'                                                        },
-    wrate_r:        { array: 'wheelRateRear'                                                         },
-    brake_power:    { min: 'brakePowerMin',      max: 'brakePowerMax',      step: 'brakePowerStep'   },
-    brake_bias:     { min: 'brakeBiasMin',       max: 'brakeBiasMax',       step: 'brakeBiasStep'    },
-    steering_ratio: { min: 'steeringRatioMin',   max: 'steeringRatioMax'                             },
-    diff_preload:   { min: 'diffPreloadMin',     max: 'diffPreloadMax',     step: 'diffPreloadStep'  },
-    bump_slow_f:    { min: 'dampersMin',         max: 'dampersMax'                                   },
-    bump_slow_r:    { min: 'dampersMin',         max: 'dampersMax'                                   },
-    bump_fast_f:    { min: 'dampersMin',         max: 'dampersMax'                                   },
-    bump_fast_r:    { min: 'dampersMin',         max: 'dampersMax'                                   },
-    reb_slow_f:     { min: 'dampersMin',         max: 'dampersMax'                                   },
-    reb_slow_r:     { min: 'dampersMin',         max: 'dampersMax'                                   },
-    reb_fast_f:     { min: 'dampersMin',         max: 'dampersMax'                                   },
-    reb_fast_r:     { min: 'dampersMin',         max: 'dampersMax'                                   },
-    rh_f:           { min: 'rideHeightFrontMin', max: 'rideHeightFrontMax', step: 'rideHeightStep'   },
-    rh_r:           { min: 'rideHeightRearMin',  max: 'rideHeightRearMax',  step: 'rideHeightStep'   },
-    splitter:       { min: 'splitterMin',        max: 'splitterMax'                                  },
-    wing:           { min: 'rearWingMin',        max: 'rearWingMax'                                  },
-    brake_duct_fl:  { min: 'brakeDuctMin',       max: 'brakeDuctMax'                                 },
-    brake_duct_fr:  { min: 'brakeDuctMin',       max: 'brakeDuctMax'                                 },
-    brake_duct_rl:  { min: 'brakeDuctMin',       max: 'brakeDuctMax'                                 },
-    brake_duct_rr:  { min: 'brakeDuctMin',       max: 'brakeDuctMax'                                 },
-    tire_blanket_temp: { min: 'tireBlanketMin',   max: 'tireBlanketMax',      step: 'tireBlanketStep'  },
-    weight_dist_f:  { min: 'weightDistMin',      max: 'weightDistMax',       step: 'weightDistStep'  },
-    weight_dist_r:  { min: 'weightDistMin',      max: 'weightDistMax',       step: 'weightDistStep'  },
-    diff_lock_accel: { min: 'diffLockMin',       max: 'diffLockMax',         step: 'diffLockStep'    },
-    diff_lock_decel: { min: 'diffLockMin',       max: 'diffLockMax',         step: 'diffLockStep'    },
-    cg_height:      { min: 'cgHeightMin',        max: 'cgHeightMax',          step: 'cgHeightStep'    },
+    pres_fl: { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
+    pres_fr: { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
+    pres_rl: { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
+    pres_rr: { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
+    camber_f: { min: 'camberFrontMin', max: 'camberFrontMax', step: 'camberStep' },
+    camber_r: { min: 'camberRearMin', max: 'camberRearMax', step: 'camberStep' },
+    toe_f: { min: 'toeFrontMin', max: 'toeMax', step: 'toeStep' },
+    toe_r: { min: 'toeRearMin', max: 'toeMax', step: 'toeStep' },
+    caster: { min: 'casterMin', max: 'casterMax' },
+    arb_f: { min: 'arbFrontMin', max: 'arbFrontMax' },
+    arb_r: { min: 'arbRearMin', max: 'arbRearMax' },
+    wrate_f: { array: 'wheelRateFront' },
+    wrate_r: { array: 'wheelRateRear' },
+    brake_power: { min: 'brakePowerMin', max: 'brakePowerMax', step: 'brakePowerStep' },
+    brake_bias: { min: 'brakeBiasMin', max: 'brakeBiasMax', step: 'brakeBiasStep' },
+    steering_ratio: { min: 'steeringRatioMin', max: 'steeringRatioMax' },
+    diff_preload: { min: 'diffPreloadMin', max: 'diffPreloadMax', step: 'diffPreloadStep' },
+    bump_slow_f: { min: 'dampersMin', max: 'dampersMax' },
+    bump_slow_r: { min: 'dampersMin', max: 'dampersMax' },
+    bump_fast_f: { min: 'dampersMin', max: 'dampersMax' },
+    bump_fast_r: { min: 'dampersMin', max: 'dampersMax' },
+    reb_slow_f: { min: 'dampersMin', max: 'dampersMax' },
+    reb_slow_r: { min: 'dampersMin', max: 'dampersMax' },
+    reb_fast_f: { min: 'dampersMin', max: 'dampersMax' },
+    reb_fast_r: { min: 'dampersMin', max: 'dampersMax' },
+    rh_f: { min: 'rideHeightFrontMin', max: 'rideHeightFrontMax', step: 'rideHeightStep' },
+    rh_r: { min: 'rideHeightRearMin', max: 'rideHeightRearMax', step: 'rideHeightStep' },
+    splitter: { min: 'splitterMin', max: 'splitterMax' },
+    wing: { min: 'rearWingMin', max: 'rearWingMax' },
+    brake_duct_fl: { min: 'brakeDuctMin', max: 'brakeDuctMax' },
+    brake_duct_fr: { min: 'brakeDuctMin', max: 'brakeDuctMax' },
+    brake_duct_rl: { min: 'brakeDuctMin', max: 'brakeDuctMax' },
+    brake_duct_rr: { min: 'brakeDuctMin', max: 'brakeDuctMax' },
+    tire_blanket_temp: { min: 'tireBlanketMin', max: 'tireBlanketMax', step: 'tireBlanketStep' },
+    weight_dist_f: { min: 'weightDistMin', max: 'weightDistMax', step: 'weightDistStep' },
+    weight_dist_r: { min: 'weightDistMin', max: 'weightDistMax', step: 'weightDistStep' },
+    diff_lock_accel: { min: 'diffLockMin', max: 'diffLockMax', step: 'diffLockStep' },
+    diff_lock_decel: { min: 'diffLockMin', max: 'diffLockMax', step: 'diffLockStep' },
+    cg_height: { min: 'cgHeightMin', max: 'cgHeightMax', step: 'cgHeightStep' },
+
+    // Electronics — conectado a acc_car_overrides.js (valores reales o null si pend.)
+    tc1: { min: 'tc1Min', max: 'tc1Max' },
+    tc2: { min: 'tc2Min', max: 'tc2Max' },
+    abs: { min: 'absMin', max: 'absMax' },
+    engine_map: { min: 'engineMapMin', max: 'engineMapMax' },
+    fuel: { max: 'fuelMax' },
 };
 
 const F1_PARAM_OVERRIDE_MAP = {
-    w_f:    { min: 'wingFrontMin',   max: 'wingFrontMax',   step: 'wingFrontStep'  },
-    w_r:    { min: 'wingRearMin',    max: 'wingRearMax',    step: 'wingRearStep'  },
-    d_on:   { min: 'diffOnMin',      max: 'diffOnMax',      step: 'diffOnStep'   },
-    d_off:  { min: 'diffOffMin',     max: 'diffOffMax',     step: 'diffOffStep'  },
-    cam_f:  { min: 'camberFrontMin', max: 'camberFrontMax', step: 'camberStep'   },
-    toe_f:  { min: 'toeFrontMin',    max: 'toeFrontMax',    step: 'toeStep'      },
-    s_f:    { min: 'suspFrontMin',   max: 'suspFrontMax',   step: 'suspStep'    },
-    arb_f:  { min: 'arbFrontMin',    max: 'arbFrontMax',    step: 'arbStep'     },
-    h_f:    { min: 'rideHeightFrontMin', max: 'rideHeightFrontMax', step: 'rideHeightStep' },
-    bb:     { min: 'brakeBiasMin',   max: 'brakeBiasMax',   step: 'brakeBiasStep' },
-    psi_f:  { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
+    w_f: { min: 'wingFrontMin', max: 'wingFrontMax', step: 'wingFrontStep' },
+    w_r: { min: 'wingRearMin', max: 'wingRearMax', step: 'wingRearStep' },
+    d_on: { min: 'diffOnMin', max: 'diffOnMax', step: 'diffOnStep' },
+    d_off: { min: 'diffOffMin', max: 'diffOffMax', step: 'diffOffStep' },
+    cam_f: { min: 'camberFrontMin', max: 'camberFrontMax', step: 'camberStep' },
+    toe_f: { min: 'toeFrontMin', max: 'toeFrontMax', step: 'toeStep' },
+    s_f: { min: 'suspFrontMin', max: 'suspFrontMax', step: 'suspStep' },
+    arb_f: { min: 'arbFrontMin', max: 'arbFrontMax', step: 'arbStep' },
+    h_f: { min: 'rideHeightFrontMin', max: 'rideHeightFrontMax', step: 'rideHeightStep' },
+    bb: { min: 'brakeBiasMin', max: 'brakeBiasMax', step: 'brakeBiasStep' },
+    psi_f: { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
 };
 
 const GT7_PARAM_OVERRIDE_MAP = {
-    pow:    { min: 'powerLimitMin',  max: 'powerLimitMax',  step: 1  },
-    bal:    { min: 'ballastMin',     max: 'ballastMax',     step: 0.5 },
-    bal_p:  { min: 'ballastPosMin',  max: 'ballastPosMax',  step: 1  },
-    h_f:    { min: 'heightFrontMin', max: 'heightFrontMax', step: 'heightStep' },
-    s_e_f:  { min: 'extensionFMin',  max: 'extensionFMax',  step: 'extensionStep' },
-    s_c_f:  { min: 'compressionFMin', max: 'compressionFMax', step: 'compressionStep' },
-    arb_f:  { min: 'arbFrontMin',   max: 'arbFrontMax',    step: 'arbStep' },
-    cam_f:  { min: 'camberFrontMin', max: 'camberFrontMax', step: 'camberStep' },
-    bb:     { min: 'brakeBiasMin',   max: 'brakeBiasMax',   step: 'brakeBiasStep' },
-    bp:     { min: 'brakePowerMin',  max: 'brakePowerMax',  step: 'brakePowerStep' },
-    lsd_i:  { min: 'lsdInitialMin',  max: 'lsdInitialMax',  step: 'lsdStep' },
-    aero_f: { min: 'aeroFrontMin',   max: 'aeroFrontMax',   step: 'aeroStep' },
-    psi:    { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
+    pow: { min: 'powerLimitMin', max: 'powerLimitMax', step: 1 },
+    bal: { min: 'ballastMin', max: 'ballastMax', step: 0.5 },
+    bal_p: { min: 'ballastPosMin', max: 'ballastPosMax', step: 1 },
+    h_f: { min: 'heightFrontMin', max: 'heightFrontMax', step: 'heightStep' },
+    s_e_f: { min: 'extensionFMin', max: 'extensionFMax', step: 'extensionStep' },
+    s_c_f: { min: 'compressionFMin', max: 'compressionFMax', step: 'compressionStep' },
+    arb_f: { min: 'arbFrontMin', max: 'arbFrontMax', step: 'arbStep' },
+    cam_f: { min: 'camberFrontMin', max: 'camberFrontMax', step: 'camberStep' },
+    bb: { min: 'brakeBiasMin', max: 'brakeBiasMax', step: 'brakeBiasStep' },
+    bp: { min: 'brakePowerMin', max: 'brakePowerMax', step: 'brakePowerStep' },
+    lsd_i: { min: 'lsdInitialMin', max: 'lsdInitialMax', step: 'lsdStep' },
+    aero_f: { min: 'aeroFrontMin', max: 'aeroFrontMax', step: 'aeroStep' },
+    psi: { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
 };
 
 const IRACING_PARAM_OVERRIDE_MAP = {
-    p_fl:   { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
-    p_fr:   { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
-    h_fl:   { min: 'heightFrontMin', max: 'heightFrontMax', step: 'heightStep' },
-    bal:    { min: 'ballastMin',      max: 'ballastMax',      step: 1  },
-    s_fl:   { min: 'springRateMin',   max: 'springRateMax',   step: 1  },
-    arb_f:  { min: 'arbFrontMin',    max: 'arbFrontMax',      step: 'arbStep' },
-    cam_fl: { min: 'camberFrontMin', max: 'camberFrontMax',  step: 'camberStep' },
-    toe_fl: { min: 'toeFrontMin',    max: 'toeFrontMax',      step: 'toeStep' },
-    bb:     { min: 'brakeBiasMin',   max: 'brakeBiasMax',     step: 'brakeBiasStep' },
-    duct_f: { min: 'brakeDuctMin',   max: 'brakeDuctMax',     step: 1  },
-    pre:    { min: 'diffPreloadMin', max: 'diffPreloadMax', step: 'diffPreloadStep' },
-    wing_f: { min: 'wingFrontMin',   max: 'wingFrontMax',     step: 1  },
-    wing_r: { min: 'wingRearMin',    max: 'wingRearMax',      step: 1  },
+    p_fl: { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
+    p_fr: { min: 'tyrePressureMin', max: 'tyrePressureMax', step: 'tyrePressureStep' },
+    h_fl: { min: 'heightFrontMin', max: 'heightFrontMax', step: 'heightStep' },
+    bal: { min: 'ballastMin', max: 'ballastMax', step: 1 },
+    s_fl: { min: 'springRateMin', max: 'springRateMax', step: 1 },
+    arb_f: { min: 'arbFrontMin', max: 'arbFrontMax', step: 'arbStep' },
+    cam_fl: { min: 'camberFrontMin', max: 'camberFrontMax', step: 'camberStep' },
+    toe_fl: { min: 'toeFrontMin', max: 'toeFrontMax', step: 'toeStep' },
+    bb: { min: 'brakeBiasMin', max: 'brakeBiasMax', step: 'brakeBiasStep' },
+    duct_f: { min: 'brakeDuctMin', max: 'brakeDuctMax', step: 1 },
+    pre: { min: 'diffPreloadMin', max: 'diffPreloadMax', step: 'diffPreloadStep' },
+    wing_f: { min: 'wingFrontMin', max: 'wingFrontMax', step: 1 },
+    wing_r: { min: 'wingRearMin', max: 'wingRearMax', step: 1 },
 };
 
 function applyGameOverrides(gameId, params, override) {
     if (!override) return params;
     const map = gameId === 'acc' ? ACC_PARAM_OVERRIDE_MAP
         : gameId === 'f1_24' ? F1_PARAM_OVERRIDE_MAP
-        : gameId === 'gt7' ? GT7_PARAM_OVERRIDE_MAP
-        : gameId === 'iracing' ? IRACING_PARAM_OVERRIDE_MAP
-        : null;
+            : gameId === 'gt7' ? GT7_PARAM_OVERRIDE_MAP
+                : gameId === 'iracing' ? IRACING_PARAM_OVERRIDE_MAP
+                    : null;
     if (!map) return params;
     return params.map(p => {
         const entry = map[p.id];
@@ -197,25 +204,25 @@ function getGameOverride(gameId, carId) {
 // ── ACC car select helpers ────────────────────────────────────────────────────
 
 const ACC_BRANDS = {
-    'Ferrari':       ['Ferrari'],
-    'Lamborghini':   ['Lamborghini'],
-    'Porsche':      ['Porsche'],
-    'BMW':           ['BMW'],
-    'Mercedes-AMG':  ['Mercedes-AMG'],
-    'Audi':          ['Audi'],
-    'Aston Martin':  ['Aston Martin'],
-    'McLaren':       ['McLaren'],
-    'Honda':         ['Honda'],
-    'Nissan':        ['Nissan'],
-    'Lexus':         ['Lexus'],
-    'Bentley':       ['Bentley'],
-    'Alfa Romeo':    ['Alfa Romeo'],
-    'Jaguar':        ['Emil Frey Jaguar'],
-    'Ginetta':       ['Ginetta'],
-    'KTM':           ['KTM'],
-    'Maserati':      ['Maserati'],
-    'Alpine':        ['Alpine'],
-    'Chevrolet':     ['Chevrolet'],
+    'Ferrari': ['Ferrari'],
+    'Lamborghini': ['Lamborghini'],
+    'Porsche': ['Porsche'],
+    'BMW': ['BMW'],
+    'Mercedes-AMG': ['Mercedes-AMG'],
+    'Audi': ['Audi'],
+    'Aston Martin': ['Aston Martin'],
+    'McLaren': ['McLaren'],
+    'Honda': ['Honda'],
+    'Nissan': ['Nissan'],
+    'Lexus': ['Lexus'],
+    'Bentley': ['Bentley'],
+    'Alfa Romeo': ['Alfa Romeo'],
+    'Jaguar': ['Emil Frey Jaguar'],
+    'Ginetta': ['Ginetta'],
+    'KTM': ['KTM'],
+    'Maserati': ['Maserati'],
+    'Alpine': ['Alpine'],
+    'Chevrolet': ['Chevrolet'],
 };
 
 const ACC_BRAND_ORDER = [
@@ -808,11 +815,11 @@ function highlightStars(val) {
 }
 
 function setupDashboardFilters() {
-    const searchInput  = $('search-input');
-    const filterGame   = $('filter-game');
+    const searchInput = $('search-input');
+    const filterGame = $('filter-game');
     const filterWeather = $('filter-weather');
     const filterFavorite = $('filter-favorite');
-    const sortSelect   = $('sort-select');
+    const sortSelect = $('sort-select');
 
     if (searchInput) {
         searchInput.addEventListener('input', debounce(() => {
@@ -932,21 +939,21 @@ async function openEditor(id = null) {
         if (!setup) return;
 
         gameSelect.value = setup.gameId;
-        $('setup-name').value  = setup.setupName   || '';
-        $('weather-select').value  = setup.weatherType  || 'dry';
-        $('session-select').value  = setup.sessionType  || 'Custom';
-        $('setup-tags').value  = (setup.tags || []).join(', ');
-        $('setup-notes').value = setup.notes        || '';
-        $('setup-rating').value = setup.rating      || 0;
+        $('setup-name').value = setup.setupName || '';
+        $('weather-select').value = setup.weatherType || 'dry';
+        $('session-select').value = setup.sessionType || 'Custom';
+        $('setup-tags').value = (setup.tags || []).join(', ');
+        $('setup-notes').value = setup.notes || '';
+        $('setup-rating').value = setup.rating || 0;
         updateStars(parseInt($('setup-rating').value));
         $('setup-game-version').value = setup.gameVersion || '';
-        $('setup-platform').value = setup.platform    || '';
-        $('setup-public').checked = setup.isPublic   || false;
+        $('setup-platform').value = setup.platform || '';
+        $('setup-public').checked = setup.isPublic || false;
         _tabData = { ...setup.setupData };
 
         updateCarField(setup.gameId);
         populateTrackSuggestions(setup.gameId);
-        $('track-name').value  = setup.track        || '';
+        $('track-name').value = setup.track || '';
 
         const gId = setup.gameId;
         if (['acc', 'f1_24', 'gt7', 'iracing'].includes(gId)) {
@@ -978,7 +985,7 @@ async function openEditor(id = null) {
         renderFields(gameSelect.value, _tabData);
     }
 
-        $('editor-title').textContent = id ? 'Editar Setup' : 'Crear Setup';
+    $('editor-title').textContent = id ? 'Editar Setup' : 'Crear Setup';
     updateHistoryButton();
     showView('editor');
 }
@@ -1148,7 +1155,7 @@ function attachParamEvents(params) {
             if (!input || !param) return;
 
             const step = param.step || 1;
-            const dir  = btn.dataset.dir === 'up' ? 1 : -1;
+            const dir = btn.dataset.dir === 'up' ? 1 : -1;
             let newVal = parseFloat(input.value) + (step * dir);
 
             if (param.min !== undefined) newVal = Math.max(param.min, newVal);
@@ -1195,35 +1202,35 @@ async function saveSetup() {
     const gameName = template ? template.name : gameSelect.value.toUpperCase();
 
     // Resolve carId and carName — games with select use it, others use text input
-    let carId   = null;
+    let carId = null;
     let carName = '';
     const selGame = gameSelect.value;
     if (['acc', 'f1_24', 'gt7', 'iracing'].includes(selGame)) {
         const sel = $(`car-select-${selGame}`);
-        carId   = sel?.value || null;
+        carId = sel?.value || null;
         carName = carId ? getGameCarName(selGame, carId) : '';
     } else {
         carName = $('car-name').value;
     }
 
     const payload = {
-        gameId:        gameSelect.value,
+        gameId: gameSelect.value,
         gameName,
         carId,
         carName,
-        track:         $('track-name').value,
-        weatherType:   $('weather-select').value,
-        sessionType:   $('session-select').value,
-        setupName:     $('setup-name').value || `${carName} @ ${$('track-name').value}`,
-        rating:        parseInt($('setup-rating')?.value || 0),
-        gameVersion:   $('setup-game-version')?.value || '',
-        platform:      $('setup-platform')?.value || '',
-        isPublic:      $('setup-public')?.checked || false,
-        notes:         Object.keys(setupData)
-                       .filter(k => k.startsWith('note_'))
-                       .map(k => `[${k.replace('note_', '').toUpperCase()}] ${setupData[k]}`)
-                       .filter(s => s.length > 12)
-                       .join('\n\n'),
+        track: $('track-name').value,
+        weatherType: $('weather-select').value,
+        sessionType: $('session-select').value,
+        setupName: $('setup-name').value || `${carName} @ ${$('track-name').value}`,
+        rating: parseInt($('setup-rating')?.value || 0),
+        gameVersion: $('setup-game-version')?.value || '',
+        platform: $('setup-platform')?.value || '',
+        isPublic: $('setup-public')?.checked || false,
+        notes: Object.keys(setupData)
+            .filter(k => k.startsWith('note_'))
+            .map(k => `[${k.replace('note_', '').toUpperCase()}] ${setupData[k]}`)
+            .filter(s => s.length > 12)
+            .join('\n\n'),
         tags
     };
 
@@ -1240,7 +1247,7 @@ async function saveSetup() {
 }
 
 async function renderDashboard() {
-    const setups    = await SetupService.getAll({ ...currentFilters, sortBy });
+    const setups = await SetupService.getAll({ ...currentFilters, sortBy });
     const allSetups = await SetupService.getAllRaw();
     const favoriteCount = allSetups.filter(s => s.isFavorite).length;
 

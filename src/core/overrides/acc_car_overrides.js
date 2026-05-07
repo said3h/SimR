@@ -77,49 +77,49 @@ const ACC_CAR_OVERRIDES = {
         casterMin: 6.5, casterMax: 12.4, casterSteps: 31,  // ✓ carData.js
 
         // ── MECHANICAL GRIP ───────────────────────────────────────────────
-        arbFrontMin: 1, arbFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        arbRearMin:  1, arbRearMax: 'PENDIENTE_DE_VERIFICACION',
+        arbFrontMin: 1, arbFrontMax: null,
+        arbRearMin:  1, arbRearMax: null,
 
         // ✓ carData.js — array de valores N/mm
         wheelRateFront: [100.5, 110, 114, 119, 127, 137, 141.5, 146, 155, 173.5],
         wheelRateRear:  [137, 149.5, 156, 162, 174.5, 187, 193, 199.5, 212, 237],
 
         // ⚠ pending — bumpstopFn no disponible para este coche
-        bumpStopRateUpMin: 0, bumpStopRateUpMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRateDnMin: 0, bumpStopRateDnMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRangeMin: 0, bumpStopRangeMax: 'PENDIENTE_DE_VERIFICACION',
+        bumpStopRateUpMin: 0, bumpStopRateUpMax: null,
+        bumpStopRateDnMin: 0, bumpStopRateDnMax: null,
+        bumpStopRangeMin: 0, bumpStopRangeMax: null,
 
         brakePowerMin: 80, brakePowerMax: 100, brakePowerStep: 1,  // ⚠ pending
 
-        brakeBiasMin: 43.0, brakeBiasMax: 'PENDIENTE_DE_VERIFICACION', brakeBiasStep: 0.2,  // ⚠ pending max
+        brakeBiasMin: 43.0, brakeBiasMax: null, brakeBiasStep: 0.2,  // ⚠ pending max
 
         brakePads: [1, 2, 3, 4],
 
-        steeringRatioMin: 11, steeringRatioMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        steeringRatioMin: 11, steeringRatioMax: null,  // ⚠ pending
 
-        diffPreloadMin: 20, diffPreloadMax: 'PENDIENTE_DE_VERIFICACION', diffPreloadStep: 10,  // ⚠ pending
+        diffPreloadMin: 20, diffPreloadMax: null, diffPreloadStep: 10,  // ⚠ pending
 
         // ⚠ pending — slider index, no hay convers N/mm
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
 
         // ── AERO ──────────────────────────────────────────────────────────
         // ⚠ pending — carData.js solo da min en mm (slider index 0)
-        rideHeightFrontMin: 53, rideHeightFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        rideHeightRearMin:  55, rideHeightRearMax: 'PENDIENTE_DE_VERIFICACION',
+        rideHeightFrontMin: 53, rideHeightFrontMax: null,
+        rideHeightRearMin:  55, rideHeightRearMax: null,
         rideHeightStep: 1,
 
         splitterMin: 0, splitterMax: 0,  // ✓ FIJO — no tiene splitter ajustable
 
-        rearWingMin: 0, rearWingMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        rearWingMin: 0, rearWingMax: null,  // ⚠ pending
 
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓ universal
 
         // ── ELECTRONICS ──────────────────────────────────────────────────
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending — único GT3 con max=11 (sin confirmar)
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending — único GT3 con max=9 (sin confirmar)
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        tc1Min: 0, tc1Max: null,  // ⚠ pending
+        tc2Min: 0, tc2Max: null,  // ⚠ pending
+        absMin: 0, absMax: null,  // ⚠ pending — único GT3 con max=11 (sin confirmar)
+        engineMapMin: 1, engineMapMax: null,  // ⚠ pending — único GT3 con max=9 (sin confirmar)
+        fuelMax: null,  // ⚠ pending
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -137,44 +137,44 @@ const ACC_CAR_OVERRIDES = {
 
         casterMin: 8.5, casterMax: 13.8, casterSteps: 31,  // ✓ carData.js
 
-        arbFrontMin: 1, arbFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        arbRearMin:  1, arbRearMax: 'PENDIENTE_DE_VERIFICACION',
+        arbFrontMin: 1, arbFrontMax: null,
+        arbRearMin:  1, arbRearMax: null,
 
         // ✓ carData.js
         wheelRateFront: [163.769, 170.068, 176.367, 182.666, 188.964, 195.263, 201.562, 207.861, 214.16],
         wheelRateRear:  [122.091, 129.273, 136.455, 143.637, 150.818, 158.0, 165.182, 172.364, 179.546],
 
-        bumpStopRateUpMin: 0, bumpStopRateUpMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRateDnMin: 0, bumpStopRateDnMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRangeMin: 0, bumpStopRangeMax: 'PENDIENTE_DE_VERIFICACION',
+        bumpStopRateUpMin: 0, bumpStopRateUpMax: null,
+        bumpStopRateDnMin: 0, bumpStopRateDnMax: null,
+        bumpStopRangeMin: 0, bumpStopRangeMax: null,
 
         brakePowerMin: 80, brakePowerMax: 100, brakePowerStep: 1,  // ⚠ pending
 
-        brakeBiasMin: 50.0, brakeBiasMax: 'PENDIENTE_DE_VERIFICACION', brakeBiasStep: 0.2,  // ⚠ pending max
+        brakeBiasMin: 50.0, brakeBiasMax: null, brakeBiasStep: 0.2,  // ⚠ pending max
 
         brakePads: [1, 2, 3, 4],
 
-        steeringRatioMin: 13, steeringRatioMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        steeringRatioMin: 13, steeringRatioMax: null,  // ⚠ pending
 
-        diffPreloadMin: 20, diffPreloadMax: 'PENDIENTE_DE_VERIFICACION', diffPreloadStep: 10,  // ⚠ pending
+        diffPreloadMin: 20, diffPreloadMax: null, diffPreloadStep: 10,  // ⚠ pending
 
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        dampersMin: 0, dampersMax: null,  // ⚠ pending
 
-        rideHeightFrontMin: 50, rideHeightFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        rideHeightRearMin:  50, rideHeightRearMax: 'PENDIENTE_DE_VERIFICACION',
+        rideHeightFrontMin: 50, rideHeightFrontMax: null,
+        rideHeightRearMin:  50, rideHeightRearMax: null,
         rideHeightStep: 1,
 
         splitterMin: 0, splitterMax: 0,  // ✓ FIJO
 
-        rearWingMin: 0, rearWingMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        rearWingMin: 0, rearWingMax: null,  // ⚠ pending
 
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
 
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        tc1Min: 0, tc1Max: null,  // ⚠ pending
+        tc2Min: 0, tc2Max: null,  // ⚠ pending
+        absMin: 0, absMax: null,  // ⚠ pending
+        engineMapMin: 1, engineMapMax: null,  // ⚠ pending
+        fuelMax: null,  // ⚠ pending
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -191,46 +191,46 @@ const ACC_CAR_OVERRIDES = {
         toeRearMin:   0.00, toeRearMax:  0.40,
 
         // ⚠ pending — casterFn incompleta en carData.js
-        casterMin: 6.1, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 6.1, casterMax: null, casterSteps: null,
 
-        arbFrontMin: 1, arbFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        arbRearMin:  1, arbRearMax: 'PENDIENTE_DE_VERIFICACION',
+        arbFrontMin: 1, arbFrontMax: null,
+        arbRearMin:  1, arbRearMax: null,
 
         // ✓ carData.js
         wheelRateFront: [105, 120, 135, 150, 165, 180],
         wheelRateRear:  [90, 105, 120, 135, 150, 165],
 
-        bumpStopRateUpMin: 0, bumpStopRateUpMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRateDnMin: 0, bumpStopRateDnMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRangeMin: 0, bumpStopRangeMax: 'PENDIENTE_DE_VERIFICACION',
+        bumpStopRateUpMin: 0, bumpStopRateUpMax: null,
+        bumpStopRateDnMin: 0, bumpStopRateDnMax: null,
+        bumpStopRangeMin: 0, bumpStopRangeMax: null,
 
         brakePowerMin: 80, brakePowerMax: 100, brakePowerStep: 1,  // ⚠ pending
 
-        brakeBiasMin: 48.5, brakeBiasMax: 'PENDIENTE_DE_VERIFICACION', brakeBiasStep: 0.2,  // ⚠ pending max
+        brakeBiasMin: 48.5, brakeBiasMax: null, brakeBiasStep: 0.2,  // ⚠ pending max
 
         brakePads: [1, 2, 3, 4],
 
-        steeringRatioMin: 10, steeringRatioMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        steeringRatioMin: 10, steeringRatioMax: null,  // ⚠ pending
 
-        diffPreloadMin: 20, diffPreloadMax: 'PENDIENTE_DE_VERIFICACION', diffPreloadStep: 10,  // ⚠ pending
+        diffPreloadMin: 20, diffPreloadMax: null, diffPreloadStep: 10,  // ⚠ pending
 
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        dampersMin: 0, dampersMax: null,  // ⚠ pending
 
-        rideHeightFrontMin: 50, rideHeightFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        rideHeightRearMin:  50, rideHeightRearMax: 'PENDIENTE_DE_VERIFICACION',
+        rideHeightFrontMin: 50, rideHeightFrontMax: null,
+        rideHeightRearMin:  50, rideHeightRearMax: null,
         rideHeightStep: 1,
 
         splitterMin: 0, splitterMax: 0,  // ✓ FIJO
 
-        rearWingMin: 0, rearWingMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        rearWingMin: 0, rearWingMax: null,  // ⚠ pending
 
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
 
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        tc1Min: 0, tc1Max: null,  // ⚠ pending
+        tc2Min: 0, tc2Max: null,  // ⚠ pending
+        absMin: 0, absMax: null,  // ⚠ pending
+        engineMapMin: 1, engineMapMax: null,  // ⚠ pending
+        fuelMax: null,  // ⚠ pending
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -249,46 +249,46 @@ const ACC_CAR_OVERRIDES = {
         toeRearMin:  -0.40, toeRearMax:  0.40,
 
         // ⚠ pending — casterFn incompleta (2 pasos)
-        casterMin: 6.0, casterMax: 14.1, casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 6.0, casterMax: 14.1, casterSteps: null,
 
-        arbFrontMin: 1, arbFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        arbRearMin:  1, arbRearMax: 'PENDIENTE_DE_VERIFICACION',
+        arbFrontMin: 1, arbFrontMax: null,
+        arbRearMin:  1, arbRearMax: null,
 
         // ✓ carData.js
         wheelRateFront: [130, 143, 155, 171, 187, 202],
         wheelRateRear:  [71, 83, 95, 107, 119, 131],
 
-        bumpStopRateUpMin: 0, bumpStopRateUpMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRateDnMin: 0, bumpStopRateDnMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRangeMin: 0, bumpStopRangeMax: 'PENDIENTE_DE_VERIFICACION',
+        bumpStopRateUpMin: 0, bumpStopRateUpMax: null,
+        bumpStopRateDnMin: 0, bumpStopRateDnMax: null,
+        bumpStopRangeMin: 0, bumpStopRangeMax: null,
 
         brakePowerMin: 80, brakePowerMax: 100, brakePowerStep: 1,  // ⚠ pending
 
-        brakeBiasMin: 50.0, brakeBiasMax: 'PENDIENTE_DE_VERIFICACION', brakeBiasStep: 0.2,  // ⚠ pending max
+        brakeBiasMin: 50.0, brakeBiasMax: null, brakeBiasStep: 0.2,  // ⚠ pending max
 
         brakePads: [1, 2, 3, 4],
 
-        steeringRatioMin: 11, steeringRatioMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        steeringRatioMin: 11, steeringRatioMax: null,  // ⚠ pending
 
-        diffPreloadMin: 20, diffPreloadMax: 'PENDIENTE_DE_VERIFICACION', diffPreloadStep: 10,  // ⚠ pending
+        diffPreloadMin: 20, diffPreloadMax: null, diffPreloadStep: 10,  // ⚠ pending
 
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        dampersMin: 0, dampersMax: null,  // ⚠ pending
 
-        rideHeightFrontMin: 50, rideHeightFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        rideHeightRearMin:  67, rideHeightRearMax: 'PENDIENTE_DE_VERIFICACION',
+        rideHeightFrontMin: 50, rideHeightFrontMax: null,
+        rideHeightRearMin:  67, rideHeightRearMax: null,
         rideHeightStep: 1,
 
-        splitterMin: 0, splitterMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending — no confirmado en carData.js
+        splitterMin: 0, splitterMax: null,  // ⚠ pending — no confirmado en carData.js
 
-        rearWingMin: 0, rearWingMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        rearWingMin: 0, rearWingMax: null,  // ⚠ pending
 
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
 
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        tc1Min: 0, tc1Max: null,  // ⚠ pending
+        tc2Min: 0, tc2Max: null,  // ⚠ pending
+        absMin: 0, absMax: null,  // ⚠ pending
+        engineMapMin: 1, engineMapMax: null,  // ⚠ pending
+        fuelMax: null,  // ⚠ pending
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -308,45 +308,45 @@ const ACC_CAR_OVERRIDES = {
 
         casterMin: 6.2, casterMax: 15.0, casterSteps: 35,  // ✓ carData.js
 
-        arbFrontMin: 1, arbFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        arbRearMin:  1, arbRearMax: 'PENDIENTE_DE_VERIFICACION',
+        arbFrontMin: 1, arbFrontMax: null,
+        arbRearMin:  1, arbRearMax: null,
 
         // ✓ carData.js
         wheelRateFront: [121, 144, 167, 190, 201, 212],
         wheelRateRear:  [117, 136, 154, 164, 173, 191],
 
-        bumpStopRateUpMin: 0, bumpStopRateUpMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRateDnMin: 0, bumpStopRateDnMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRangeMin: 0, bumpStopRangeMax: 'PENDIENTE_DE_VERIFICACION',
+        bumpStopRateUpMin: 0, bumpStopRateUpMax: null,
+        bumpStopRateDnMin: 0, bumpStopRateDnMax: null,
+        bumpStopRangeMin: 0, bumpStopRangeMax: null,
 
         brakePowerMin: 80, brakePowerMax: 100, brakePowerStep: 1,  // ⚠ pending
 
-        brakeBiasMin: 50.0, brakeBiasMax: 'PENDIENTE_DE_VERIFICACION', brakeBiasStep: 0.2,  // ⚠ pending max
+        brakeBiasMin: 50.0, brakeBiasMax: null, brakeBiasStep: 0.2,  // ⚠ pending max
 
         brakePads: [1, 2, 3, 4],
 
-        steeringRatioMin: 10, steeringRatioMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        steeringRatioMin: 10, steeringRatioMax: null,  // ⚠ pending
 
-        diffPreloadMin: 20, diffPreloadMax: 'PENDIENTE_DE_VERIFICACION', diffPreloadStep: 10,  // ⚠ pending
+        diffPreloadMin: 20, diffPreloadMax: null, diffPreloadStep: 10,  // ⚠ pending
 
         // ⚠ ANÓMALO — único GT3 con damper hasta 32+. Todos los demás GT3 son 0-10.
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
 
-        rideHeightFrontMin: 54, rideHeightFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        rideHeightRearMin:  54, rideHeightRearMax: 'PENDIENTE_DE_VERIFICACION',
+        rideHeightFrontMin: 54, rideHeightFrontMax: null,
+        rideHeightRearMin:  54, rideHeightRearMax: null,
         rideHeightStep: 1,
 
-        splitterMin: 0, splitterMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        splitterMin: 0, splitterMax: null,  // ⚠ pending
 
-        rearWingMin: 0, rearWingMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        rearWingMin: 0, rearWingMax: null,  // ⚠ pending
 
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
 
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        tc1Min: 0, tc1Max: null,  // ⚠ pending
+        tc2Min: 0, tc2Max: null,  // ⚠ pending
+        absMin: 0, absMax: null,  // ⚠ pending
+        engineMapMin: 1, engineMapMax: null,  // ⚠ pending
+        fuelMax: null,  // ⚠ pending
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -366,44 +366,44 @@ const ACC_CAR_OVERRIDES = {
 
         casterMin: 5.3, casterMax: 16.3, casterSteps: 47,  // ✓ carData.js
 
-        arbFrontMin: 1, arbFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        arbRearMin:  1, arbRearMax: 'PENDIENTE_DE_VERIFICACION',
+        arbFrontMin: 1, arbFrontMax: null,
+        arbRearMin:  1, arbRearMax: null,
 
         // ✓ carData.js
         wheelRateFront: [118, 134, 150, 166, 182, 198, 214, 230],
         wheelRateRear:  [83, 97, 111, 125, 139, 153, 167, 181, 195, 209],
 
-        bumpStopRateUpMin: 0, bumpStopRateUpMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRateDnMin: 0, bumpStopRateDnMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRangeMin: 0, bumpStopRangeMax: 'PENDIENTE_DE_VERIFICACION',
+        bumpStopRateUpMin: 0, bumpStopRateUpMax: null,
+        bumpStopRateDnMin: 0, bumpStopRateDnMax: null,
+        bumpStopRangeMin: 0, bumpStopRangeMax: null,
 
         brakePowerMin: 80, brakePowerMax: 100, brakePowerStep: 1,  // ⚠ pending
 
-        brakeBiasMin: 47.0, brakeBiasMax: 'PENDIENTE_DE_VERIFICACION', brakeBiasStep: 0.2,  // ⚠ pending max
+        brakeBiasMin: 47.0, brakeBiasMax: null, brakeBiasStep: 0.2,  // ⚠ pending max
 
         brakePads: [1, 2, 3, 4],
 
-        steeringRatioMin: 11, steeringRatioMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        steeringRatioMin: 11, steeringRatioMax: null,  // ⚠ pending
 
-        diffPreloadMin: 20, diffPreloadMax: 'PENDIENTE_DE_VERIFICACION', diffPreloadStep: 10,  // ⚠ pending
+        diffPreloadMin: 20, diffPreloadMax: null, diffPreloadStep: 10,  // ⚠ pending
 
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        dampersMin: 0, dampersMax: null,  // ⚠ pending
 
-        rideHeightFrontMin: 50, rideHeightFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        rideHeightRearMin:  64, rideHeightRearMax: 'PENDIENTE_DE_VERIFICACION',
+        rideHeightFrontMin: 50, rideHeightFrontMax: null,
+        rideHeightRearMin:  64, rideHeightRearMax: null,
         rideHeightStep: 1,
 
-        splitterMin: 0, splitterMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        splitterMin: 0, splitterMax: null,  // ⚠ pending
 
-        rearWingMin: 0, rearWingMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        rearWingMin: 0, rearWingMax: null,  // ⚠ pending
 
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
 
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        tc1Min: 0, tc1Max: null,  // ⚠ pending
+        tc2Min: 0, tc2Max: null,  // ⚠ pending
+        absMin: 0, absMax: null,  // ⚠ pending
+        engineMapMin: 1, engineMapMax: null,  // ⚠ pending
+        fuelMax: null,  // ⚠ pending
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -423,44 +423,44 @@ const ACC_CAR_OVERRIDES = {
 
         casterMin: 8.8, casterMax: 16.8, casterSteps: 35,  // ✓ carData.js
 
-        arbFrontMin: 1, arbFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        arbRearMin:  1, arbRearMax: 'PENDIENTE_DE_VERIFICACION',
+        arbFrontMin: 1, arbFrontMax: null,
+        arbRearMin:  1, arbRearMax: null,
 
         // ✓ carData.js — idéntico al R8 base y R8 Evo
         wheelRateFront: [112, 132, 153, 174, 185, 195],
         wheelRateRear:  [124, 144, 163, 173, 183, 202],
 
-        bumpStopRateUpMin: 0, bumpStopRateUpMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRateDnMin: 0, bumpStopRateDnMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRangeMin: 0, bumpStopRangeMax: 'PENDIENTE_DE_VERIFICACION',
+        bumpStopRateUpMin: 0, bumpStopRateUpMax: null,
+        bumpStopRateDnMin: 0, bumpStopRateDnMax: null,
+        bumpStopRangeMin: 0, bumpStopRangeMax: null,
 
         brakePowerMin: 80, brakePowerMax: 100, brakePowerStep: 1,  // ⚠ pending
 
-        brakeBiasMin: 50.0, brakeBiasMax: 'PENDIENTE_DE_VERIFICACION', brakeBiasStep: 0.2,  // ⚠ pending max
+        brakeBiasMin: 50.0, brakeBiasMax: null, brakeBiasStep: 0.2,  // ⚠ pending max
 
         brakePads: [1, 2, 3, 4],
 
-        steeringRatioMin: 12, steeringRatioMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        steeringRatioMin: 12, steeringRatioMax: null,  // ⚠ pending
 
-        diffPreloadMin: 20, diffPreloadMax: 'PENDIENTE_DE_VERIFICACION', diffPreloadStep: 10,  // ⚠ pending
+        diffPreloadMin: 20, diffPreloadMax: null, diffPreloadStep: 10,  // ⚠ pending
 
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        dampersMin: 0, dampersMax: null,  // ⚠ pending
 
-        rideHeightFrontMin: 54, rideHeightFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        rideHeightRearMin:  54, rideHeightRearMax: 'PENDIENTE_DE_VERIFICACION',
+        rideHeightFrontMin: 54, rideHeightFrontMax: null,
+        rideHeightRearMin:  54, rideHeightRearMax: null,
         rideHeightStep: 1,
 
-        splitterMin: 0, splitterMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        splitterMin: 0, splitterMax: null,  // ⚠ pending
 
-        rearWingMin: 0, rearWingMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        rearWingMin: 0, rearWingMax: null,  // ⚠ pending
 
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
 
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        tc1Min: 0, tc1Max: null,  // ⚠ pending
+        tc2Min: 0, tc2Max: null,  // ⚠ pending
+        absMin: 0, absMax: null,  // ⚠ pending
+        engineMapMin: 1, engineMapMax: null,  // ⚠ pending
+        fuelMax: null,  // ⚠ pending
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -479,47 +479,47 @@ const ACC_CAR_OVERRIDES = {
         toeRearMin:  -0.40, toeRearMax:  0.40,
 
         // ⚠ pending — casterFn incompleta (min=10.7° solo)
-        casterMin: 10.7, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 10.7, casterMax: null, casterSteps: null,
 
-        arbFrontMin: 1, arbFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        arbRearMin:  1, arbRearMax: 'PENDIENTE_DE_VERIFICACION',
+        arbFrontMin: 1, arbFrontMax: null,
+        arbRearMin:  1, arbRearMax: null,
 
         // ✓ carData.js
         wheelRateFront: [115, 125, 135, 145, 155, 165, 175, 185],
         wheelRateRear:  [105, 115, 125, 135, 145, 155, 165, 175, 185, 195],
 
-        bumpStopRateUpMin: 0, bumpStopRateUpMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRateDnMin: 0, bumpStopRateDnMax: 'PENDIENTE_DE_VERIFICACION',
-        bumpStopRangeMin: 0, bumpStopRangeMax: 'PENDIENTE_DE_VERIFICACION',
+        bumpStopRateUpMin: 0, bumpStopRateUpMax: null,
+        bumpStopRateDnMin: 0, bumpStopRateDnMax: null,
+        bumpStopRangeMin: 0, bumpStopRangeMax: null,
 
         brakePowerMin: 80, brakePowerMax: 100, brakePowerStep: 1,  // ⚠ pending
 
         // ⚠ pending max — carData.js solo da min=57.0
-        brakeBiasMin: 57.0, brakeBiasMax: 'PENDIENTE_DE_VERIFICACION', brakeBiasStep: 0.2,
+        brakeBiasMin: 57.0, brakeBiasMax: null, brakeBiasStep: 0.2,
 
         brakePads: [1, 2, 3, 4],
 
-        steeringRatioMin: 14, steeringRatioMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        steeringRatioMin: 14, steeringRatioMax: null,  // ⚠ pending
 
-        diffPreloadMin: 20, diffPreloadMax: 'PENDIENTE_DE_VERIFICACION', diffPreloadStep: 10,  // ⚠ pending
+        diffPreloadMin: 20, diffPreloadMax: null, diffPreloadStep: 10,  // ⚠ pending
 
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        dampersMin: 0, dampersMax: null,  // ⚠ pending
 
-        rideHeightFrontMin: 55, rideHeightFrontMax: 'PENDIENTE_DE_VERIFICACION',
-        rideHeightRearMin:  55, rideHeightRearMax: 'PENDIENTE_DE_VERIFICACION',
+        rideHeightFrontMin: 55, rideHeightFrontMax: null,
+        rideHeightRearMin:  55, rideHeightRearMax: null,
         rideHeightStep: 1,
 
-        splitterMin: 0, splitterMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        splitterMin: 0, splitterMax: null,  // ⚠ pending
 
-        rearWingMin: 0, rearWingMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        rearWingMin: 0, rearWingMax: null,  // ⚠ pending
 
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
 
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending
+        tc1Min: 0, tc1Max: null,  // ⚠ pending
+        tc2Min: 0, tc2Max: null,  // ⚠ pending
+        absMin: 0, absMax: null,  // ⚠ pending
+        engineMapMin: 1, engineMapMax: null,  // ⚠ pending
+        fuelMax: null,  // ⚠ pending
     },
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -532,20 +532,20 @@ const ACC_CAR_OVERRIDES = {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 8.3, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 8.3, casterMax: null, casterSteps: null,
         wheelRateFront: [115,120,125,130,135,140,145,150,155,160,165,170,175,180,185],  // ✓
         wheelRateRear:  [95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195],  // ✓
         brakeBiasMin: 57.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 14,  // ⚠ pending max
         rideHeightFrontMin: 55, rideHeightRearMin: 55, rideHeightStep: 1,  // ⚠ pending max
         arbFrontMin: 1, arbRearMin: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     audi_r8_lms: {
@@ -558,13 +558,13 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 50.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 12,  // ⚠ pending max
         rideHeightFrontMin: 54, rideHeightRearMin: 54, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     audi_r8_lms_evo: {
@@ -577,51 +577,51 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 50.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 12,  // ⚠ pending max
         rideHeightFrontMin: 54, rideHeightRearMin: 54, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     bentley_continental_gt3_2018: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 8.3, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 8.3, casterMax: null, casterSteps: null,
         wheelRateFront: [115,120,125,130,135,140,145,150,155,160,165,170,175,180,185],  // ✓
         wheelRateRear:  [95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195],  // ✓
         brakeBiasMin: 57.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 54, rideHeightRearMin: 54, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     bmw_m6_gt3: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.20, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:   0.00, toeRearMax:  0.40,
-        casterMin: 6.7, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 6.7, casterMax: null, casterSteps: null,
         wheelRateFront: [136, 146, 156, 166, 176, 186],  // ✓
         wheelRateRear:  [96, 106, 116, 126, 136, 146],  // ✓
         brakeBiasMin: 47.5, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 52, rideHeightRearMin: 52, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     ferrari_488_gt3_evo: {
@@ -634,13 +634,13 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 47.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 55, rideHeightRearMin: 55, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     ferrari_488_gt3: {
@@ -653,51 +653,51 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 47.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 55, rideHeightRearMin: 55, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     honda_nsx_gt3: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 8.8, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 8.8, casterMax: null, casterSteps: null,
         wheelRateFront: [115,124,133,142,151,160,169,178,187,196],  // ✓
         wheelRateRear:  [115,124,133,142,151,160,169,178,187,196,205],  // ✓
         brakeBiasMin: 50.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 54, rideHeightRearMin: 54, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     honda_nsx_gt3_evo: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 7.2, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 7.2, casterMax: null, casterSteps: null,
         wheelRateFront: [73,79.08,85.16,91.24,97.32,103.4,109.48,115.56,121.64,127.72,133.8,139.88,145.96,152.04,158.12,164.2,170.28],  // ✓
         wheelRateRear:  [126.8,134.7,142.6,150.5,158.4,166.3,174.2,182.1,190,197.9,205.8,213.7,221.6,229.5,237.4,245.3,253.2],  // ✓
         brakeBiasMin: 44.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 54, rideHeightRearMin: 54, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     lamborghini_huracan_gt3: {
@@ -710,13 +710,13 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 50.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 54, rideHeightRearMin: 54, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ — damper anómalo posible
+        dampersMin: 0, dampersMax: null,  // ⚠ — damper anómalo posible
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     lamborghini_huracan_gt3_evo: {
@@ -729,32 +729,32 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 50.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 54, rideHeightRearMin: 54, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',  // ⚠ — damper anómalo posible
+        dampersMin: 0, dampersMax: null,  // ⚠ — damper anómalo posible
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     lexus_rc_f_gt3: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 7.9, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 7.9, casterMax: null, casterSteps: null,
         wheelRateFront: [96, 115, 134, 154, 173, 192],  // ✓
         wheelRateRear:  [87, 112, 136, 154, 175, 210],  // ✓
         brakeBiasMin: 50.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 11,  // ⚠ pending max
         rideHeightFrontMin: 50, rideHeightRearMin: 65, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     mclaren_720s_gt3: {
@@ -767,184 +767,184 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 47.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 11,  // ⚠ pending max
         rideHeightFrontMin: 50, rideHeightRearMin: 64, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     mclaren_650s_gt3: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 5.3, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 5.3, casterMax: null, casterSteps: null,
         wheelRateFront: [126, 136, 146, 156, 166, 176],  // ✓
         wheelRateRear:  [126, 136, 146, 156, 166, 176],  // ✓
         brakeBiasMin: 47.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 11,  // ⚠ pending max
         rideHeightFrontMin: 56, rideHeightRearMin: 56, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     mercedes_amg_gt3: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 6.0, casterMax: 14.1, casterSteps: 'PENDIENTE_DE_VERIFICACION',  // ⚠ pending steps
+        casterMin: 6.0, casterMax: 14.1, casterSteps: null,  // ⚠ pending steps
         wheelRateFront: [130, 143, 155, 171, 187, 202],  // ✓
         wheelRateRear:  [71, 83, 95, 107, 119, 131],  // ✓
         brakeBiasMin: 50.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 11,  // ⚠ pending max
         rideHeightFrontMin: 42, rideHeightRearMin: 67, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     nissan_gt_r_gt3_2017: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.20, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:   0.00, toeRearMax:  0.40,
-        casterMin: 6.0, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 6.0, casterMax: null, casterSteps: null,
         wheelRateFront: [122, 132, 142, 152, 162, 172, 182],  // ✓
         wheelRateRear:  [94, 104, 114, 124, 134, 144, 154],  // ✓
         brakeBiasMin: 47.5, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 12,  // ⚠ pending max
         rideHeightFrontMin: 55, rideHeightRearMin: 55, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     nissan_gt_r_gt3_2018: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.20, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:   0.00, toeRearMax:  0.40,
-        casterMin: 12.5, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 12.5, casterMax: null, casterSteps: null,
         wheelRateFront: [136, 146, 156, 166, 176, 186],  // ✓
         wheelRateRear:  [96, 106, 116, 126, 136, 146],  // ✓
         brakeBiasMin: 47.5, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 12,  // ⚠ pending max
         rideHeightFrontMin: 55, rideHeightRearMin: 55, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     porsche_991_gt3_r: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 7.3, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 7.3, casterMax: null, casterSteps: null,
         wheelRateFront: [83, 100, 116, 133, 149, 166],  // ⚠ pending verificar array
         wheelRateRear:  [155, 128, 141, 154, 167, 180],  // ⚠ dato cuestionable
         brakeBiasMin: 43.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 11,  // ⚠ pending max
         rideHeightFrontMin: 60, rideHeightRearMin: 60, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     porsche_991ii_gt3_r: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 4.4, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 4.4, casterMax: null, casterSteps: null,
         wheelRateFront: [100.5, 110, 114, 119, 127, 137, 141.5, 146, 155, 173.5],  // ✓
         wheelRateRear:  [137, 149.5, 156, 162, 174.5, 187, 193, 199.5, 212, 237],  // ✓
         brakeBiasMin: 43.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 11,  // ⚠ pending max
         rideHeightFrontMin: 53, rideHeightRearMin: 55, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     bentley_continental_gt3_2016: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 8.3, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 8.3, casterMax: null, casterSteps: null,
         wheelRateFront: [115,120,125,130,135,140,145,150,155,160,165,170,175,180,185],  // ⚠ verificar
         wheelRateRear:  [95,100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195],  // ⚠ verificar
         brakeBiasMin: 57.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 54, rideHeightRearMin: 54, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     jaguar_g3: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 4.0, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 4.0, casterMax: null, casterSteps: null,
         wheelRateFront: [100,105,110,115,120,125,130,135,140,145,150,155,160,165,170,175,180,185],  // ⚠ verificar
         wheelRateRear:  [120,125,130,135,140,145,150,155,160,165,170,175,180,185,190,195],  // ⚠ verificar
         brakeBiasMin: 57.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 60, rideHeightRearMin: 60, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     lamborghini_gallardo_rex: {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 4.9, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 4.9, casterMax: null, casterSteps: null,
         wheelRateFront: [121,126,131,136,141,146,151,156,161,166,171,176,181,186,191,196,201,206,211],  // ⚠ verificar
         wheelRateRear:  [117,122,127,132,137,142,147,152,157,162,167,182,187],  // ⚠ verificar
         brakeBiasMin: 50.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 54, rideHeightRearMin: 54, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -961,32 +961,32 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 45.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 12,  // ⚠ pending max
         rideHeightFrontMin: 95, rideHeightRearMin: 85, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     amr_v8_vantage_gt4: {
         tyrePressureMin: 17.0, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 10.7, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 10.7, casterMax: null, casterSteps: null,
         wheelRateFront: [80, 90, 100, 110],  // ⚠ verificar
         wheelRateRear:  [70, 75, 80],  // ⚠ verificar
         brakeBiasMin: 45.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 14,  // ⚠ pending max
         rideHeightFrontMin: 98, rideHeightRearMin: 102, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     audi_r8_gt4: {
@@ -999,13 +999,13 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 50.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 14,  // ⚠ pending max
         rideHeightFrontMin: 105, rideHeightRearMin: 107, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     bmw_m4_gt4: {
@@ -1018,13 +1018,13 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 49.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 80, rideHeightRearMin: 75, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     chevrolet_camaro_gt4r: {
@@ -1037,108 +1037,108 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 47.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 115, rideHeightRearMin: 123, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     ginetta_g55_gt4: {
         tyrePressureMin: 17.0, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 3.7, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 3.7, casterMax: null, casterSteps: null,
         wheelRateFront: [80, 90, 100, 110, 120],  // ⚠ verificar
         wheelRateRear:  [60, 70, 80, 90, 100],  // ⚠ verificar
         brakeBiasMin: 46.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 11,  // ⚠ pending max
         rideHeightFrontMin: 75, rideHeightRearMin: 76, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     ktm_xbow_gt4: {
         tyrePressureMin: 17.0, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 1.7, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 1.7, casterMax: null, casterSteps: null,
         wheelRateFront: [87, 97, 107, 117, 127],  // ⚠ verificar
         wheelRateRear:  [81, 91, 101, 111, 121, 131],  // ⚠ verificar
         brakeBiasMin: 44.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 11,  // ⚠ pending max
         rideHeightFrontMin: 110, rideHeightRearMin: 110, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     maserati_mc_gt4: {
         tyrePressureMin: 17.0, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 3.4, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 3.4, casterMax: null, casterSteps: null,
         wheelRateFront: [116, 151, 186],  // ⚠ verificar
         wheelRateRear:  [113, 138, 163],  // ⚠ verificar
         brakeBiasMin: 49.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 14,  // ⚠ pending max
         rideHeightFrontMin: 80, rideHeightRearMin: 105, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     mclaren_570s_gt4: {
         tyrePressureMin: 17.0, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 5.3, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 5.3, casterMax: null, casterSteps: null,
         wheelRateFront: [140, 175],  // ⚠ verificar
         wheelRateRear:  [162.85, 175.52],  // ⚠ verificar
         brakeBiasMin: 60.0, brakeBiasStep: 0.2,  // ⚠ pending max — bias más alto que todos los GT4
         steeringRatioMin: 11,  // ⚠ pending max
         rideHeightFrontMin: 95, rideHeightRearMin: 95, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     mercedes_amg_gt4: {
         tyrePressureMin: 17.0, tyrePressureMax: 34.3, tyrePressureStep: 0.1,  // ✓
         toeFrontMin: -0.20, toeFrontMax: 0.40, toeStep: 0.01,  // ✓
         toeRearMin:   0.00, toeRearMax:  0.40,
-        casterMin: 9.2, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 9.2, casterMax: null, casterSteps: null,
         wheelRateFront: [78, 88, 104],  // ⚠ verificar
         wheelRateRear:  [66],  // ⚠ único valor — confirmar in-game
         brakeBiasMin: 51.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 10,  // ⚠ pending max
         rideHeightFrontMin: 103, rideHeightRearMin: 101, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
         engineMapMin: 1, engineMapMax: 3,  // ⚠ pendiente — solo 3 mapas?
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        fuelMax: null,
     },
 
     porsche_718_cayman_gt4_mr: {
@@ -1151,13 +1151,13 @@ const ACC_CAR_OVERRIDES = {
         brakeBiasMin: 45.0, brakeBiasStep: 0.2,  // ⚠ pending max
         steeringRatioMin: 15,  // ⚠ pending max
         rideHeightFrontMin: 106, rideHeightRearMin: 94, rideHeightStep: 1,  // ⚠ pending max
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,  // ✓
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -1167,20 +1167,20 @@ const ACC_CAR_OVERRIDES = {
         tyrePressureMin: 20.3, tyrePressureMax: 34.3, tyrePressureStep: 0.1,
         toeFrontMin: -0.40, toeFrontMax: 0.40, toeStep: 0.01,
         toeRearMin:  -0.40, toeRearMax:  0.40,
-        casterMin: 10.7, casterMax: 'PENDIENTE_DE_VERIFICACION', casterSteps: 'PENDIENTE_DE_VERIFICACION',
+        casterMin: 10.7, casterMax: null, casterSteps: null,
         wheelRateFront: [115, 125, 135, 145, 155, 165, 175, 185],
         wheelRateRear:  [105, 115, 125, 135, 145, 155, 165, 175, 185, 195],
         brakeBiasMin: 57.0, brakeBiasStep: 0.2,
         steeringRatioMin: 14,
         rideHeightFrontMin: 55, rideHeightRearMin: 55, rideHeightStep: 1,
         arbFrontMin: 1, arbRearMin: 1,
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     porsche_991_gt3_rs: {
@@ -1194,13 +1194,13 @@ const ACC_CAR_OVERRIDES = {
         steeringRatioMin: 11,
         rideHeightFrontMin: 53, rideHeightRearMin: 55, rideHeightStep: 1,
         arbFrontMin: 1, arbRearMin: 1,
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
     porsche_991_gt3_cup: {
@@ -1214,13 +1214,13 @@ const ACC_CAR_OVERRIDES = {
         steeringRatioMin: 11,
         rideHeightFrontMin: 53, rideHeightRearMin: 55, rideHeightStep: 1,
         arbFrontMin: 1, arbRearMin: 1,
-        dampersMin: 0, dampersMax: 'PENDIENTE_DE_VERIFICACION',
+        dampersMin: 0, dampersMax: null,
         brakeDuctMin: 0, brakeDuctMax: 6,
-        tc1Min: 0, tc1Max: 'PENDIENTE_DE_VERIFICACION',
-        tc2Min: 0, tc2Max: 'PENDIENTE_DE_VERIFICACION',
-        absMin: 0, absMax: 'PENDIENTE_DE_VERIFICACION',
-        engineMapMin: 1, engineMapMax: 'PENDIENTE_DE_VERIFICACION',
-        fuelMax: 'PENDIENTE_DE_VERIFICACION',
+        tc1Min: 0, tc1Max: null,
+        tc2Min: 0, tc2Max: null,
+        absMin: 0, absMax: null,
+        engineMapMin: 1, engineMapMax: null,
+        fuelMax: null,
     },
 
 };
